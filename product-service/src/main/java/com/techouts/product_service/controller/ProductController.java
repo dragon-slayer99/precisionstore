@@ -1,13 +1,22 @@
 package com.techouts.product_service.controller;
 
 
-import com.techouts.product_service.dto.ProductDTO;
-import com.techouts.product_service.service.ProductService;
-import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.techouts.product_service.dto.ProductDTO;
+import com.techouts.product_service.service.ProductService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/products")
@@ -22,14 +31,14 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public ProductDTO getProductById(@PathVariable("id") int id) {
+    public ProductDTO getProductById(@PathVariable int id) {
 
         return productService.getProduct(id);
 
     }
 
     @GetMapping
-    public Map<String, Object> getProducts(@RequestParam(name = "page", required = false) Integer pageNo, @RequestParam(name = "category", required = false) String category) {
+    public Map<String, Object> getProducts(@RequestParam(name = "page", required = false) Integer pageNo, @RequestParam(required = false) String category) {
 
         Map<String, Object> response = new HashMap<> ();
 

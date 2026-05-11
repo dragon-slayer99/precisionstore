@@ -1,8 +1,8 @@
 package com.techouts.api_gateway.filter;
 
-import com.techouts.api_gateway.utils.JwtUtil;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.JwtException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
 import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -14,10 +14,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
 
-import java.nio.charset.StandardCharsets;
-import java.util.List;
+import com.techouts.api_gateway.utils.JwtUtil;
+
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
+import reactor.core.publisher.Mono;
 
 @Component
 public class JwtAuthFilter implements GlobalFilter, Ordered {
