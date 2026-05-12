@@ -24,10 +24,10 @@ import reactor.core.publisher.Mono;
 @Component
 public class JwtAuthFilter implements GlobalFilter, Ordered {
 
-    @Autowired
-    private JwtUtil jwtUtil;
+    private final JwtUtil jwtUtil;
 
-    public JwtAuthFilter() {
+    public JwtAuthFilter(JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
         System.out.println("JwtAuthFilter CREATED");
     }
 

@@ -4,14 +4,7 @@ package com.techouts.product_service.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.techouts.product_service.dto.ProductDTO;
 import com.techouts.product_service.service.ProductService;
@@ -68,8 +61,8 @@ public class ProductController {
 
     }
 
-    @PatchMapping("{id}/update")
-    public ProductDTO updateProductDetails(@Valid @ModelAttribute ProductDTO newProductDetails) {
+    @PutMapping("{id}/update")
+    public ProductDTO updateProductDetails(@Valid @RequestBody ProductDTO newProductDetails) {
 
         return productService.updateProductDetails(newProductDetails);
 

@@ -52,7 +52,7 @@
     p."stock"
 from
     "products" p;]]></console>
-      <console name="productDB" type="STANDARD" schema="productdb" session="Main" />
+      <console name="productDB" type="STANDARD" schema="productdb" session="Main"><![CDATA[select * from productdb;]]></console>
     </connection>
     <connection id="7254ee23-7113-44fe-bb23-350a24ccca3d">
       <console name="userDB" type="STANDARD" schema="public" session="Main"><![CDATA[select
@@ -96,6 +96,9 @@ from
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
+  </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces />
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>

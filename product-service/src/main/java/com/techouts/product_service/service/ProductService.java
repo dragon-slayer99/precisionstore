@@ -112,18 +112,19 @@ public class ProductService {
         currProduct.setProductDescription(newProductDetails.getProductDesc());
         currProduct.setCategory(newProductDetails.getCategory());
         currProduct.setPrice(newProductDetails.getPrice());
+        currProduct.setStock (newProductDetails.getStock ());
 
         productRepoImpl.save(currProduct);
 
         return new ProductDTO(
                 "product updated successfully",
-                currProduct.getId(),
-                currProduct.getName(),
-                currProduct.getPrice(),
-                currProduct.getProductDescription(),
-                currProduct.getCategory(),
-                currProduct.getProductImage(),
-                currProduct.getStock()
+                newProductDetails.getProductId (),
+                newProductDetails.getName(),
+                newProductDetails.getPrice(),
+                newProductDetails.getProductDesc (),
+                newProductDetails.getCategory(),
+                newProductDetails.getImageUrl (),
+                newProductDetails.getStock()
         );
 
     }
