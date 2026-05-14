@@ -6,6 +6,7 @@ import com.techouts.user_service.dto.ProductInsertRequest;
 import com.techouts.user_service.dto.ProductUpdateRequest;
 import com.techouts.user_service.service.AdminService;
 import com.techouts.user_service.service.UserService;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,7 @@ public class AdminController {
         this.userService = userService;
     }
 
+    @Hidden
     @GetMapping("users")
     public Map<String, Object> getAllUsers() {
 
@@ -34,6 +36,7 @@ public class AdminController {
     }
 
 
+    @Hidden
     @PutMapping("products/{id}/update")
     public ProductDTO updateProductDetails(@PathVariable int id, @RequestBody ProductUpdateRequest request) {
 
@@ -42,6 +45,7 @@ public class AdminController {
         return adminService.updateProduct(productDTO);
     }
 
+    @Hidden
     @PostMapping("products/add")
     public ProductDTO AddProductToCollection(@Valid @RequestBody ProductInsertRequest request) {
 

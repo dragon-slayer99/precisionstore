@@ -6,8 +6,11 @@ import com.techouts.user_service.dto.UserDTO;
 import com.techouts.user_service.model.User;
 import com.techouts.user_service.service.UserService;
 import com.techouts.user_service.utils.JwtUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.bouncycastle.asn1.bc.ObjectData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -18,6 +21,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
+@Tag(
+        name = "User Controller",
+        description = "APIs for user registration, authentication, and user profile operations."
+)
 public class UserController {
 
     private final UserService userService;
@@ -29,6 +36,25 @@ public class UserController {
         this.jwtUtil = jwtUtil;
     }
 
+
+    @Operation(
+            summary = "Get user profile",
+            description = "Fetches the authenticated user's profile information using the user ID extracted from JWT token."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "User profile fetched successfully"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Invalid or missing JWT token"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Internal server error"
+            )
+    })
     @GetMapping
     public ResponseEntity<UserDTO> getUserDetails(@RequestHeader("X-User-Id") Integer userId) {
 
@@ -39,6 +65,28 @@ public class UserController {
     }
 
 
+    @Operation(
+            summary = "Register new user",
+            description = "Registers a new user account using name, email, and password."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "User registered successfully"
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Invalid registration request"
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "User already exists"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Internal server error"
+            )
+    })
     @PostMapping("register")
     public ResponseEntity<Map<String, Object>> registerUser(@Valid @RequestBody RegisterRequest request, BindingResult result) {
 
@@ -71,6 +119,24 @@ public class UserController {
 
     }
 
+    @Operation(
+            summary = "Authenticate user",
+            description = "Authenticates the user using email and password and returns a JWT token."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "User authenticated successfully"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Invalid email or password"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Internal server error"
+            )
+    })
     @PostMapping("login")
     public ResponseEntity<Map<String, Object>> userLogin(@RequestBody LoginRequest request) {
 
