@@ -20,6 +20,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/orders")
+@CrossOrigin(origins = "http://localhost:8080")
 @Tag(
         name = "Order Service",
         description = "APIs for managing user order operations"

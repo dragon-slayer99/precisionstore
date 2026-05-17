@@ -43,7 +43,14 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
         // public endpoints don't need user login
         List<String> excludedURIs = List.of(
                 "/api/users/login",
-                "/api/users/register"
+                "/api/users/register",
+
+                "/v3/api-docs",
+                "/swagger-ui",
+                "/product/v3/api-docs",
+                "/user/v3/api-docs",
+                "/cart/v3/api-docs",
+                "/order/v3/api-docs"
         );
 
         List<String> adminURIs = List.of(

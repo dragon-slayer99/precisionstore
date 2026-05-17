@@ -18,6 +18,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/products")
+@CrossOrigin(origins = "http://localhost:8080")
 @Tag(
         name = "Product Controller",
         description = "APIs for managing product catalog operations including product retrieval, creation, updation, and deletion."
