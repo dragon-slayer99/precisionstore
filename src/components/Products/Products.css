@@ -1,0 +1,321 @@
+:root {
+  /* Core System Palette */
+  --canvas: #000000;
+  --on-dark: #ffffff;
+  --body: #bbbbbb;
+  --surface-card: #1a1a1a;
+  --hairline: #3c3c3c;
+
+  /* M-Tricolor Accents */
+  --m-blue-light: #0066b1;
+  --m-blue-dark: #1c69d4;
+  --m-red: #e22718;
+
+  /* Typography */
+  --font-main: "Inter", sans-serif;
+  --spacing-lg: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--canvas);
+  font-family: var(--font-main);
+  color: var(--on-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+.catalog-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 120px 24px 64px 24px; /* Account for fixed headers */
+}
+
+/* Page Header & Typography */
+.breadcrumbs {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--body);
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+.breadcrumbs a {
+  color: var(--body);
+  text-decoration: none;
+}
+.breadcrumbs .current {
+  color: var(--on-dark);
+  font-weight: 700;
+}
+
+.catalog-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 40px;
+}
+
+/* Tabs: Engineering Spec */
+.category-tabs {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 32px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.tab {
+  background: transparent;
+  border: none;
+  color: var(--body);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-bottom: 12px;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+.tab.active {
+  color: var(--on-dark);
+}
+.active-stripe {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--m-blue-light) 33.3%,
+    var(--m-blue-dark) 33.3% 66.6%,
+    var(--m-red) 66.6%
+  );
+}
+
+/* Toolbar */
+.catalog-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.results-count {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--body);
+  letter-spacing: 1px;
+}
+.toolbar-actions {
+  display: flex;
+  gap: 16px;
+}
+.btn-tool {
+  background: transparent;
+  border: 1px solid var(--hairline);
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+/* 3-Up Grid Architecture */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: 64px;
+}
+
+/* Product Card: Zero Radius, Pure Rectangles */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--hairline);
+  background: var(--canvas);
+  transition: border-color 0.3s ease;
+  max-width: 450px;
+}
+.product-card:hover {
+  border-color: var(--on-dark);
+}
+
+/* Visual Placeholder (No Images Rule) */
+.product-visual {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background-color: var(--surface-card);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--hairline);
+}
+.visual-placeholder {
+  font-family: monospace;
+  font-size: 12px;
+  color: #444;
+  letter-spacing: 1px;
+}
+
+.badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--on-dark);
+  color: var(--canvas);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  letter-spacing: 1px;
+}
+.badge.alert {
+  background: var(--m-red);
+  color: white;
+}
+
+/* Meta Content */
+.product-meta {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.meta-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.product-category {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--body);
+  letter-spacing: 1.5px;
+}
+.product-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--on-dark);
+}
+.product-name {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.product-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--body);
+  margin-bottom: 24px;
+
+  white-space: nowrap; /* ✓ Prevents wrapping */
+  overflow: hidden; /* ✓ Clips overflow */
+  text-overflow: ellipsis; /* ✓ Adds "..." */
+
+  width: 100%; /* ✓ Defines truncation boundary */
+  max-width: 100%; /* ✓ Prevents expansion */
+  min-width: 0; /* ✓ Critical for flex children */
+}
+
+/* Ghost Primary Button */
+.product-action {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 14px 0;
+  border: 1px solid var(--on-dark);
+  color: var(--on-dark);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  transition: all 0.2s ease;
+}
+.product-action:hover {
+  background: var(--on-dark);
+  color: var(--canvas);
+  cursor: pointer;
+}
+.product-action:active {
+  transform: scale(0.98);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 32px;
+}
+.btn-page {
+  width: 40px;
+  height: 40px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--body);
+  font-family: var(--font-main);
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0;
+}
+.btn-page.active {
+  border-color: var(--hairline);
+  color: var(--on-dark);
+}
+.page-divider {
+  color: var(--body);
+  margin: 0 8px;
+}
+.btn-page-next {
+  background: transparent;
+  border: none;
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+/* Responsive Scaling */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 690px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+  .catalog-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .catalog-container {
+    padding: 48px 24px 64px 24px;
+  }
+  .toolbar-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
