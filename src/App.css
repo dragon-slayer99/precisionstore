@@ -8,7 +8,7 @@
   --surface-card: #1a1a1a;
   --hairline: #3c3c3c;
 
-    /* Documented Canonical M Tricolor Accent Stops */
+  /* Documented Canonical M Tricolor Accent Stops */
   --m-blue-light: #0066b1;
   --m-blue-dark: #1c69d4;
   --m-red: #e22718;
@@ -16,6 +16,7 @@
   /* Typography Tokens */
   --font-main: "Inter", sans-serif;
   --letter-spacing-machined: 1.5px;
+  --spacing-lg: 24px;
 }
 
 * {
