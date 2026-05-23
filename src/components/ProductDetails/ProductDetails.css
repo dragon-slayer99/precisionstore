@@ -240,14 +240,6 @@
   background: var(--m-red);
   color: white;
 }
-.badge.new {
-  background: var(--m-blue-dark);
-  color: white;
-}
-.badge.bestseller {
-  background: rgb(113, 201, 113);
-  color: black;
-}
 
 /* Product Meta Segment */
 .product-meta {

@@ -14,13 +14,8 @@ function CatalogToolBar({ productCnt, setSortOrder }) {
       <span className="results-count"> {productCnt} PRODUCTS </span>
 
       <div className="toolbar-actions">
-        {/* <button className="btn-tool">
-          FILTER
-          <span className="plus-icon">+</span>
-        </button> */}
 
         <DropdownMenu optionsList={optionsList} />
-
 
       </div>
     </div>

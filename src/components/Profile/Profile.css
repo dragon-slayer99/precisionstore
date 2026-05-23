@@ -1,0 +1,381 @@
+.profile-dashboard {
+  width: 100%;
+  min-height: 100vh;
+  padding: 120px 24px 64px 24px;
+}
+
+.dashboard-container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Dashboard Header Components */
+.breadcrumbs {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--body);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.breadcrumbs a {
+  color: var(--body);
+  text-decoration: none;
+}
+
+.breadcrumbs .current {
+  color: var(--on-dark);
+  font-weight: 700;
+}
+
+.header-identity-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.dashboard-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.tier-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--hairline);
+  padding: 8px 16px;
+}
+
+.m-stripe {
+  width: 24px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--m-blue-light) 33.3%,
+    var(--m-blue-dark) 33.3% 66.6%,
+    var(--m-red) 66.6%
+  );
+}
+
+.tier-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.registry-id {
+  font-family: monospace;
+  font-size: 12px;
+  color: #555555;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 32px;
+  margin-bottom: 48px;
+}
+
+/* Master Grid Framework (2-Column Modular) */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.grid-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-heading {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+}
+
+/* Technical Inputs Frame */
+.precision-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.form-group-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.input-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--body);
+  letter-spacing: 1px;
+}
+
+.text-input {
+  width: 100%;
+  background-color: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: 0px;
+  /* Crucial Zero-Radius Spec Rule */
+  padding: 14px 16px;
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-weight: 300;
+  /* Contrast light-weight entry */
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.text-input:focus {
+  border-color: var(--on-dark);
+}
+
+.text-input:disabled {
+  color: #555555;
+  cursor: not-allowed;
+}
+
+.textarea-input {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Pure Ghost Structural Buttons */
+.btn-ghost-primary,
+.btn-ghost-secondary {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  padding: 16px 32px;
+  border-radius: 0px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.btn-ghost-primary {
+  color: var(--on-dark);
+  border: 1px solid var(--on-dark);
+}
+
+.btn-ghost-primary:hover {
+  background-color: var(--on-dark);
+  color: var(--canvas);
+}
+
+.btn-ghost-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-ghost-secondary {
+  color: var(--body);
+  border: 1px solid var(--hairline);
+}
+
+.btn-ghost-secondary:hover {
+  border-color: var(--on-dark);
+  color: var(--on-dark);
+}
+
+.btn-ghost-secondary:active {
+  transform: scale(0.98);
+}
+
+.inside-field {
+  height: 49px;
+}
+
+.form-submit {
+  margin-top: 16px;
+  align-self: flex-start;
+}
+
+/* Order Telemetry Logs Layout */
+.orders-log {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.order-card {
+  border: 1px solid var(--hairline);
+  padding: 24px;
+  background-color: var(--canvas);
+}
+
+.order-card.active-dispatch {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.order-id {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.order-status {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border: 1px solid var(--hairline);
+}
+
+.order-status.muted {
+  color: #555555;
+}
+
+/* Pulsing Industrial Tracker Light */
+.blinking-indicator {
+  color: var(--m-blue-light);
+  border-color: var(--m-blue-light);
+  animation: statusPulse 2s infinite ease-in-out;
+}
+
+@keyframes statusPulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.order-specs {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--body);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.order-btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Collapsible Blueprint Drawer */
+.tracking-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tracking-drawer.expanded {
+  max-height: 200px;
+}
+
+.tracking-timeline {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.timeline-step {
+  font-family: monospace;
+  font-size: 12px;
+  color: #444444;
+  position: relative;
+  padding-left: 20px;
+}
+
+.timeline-step::before {
+  content: "▪";
+  position: absolute;
+  left: 0;
+  color: #444444;
+}
+
+.timeline-step.passed {
+  color: var(--body);
+}
+
+.timeline-step.passed::before {
+  color: var(--body);
+}
+
+.timeline-step.active {
+  color: var(--on-dark);
+  font-weight: 700;
+}
+
+.timeline-step.active::before {
+  color: var(--m-red);
+}
+
+/* Responsiveness Strategy */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-dashboard {
+    padding: 100px 16px 40px 16px;
+  }
+
+  .header-identity-block {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .tier-badge {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-group-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .inside-field {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-submit {
+    width: 100%;
+    text-align: center;
+  }
+}
