@@ -1,7 +1,7 @@
 import "./OrderCard.css";
 
 function OrderCard({ order }) {
-  const { id, message, deliveryStatus, orderedDate, address, paymentType };
+  const { id, deliveryStatus, orderedDate, paymentType } = order;
 
   return (
     <article className="order-card active-dispatch">
@@ -12,9 +12,9 @@ function OrderCard({ order }) {
       </div>
 
       <div className="order-specs">
-        <p>3 ITEMS // TOTAL: $1,620.00</p>
+        <p>{paymentType} // TOTAL: $1,620.00</p>
 
-        <p>ESTIMATED DELIVERY: MAY 18, 2026</p>
+        <p>ESTIMATED DELIVERY: {orderedDate}</p>
       </div>
 
       <button className="btn-ghost-primary order-btn tracking-toggle">

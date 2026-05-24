@@ -1,10 +1,7 @@
-import { useState } from "react";
-import "./Herosection.css";
+import "./HeroSection.css";
 import { Link } from "react-router-dom";
 
-function Herosection() {
-
-
+function HeroSection() {
 
   return (
     <section className="ecom-hero">
@@ -66,4 +63,4 @@ function Herosection() {
   );
 }
 
-export default Herosection;
+export default HeroSection;

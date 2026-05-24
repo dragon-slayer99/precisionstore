@@ -1,10 +1,10 @@
-import Herosection from "../components/Herosection/Herosection"
+import HeroSection from "../components/HeroSection/HeroSection"
 
 function Home() {
   return (
     <>
-  
-    <Herosection></Herosection>
+
+      <HeroSection></HeroSection>
 
     </>
   )
