@@ -1,0 +1,424 @@
+.registry-surface {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.registry-container {
+    max-width: 1000px;
+    /* Tighter max-width for reading transactional lists */
+    margin: 0 auto;
+    padding: 100px 24px 64px 24px;
+}
+
+/* Header Area Configurations */
+.breadcrumbs {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--body);
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+
+.breadcrumbs a {
+    color: var(--body);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+    color: var(--on-dark);
+}
+
+.breadcrumbs .separator {
+    margin: 0 8px;
+    color: #555555;
+}
+
+.breadcrumbs .current {
+    color: var(--on-dark);
+    font-weight: 700;
+}
+
+.title-identity-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.registry-main-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -1.5px;
+    line-height: 1;
+}
+
+.identity-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--hairline);
+    padding: 8px 16px;
+    background-color: var(--surface-card);
+}
+
+.m-stripe {
+    width: 24px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--m-blue-light) 33.3%, var(--m-blue-dark) 33.3% 66.6%, var(--m-red) 66.6%);
+}
+
+.badge-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* Registry Filter Tabs Layout */
+.registry-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--hairline);
+    gap: 32px;
+    margin-bottom: 48px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.registry-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab-item {
+    background: transparent;
+    border: none;
+    color: var(--body);
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 16px 0;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.tab-item:hover,
+.tab-item.active {
+    color: var(--on-dark);
+}
+
+.active-indicator {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--on-dark);
+}
+
+/* Master Workspace */
+.registry-workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Individual Order Block Architecture */
+.order-block {
+    border: 1px solid var(--hairline);
+    background-color: var(--canvas);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Telemetry Header (Order Details) */
+.order-telemetry {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: var(--surface-soft);
+    border-bottom: 1px solid var(--hairline);
+    padding: 24px;
+    gap: 24px;
+}
+
+.telemetry-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.telemetry-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #666666;
+    letter-spacing: 1.5px;
+}
+
+.telemetry-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--on-dark);
+    letter-spacing: 0.5px;
+}
+
+.status-group {
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.status-indicator {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    border: 1px solid var(--hairline);
+    text-transform: uppercase;
+}
+
+.status-indicator.active-transit {
+    color: var(--m-blue-light);
+    border-color: var(--m-blue-light);
+    animation: statusPulse 2s infinite ease-in-out;
+}
+
+.status-indicator.muted-status {
+    color: #777777;
+}
+
+.status-indicator.alert-status {
+    color: var(--m-red);
+    border-color: var(--m-red);
+}
+
+@keyframes statusPulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Manifest List (Order Items) */
+.order-manifest {
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+}
+
+.manifest-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--hairline);
+}
+
+.manifest-item:last-child {
+    border-bottom: none;
+}
+
+.item-visual {
+    width: 80px;
+    aspect-ratio: 1/1;
+    background-color: var(--surface-card);
+    border: 1px solid var(--hairline);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visual-placeholder-mesh {
+    font-family: monospace;
+    font-size: 10px;
+    color: #555555;
+    text-align: center;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.item-name {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.item-spec {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--body);
+}
+
+.item-price {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.item-price del {
+    color: #555555;
+}
+
+/* Action Footer */
+.order-actions {
+    display: flex;
+    gap: 16px;
+    padding: 24px;
+    background-color: var(--canvas);
+    border-top: 1px solid var(--hairline);
+}
+
+/* Ghost Buttons - Zero Radius */
+.btn-ghost-primary,
+.btn-ghost-secondary {
+    font-family: var(--font-main);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 14px 24px;
+    border-radius: 0px;
+    /* Crucial Zero-Radius Spec Rule */
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-ghost-primary {
+    color: var(--on-dark);
+    border: 1px solid var(--on-dark);
+}
+
+.btn-ghost-primary:hover {
+    background-color: var(--on-dark);
+    color: var(--canvas);
+}
+
+.btn-ghost-secondary {
+    color: var(--body);
+    border: 1px solid var(--hairline);
+}
+
+.btn-ghost-secondary:hover {
+    border-color: var(--on-dark);
+    color: var(--on-dark);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 64px;
+}
+
+.btn-page {
+    width: 40px;
+    height: 40px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--body);
+    font-family: var(--font-main);
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+.btn-page.active {
+    border-color: var(--hairline);
+    color: var(--on-dark);
+}
+
+.page-divider {
+    color: var(--body);
+    margin: 0 8px;
+}
+
+.btn-page-next {
+    background: transparent;
+    border: none;
+    color: var(--on-dark);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
+/* Responsive Adaptive Architecture */
+@media (max-width: 900px) {
+    .order-telemetry {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .status-group {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .registry-container {
+        padding: 80px 16px 48px 16px;
+    }
+
+    .title-identity-line {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-telemetry {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .manifest-item {
+        grid-template-columns: 80px 1fr;
+        grid-template-areas:
+            "vis details"
+            "vis price";
+        gap: 12px;
+    }
+
+    .item-visual {
+        grid-area: vis;
+    }
+
+    .item-details {
+        grid-area: details;
+    }
+
+    .item-price {
+        grid-area: price;
+        text-align: left;
+    }
+
+    .order-actions {
+        flex-direction: column;
+    }
+
+    .btn-ghost-primary,
+    .btn-ghost-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}

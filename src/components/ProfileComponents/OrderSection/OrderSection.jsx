@@ -1,5 +1,5 @@
 import "./OrderSection.css";
-import OrderCard from "../OrderCard/OrderCard";
+import ProfileOrderCard from "../ProfileOrderCard/ProfileOrderCard";
 
 function OrderSection() {
   const mockOrders = [
@@ -233,7 +233,7 @@ function OrderSection() {
           <button className="btn-ghost-secondary order-btn">VIEW ORDER</button>
         </article>
 
-        <OrderCard order={mockOrders[0]} />
+        <ProfileOrderCard />
       </div>
     </section>
   );

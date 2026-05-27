@@ -1,14 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import Header from "./components/HomeComponents/Header/Header";
+import Footer from "./components/HomeComponents/Footer/Footer";
 import Home from "./pages/Home";
 import Products from "./pages/ProductsPage";
-import Profile from "./components/profile/Profile";
+import Orders from "./components/OrdersComponents/Orders/Orders";
+import Profile from "./components/ProfileComponents/Profile/Profile";
 import ApiFetch from "./components/ApiFetch/ApiFetch";
 import Counter from "./components/Counter/Counter";
-import ProductDetails from "./components/ProductDetails/ProductDetails";
+import ProductDetails from "./components/ProductsComponents/ProductDetails/ProductDetails";
 
-import "./app.css";
+import "./App.css";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/demo-01" element={<ApiFetch />}></Route>
         <Route path="/demo-02" element={<Counter />}></Route>
         <Route path="/product/:id" element={<ProductDetails />}></Route>
+        <Route path="/orders" element={<Orders />}></Route>
       </Routes>
       <Footer />
     </>

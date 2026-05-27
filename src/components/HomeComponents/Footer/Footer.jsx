@@ -1,5 +1,4 @@
-import './Footer.css'
-
+import "./Footer.css";
 
 function Footer() {
   return (
@@ -71,7 +70,7 @@ function Footer() {
                   placeholder="ENTER EMAIL ADDRESS"
                   className="footer-input"
                   required
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 <button type="submit" className="btn-footer-submit">
                   SUBMIT

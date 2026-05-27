@@ -38,7 +38,7 @@
 }
 
 .dashboard-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -1.5px;

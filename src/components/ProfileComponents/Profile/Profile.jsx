@@ -18,7 +18,6 @@ function Profile() {
             {/* <!-- ORDERS --> */}
 
             <OrderSection />
-            
           </div>
         </div>
       </main>
