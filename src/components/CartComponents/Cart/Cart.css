@@ -1,34 +1,3 @@
-:root {
-  /* Color Token Definitions */
-  --canvas: #000000;
-  --on-dark: #ffffff;
-  --body: #bbbbbb;
-  --surface-card: #1a1a1a;
-  --surface-soft: #0d0d0d;
-  --hairline: #3c3c3c;
-
-  /* Canonical Identity Tricolor Stops */
-  --m-blue-light: #0066b1;
-  --m-blue-dark: #1c69d4;
-  --m-red: #e22718;
-
-  --font-main: "Inter", sans-serif;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--canvas);
-  font-family: var(--font-main);
-  color: var(--on-dark);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
 .cart-surface {
   width: 100%;
   min-height: 100vh;

@@ -1,0 +1,26 @@
+# Ignore document formats causing LLM extraction errors
+*.md
+*.txt
+*.pdf
+*.docx
+
+# Ignore all image assets
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.webp
+*.gif
+
+# Ignore build artifacts and dependency folders
+node_modules/
+venv/
+.venv/
+dist/
+build/
+__pycache__/
+
+
+README.md
+docs/
+*.md

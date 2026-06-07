@@ -1,8 +1,10 @@
-import React from 'react'
-
 function CartTableHeader() {
   return (
-    <div>CartTableHeader</div>
+    <div class="matrix-header">
+      <span class="col-head">PRODUCT</span>
+      <span class="col-head center">QUANTITY</span>
+      <span class="col-head right">PRICE</span>
+    </div>
   )
 }
 
