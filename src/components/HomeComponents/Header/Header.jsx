@@ -101,10 +101,10 @@ export default function Header() {
         <div className="m-stripe-divider"></div>
 
         <ul className="mobile-links">
-          <Link to="/new-arrivals">NEW ARRIVALS</Link>
-          <Link to="/orders">ORDERS</Link>
-          <Link to="/cart">CART</Link>
-          <Link to="/support">SUPPORT</Link>
+          <Link to="/products" onClick={() => setMenuToggleOn(false)}>NEW ARRIVALS</Link>
+          <Link to="/orders" onClick={() => setMenuToggleOn(false)}>ORDERS</Link>
+          <Link to="/cart" onClick={() => setMenuToggleOn(false)}>CART</Link>
+          <Link to="/support" onClick={() => setMenuToggleOn(false)}>SUPPORT</Link>
         </ul>
       </div>
     </header>

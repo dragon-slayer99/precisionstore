@@ -4,6 +4,7 @@ import Footer from "./components/HomeComponents/Footer/Footer";
 import Home from "./pages/Home";
 import Products from "./pages/ProductsPage";
 import Orders from "./components/OrdersComponents/Orders/Orders";
+import Cart from "./components/CartComponents/Cart/Cart";
 import Profile from "./components/ProfileComponents/Profile/Profile";
 import ApiFetch from "./components/ApiFetch/ApiFetch";
 import Counter from "./components/Counter/Counter";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/demo-02" element={<Counter />}></Route>
         <Route path="/product/:id" element={<ProductDetails />}></Route>
         <Route path="/orders" element={<Orders />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
       </Routes>
       <Footer />
     </>
