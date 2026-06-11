@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
 import "./Products.css";
 import CatalogHeader from "../CatalogHeader/CatalogHeader";
 import ProductGrid from "../ProductGrid/ProductGrid";
 import CatalogToolBar from "../CatalogToolBar/CatalogToolBar";
 import Pagination from "../Pagination/Pagination";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Products() {
   const [activeTab, setActiveTab] = useState(0);
@@ -12,6 +11,7 @@ function Products() {
 
   const productDetails = [
     {
+      id: 1,
       image: "PRODUCT_01",
       name: "CHRONO CLASSIC WATCH",
       category: "ACCESSORIES",
@@ -22,6 +22,7 @@ function Products() {
       badge: "NEW",
     },
     {
+      id: 2,
       image: "PRODUCT_02",
       name: "CARBON WEEKENDER BAG",
       category: "BAGS",
@@ -32,6 +33,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 3,
       image: "PRODUCT_03",
       name: "VISION SUNGLASSES",
       category: "ACCESSORIES",
@@ -42,6 +44,7 @@ function Products() {
       badge: "LOW STOCK",
     },
     {
+      id: 4,
       image: "PRODUCT_04",
       name: "AERO RUNNER SNEAKERS",
       category: "FOOTWEAR",
@@ -52,6 +55,7 @@ function Products() {
       badge: "SALE",
     },
     {
+      id: 5,
       image: "PRODUCT_05",
       name: "MONARCH LEATHER WALLET",
       category: "ACCESSORIES",
@@ -62,6 +66,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 6,
       image: "PRODUCT_06",
       name: "ECLIPSE BOMBER JACKET",
       category: "APPAREL",
@@ -72,6 +77,7 @@ function Products() {
       badge: "NEW",
     },
     {
+      id: 7,
       image: "PRODUCT_07",
       name: "SUMMIT HIKING BACKPACK",
       category: "BAGS",
@@ -82,6 +88,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 8,
       image: "PRODUCT_08",
       name: "NOVA WIRELESS HEADPHONES",
       category: "ELECTRONICS",
@@ -92,6 +99,7 @@ function Products() {
       badge: "BESTSELLER",
     },
     {
+      id: 9,
       image: "PRODUCT_09",
       name: "LUXE COTTON HOODIE",
       category: "APPAREL",
@@ -102,6 +110,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 10,
       image: "PRODUCT_10",
       name: "STRIDE PERFORMANCE SHORTS",
       category: "APPAREL",
@@ -112,6 +121,7 @@ function Products() {
       badge: "NEW",
     },
     {
+      id: 11,
       image: "PRODUCT_11",
       name: "ATLAS LEATHER BOOTS",
       category: "FOOTWEAR",
@@ -122,6 +132,7 @@ function Products() {
       badge: "LOW STOCK",
     },
     {
+      id: 12,
       image: "PRODUCT_12",
       name: "ORBIT SMART SPEAKER",
       category: "ELECTRONICS",
@@ -132,6 +143,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 13,
       image: "PRODUCT_13",
       name: "SILVERLINE BRACELET",
       category: "ACCESSORIES",
@@ -142,6 +154,7 @@ function Products() {
       badge: "SALE",
     },
     {
+      id: 14,
       image: "PRODUCT_14",
       name: "ELEMENT TECH TEE",
       category: "APPAREL",
@@ -152,6 +165,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 15,
       image: "PRODUCT_15",
       name: "VORTEX GAMING MOUSE",
       category: "ELECTRONICS",
@@ -162,6 +176,7 @@ function Products() {
       badge: "BESTSELLER",
     },
     {
+      id: 16,
       image: "PRODUCT_16",
       name: "HAVEN CERAMIC MUG",
       category: "HOME",
@@ -172,6 +187,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 17,
       image: "PRODUCT_17",
       name: "PULSE FITNESS WATCH",
       category: "ELECTRONICS",
@@ -182,6 +198,7 @@ function Products() {
       badge: "NEW",
     },
     {
+      id: 18,
       image: "PRODUCT_18",
       name: "TITAN DUFFLE BAG",
       category: "BAGS",
@@ -192,6 +209,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 19,
       image: "PRODUCT_19",
       name: "ARCTIC PUFFER VEST",
       category: "APPAREL",
@@ -202,6 +220,7 @@ function Products() {
       badge: "LOW STOCK",
     },
     {
+      id: 20,
       image: "PRODUCT_20",
       name: "ZENITH DESK LAMP",
       category: "HOME",
@@ -212,6 +231,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 21,
       image: "PRODUCT_21",
       name: "PRISM LAPTOP SLEEVE",
       category: "ACCESSORIES",
@@ -222,6 +242,7 @@ function Products() {
       badge: "SALE",
     },
     {
+      id: 22,
       image: "PRODUCT_22",
       name: "EVEREST TRAIL SHOES",
       category: "FOOTWEAR",
@@ -232,6 +253,7 @@ function Products() {
       badge: null,
     },
     {
+      id: 23,
       image: "PRODUCT_23",
       name: "AURORA SCENTED CANDLE",
       category: "HOME",
@@ -242,6 +264,7 @@ function Products() {
       badge: "NEW",
     },
     {
+      id: 24,
       image: "PRODUCT_24",
       name: "VECTOR PORTABLE CHARGER",
       category: "ELECTRONICS",
@@ -252,6 +275,7 @@ function Products() {
       badge: "BESTSELLER",
     },
     {
+      id: 25,
       image: "PRODUCT_25",
       name: "CIPHER CROSSBODY BAG",
       category: "BAGS",
@@ -263,7 +287,6 @@ function Products() {
     },
   ];
 
-  function handleCurrentTabStyle() {}
 
   return (
     <main className="ecom-catalog">
