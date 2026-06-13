@@ -1,7 +1,9 @@
-import "./CatalogToolBar.css";
+import styles from "../Products/Products.module.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
+import { useContext } from "react";
+import { ProductDetailsContext } from "../../../utils/ProductsContext";
 
-function CatalogToolBar({ productCnt, setSortOrder }) {
+function CatalogToolBar({ setSortOrder }) {
   const optionsList = [
     { text: "FEATURED", value: "FEATURED" },
     { text: "LOW TO HIGH", value: "PRICE_LTOH" },
@@ -9,11 +11,13 @@ function CatalogToolBar({ productCnt, setSortOrder }) {
     { text: "NEW ARRIVALS", value: "NEWEST" },
   ];
 
-  return (
-    <div className="catalog-toolbar">
-      <span className="results-count"> {productCnt} PRODUCTS </span>
+  const productsList = useContext(ProductDetailsContext);
 
-      <div className="toolbar-actions">
+  return (
+    <div className={styles.catalogToolbar}>
+      <span className={styles.resultsCount}> {productsList.length} PRODUCTS </span>
+
+      <div className={styles.toolbarActions}>
 
         <DropdownMenu optionsList={optionsList} />
 

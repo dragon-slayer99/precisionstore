@@ -1,76 +1,60 @@
-import { useState } from "react";
-import "./ProductDetails.css";
+import { useContext, useState } from "react";
+import styles from "./ProductDetails.module.css";
 import { useParams } from "react-router-dom";
+import { ProductDetailsContext } from "../../../utils/ProductsContext";
 
 function ProductDetails() {
   const [productCnt, setProductCnt] = useState(1);
   const { id } = useParams();
 
-  console.log(id);
 
-  const productDetails = {
-    image: "PRODUCT_01",
-    name: "CHRONO CLASSIC WATCH",
-    category: "ACCESSORIES",
-    price: 450.0,
-    stock: 18,
-    description:
-      "Minimal stainless steel timepiece designed for everyday wear with premium craftsmanship and water-resistant construction.",
-    badge: "NEW",
-  };
+  const productList = useContext(ProductDetailsContext);
+
+  const { productImage, name, category, price, productDescription, stock } = productList.filter((product) => (product.id === Number(id)))[0];
 
   return (
-    <main className="product-view">
-      <div className="container">
-        <div className="product-grid">
-          <div className="visual-column">
-            <span className="stock-badge" id="stockBadge">
-              STOCK: {productDetails.stock}
-            </span>
+    <main className={styles.productView}>
+      <div className={styles.container}>
+        <div className={styles.productGrid}>
+          <div className={styles.visualColumn}>
+            <span className={styles.stockBadge} id="stockBadge">STOCK: {stock}</span>
 
-            <div className="image-placeholder">{productDetails.image}</div>
+            <div className={styles.imagePlaceholder}>{productImage}</div>
           </div>
 
-          <div className="details-column">
-            <div className="m-stripe"></div>
+          <div className={styles.detailsColumn}>
+            <div className={styles.mStripe}></div>
 
-            <div className="meta-header">
-              <span className="category-label">
-                {" "}
-                {productDetails.category}{" "}
-              </span>
+            <div className={styles.metaHeader}>
+              <span className={styles.categoryLabel}> {category} </span>
             </div>
 
-            <h1 className="product-name">{productDetails.name}</h1>
+            <h1 className={styles.productName}>{name}</h1>
 
-            <p className="product-price">$ {productDetails.price.toFixed(2)}</p>
+            <p className={styles.productPrice}>$ {price.toFixed(2)}</p>
 
-            <div className="description-block">
-              <p>{productDetails.description}</p>
+            <div className={styles.descriptionBlock}>
+              <p>
+                {productDescription}
+              </p>
             </div>
 
-            <div className="transaction-row">
-              <div className="quantity-selector">
-                <button className="btn-qty" id="qtyMinus" onClick={() => setProductCnt((productCnt) => Math.max(1, productCnt - 1))}>
-                  −
-                </button>
+            <div className={styles.transactionRow}>
+              <div className={styles.quantitySelector}>
+                <button className={styles.btnQty} id="qtyMinus" onClick={() => setProductCnt(productCnt => productCnt - 1)}>−</button>
 
                 <input
                   type="text"
                   value={productCnt}
-                  className="qty-input"
+                  className={styles.qtyInput}
                   id="qtyInput"
-                  readonly
+                  readOnly
                 />
 
-                <button className="btn-qty" id="qtyPlus" onClick={() => setProductCnt((productCnt) => Math.min(10, productCnt + 1))}>
-                  +
-                </button>
+                <button className={styles.btnQty} id="qtyPlus" onClick={() => setProductCnt(productCnt => productCnt + 1)}>+</button>
               </div>
 
-              <button className="btn-primary" id="addToCartBtn">
-                ADD TO CART
-              </button>
+              <button className={styles.btnPrimary} id="addToCartBtn">ADD TO CART</button>
             </div>
           </div>
         </div>

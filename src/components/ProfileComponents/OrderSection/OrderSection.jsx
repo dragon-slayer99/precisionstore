@@ -1,4 +1,4 @@
-import "./OrderSection.css";
+import styles from "../Profile/Profile.module.css";
 import ProfileOrderCard from "../ProfileOrderCard/ProfileOrderCard";
 
 function OrderSection() {
@@ -181,56 +181,56 @@ function OrderSection() {
   ];
 
   return (
-    <section className="grid-panel telemetry-log">
-      <h2 className="panel-heading">RECENT ORDERS</h2>
+    <section className={`${styles.gridPanel} ${styles.telemetryLog}`}>
+      <h2 className={styles.panelHeading}>RECENT ORDERS</h2>
 
-      <div className="orders-log">
+      <div className={styles.ordersLog}>
         {/* <!-- ACTIVE ORDER --> */}
 
-        <article className="order-card active-dispatch">
-          <div className="order-header">
-            <span className="order-id"> ORDER #PX8821 </span>
+        <article className={`${styles.orderCard} ${styles.activeDispatch}`}>
+          <div className={styles.orderHeader}>
+            <span className={styles.orderId}> ORDER #PX8821 </span>
 
-            <span className="order-status blinking-indicator"> SHIPPED </span>
+            <span className={`${styles.orderStatus} ${styles.blinkingIndicator}`}> SHIPPED </span>
           </div>
 
-          <div className="order-specs">
+          <div className={styles.orderSpecs}>
             <p>3 ITEMS // TOTAL: $1,620.00</p>
 
             <p>ESTIMATED DELIVERY: MAY 18, 2026</p>
           </div>
 
-          <button className="btn-ghost-primary order-btn tracking-toggle">
+          <button className={`${styles.btnGhostPrimary} ${styles.orderBtn} tracking-toggle`}>
             TRACK ORDER
           </button>
 
-          <div className="tracking-drawer" id="drawer-mx88">
-            <div className="tracking-timeline">
-              <div className="timeline-step passed">ORDER CONFIRMED</div>
+          <div className={styles.trackingDrawer} id="drawer-mx88">
+            <div className={styles.trackingTimeline}>
+              <div className={`${styles.timelineStep} ${styles.passed}`}>ORDER CONFIRMED</div>
 
-              <div className="timeline-step passed">SHIPPED FROM WAREHOUSE</div>
+              <div className={`${styles.timelineStep} ${styles.passed}`}>SHIPPED FROM WAREHOUSE</div>
 
-              <div className="timeline-step active">OUT FOR DELIVERY</div>
+              <div className={`${styles.timelineStep} ${styles.active}`}>OUT FOR DELIVERY</div>
             </div>
           </div>
         </article>
 
         {/* <!-- DELIVERED ORDER --> */}
 
-        <article className="order-card">
-          <div className="order-header">
-            <span className="order-id"> ORDER #QL0401 </span>
+        <article className={styles.orderCard}>
+          <div className={styles.orderHeader}>
+            <span className={styles.orderId}> ORDER #QL0401 </span>
 
-            <span className="order-status muted"> DELIVERED </span>
+            <span className={`${styles.orderStatus} ${styles.muted}`}> DELIVERED </span>
           </div>
 
-          <div className="order-specs">
+          <div className={styles.orderSpecs}>
             <p>1 ITEM // TOTAL: $450.00</p>
 
             <p>DELIVERED ON APRIL 19, 2026</p>
           </div>
 
-          <button className="btn-ghost-secondary order-btn">VIEW ORDER</button>
+          <button className={`${styles.btnGhostSecondary} ${styles.orderBtn}`}>VIEW ORDER</button>
         </article>
 
         <ProfileOrderCard />

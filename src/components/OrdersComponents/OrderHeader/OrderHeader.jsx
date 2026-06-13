@@ -17,7 +17,7 @@ function OrderHeader() {
       <div className="title-identity-line">
         <h1 className="registry-main-title">MY ORDERS</h1>
 
-        <div className="identity-badge">
+        <div className="tier-badge">
           <div className="m-stripe"></div>
 
           <span className="badge-label">PREMIUM MEMBER</span>

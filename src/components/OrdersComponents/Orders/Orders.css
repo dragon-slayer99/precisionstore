@@ -4,10 +4,10 @@
 }
 
 .registry-container {
-    max-width: 1000px;
+    max-width: 1440px;
     /* Tighter max-width for reading transactional lists */
     margin: 0 auto;
-    padding: 100px 24px 64px 24px;
+    padding: 120px 24px 64px 24px;
 }
 
 /* Header Area Configurations */
@@ -57,19 +57,21 @@
     line-height: 1;
 }
 
-.identity-badge {
+.tier-badge {
     display: flex;
     align-items: center;
     gap: 12px;
     border: 1px solid var(--hairline);
     padding: 8px 16px;
-    background-color: var(--surface-card);
 }
 
 .m-stripe {
     width: 24px;
     height: 3px;
-    background: linear-gradient(90deg, var(--m-blue-light) 33.3%, var(--m-blue-dark) 33.3% 66.6%, var(--m-red) 66.6%);
+    background: linear-gradient(90deg,
+            var(--m-blue-light) 33.3%,
+            var(--m-blue-dark) 33.3% 66.6%,
+            var(--m-red) 66.6%);
 }
 
 .badge-label {
@@ -77,6 +79,7 @@
     font-weight: 700;
     letter-spacing: 1.5px;
 }
+
 
 /* Registry Filter Tabs Layout */
 .registry-tabs {

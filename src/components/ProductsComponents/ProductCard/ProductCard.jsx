@@ -1,43 +1,40 @@
 import { Link } from "react-router-dom";
-import "./ProductCard.css";
+import styles from "../Products/Products.module.css";
 
 function ProductCard({ product }) {
-  const { id, image, name, category, price, description, badge } = product;
+  const { id, productImage, name, category, price, productDescription, stock } = product;
+
+  const getBadgeClass = () => {
+    if (stock <= 25) return {status: "LOW STOCK", classname: `${styles.badge} ${styles.alert}`};
+    if (stock >= 100) return {status: "NEW", classname: `${styles.badge} ${styles.new}`};
+    if (stock >= 50 && stock <= 75) return {status: "BEST SELLER", classname: `${styles.badge} ${styles.bestseller}`};
+    return {status: null, classname: styles.badge};
+  };
 
   return (
-    <article className="product-card">
-      <div className="product-visual">
-        {badge && (
-          <span
-            className={
-              badge === "LOW STOCK"
-                ? "badge alert"
-                : badge === "NEW"
-                  ? "badge new"
-                  : badge === "BESTSELLER"
-                    ? "badge bestseller"
-                    : "badge"
-            }
-          >
-            {badge}
+    <article className={styles.productCard}>
+      <div className={styles.productVisual}>
+        {getBadgeClass().status && (
+          <span className={getBadgeClass().classname}>
+            {getBadgeClass().status}
           </span>
         )}
 
-        <div className="visual-placeholder">{image}</div>
+        <div className={styles.visualPlaceholder}>{productImage}</div>
       </div>
 
-      <div className="product-meta">
-        <div className="meta-top">
-          <span className="product-category">{category}</span>
+      <div className={styles.productMeta}>
+        <div className={styles.metaTop}>
+          <span className={styles.productCategory}>{category}</span>
 
-          <span className="product-price">${price.toFixed(2)}</span>
+          <span className={styles.productPrice}>${price.toFixed(2)}</span>
         </div>
 
-        <h2 className="product-name">{name}</h2>
+        <h2 className={styles.productName}>{name}</h2>
 
-        <p className="product-description">{description}</p>
+        <p className={styles.productDescription}>{productDescription}</p>
 
-        <Link className="btn-ghost-primary product-action" to={`/products/${id}`}> VIEW PRODUCT </Link>
+        <Link className={`${styles.btnGhostPrimary} ${styles.productAction}`} to={`/products/${id}`}> VIEW PRODUCT </Link>
       </div>
     </article>
   );

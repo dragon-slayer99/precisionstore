@@ -1,19 +1,19 @@
-import './CatalogTabs.css'
+import styles from "../Products/Products.module.css";
 
 function CatalogTabs({ activeTab, setActiveTab }) {
   const tabs = ["ALL PRODUCTS", "CLOTHING", "BAGS", "ACCESSORIES"];
   return (
-    <div className="category-tabs">
+    <div className={styles.categoryTabs}>
       {tabs.map((tab, idx) => (
         <button
-          className={activeTab === idx ? "tab active" : "tab"}
+          className={activeTab === idx ? `${styles.tab} ${styles.active}` : styles.tab}
           onClick={() => setActiveTab(idx)}
           key={tab}
         >
 
           {tab}
 
-          {activeTab === idx && <div className="active-stripe"></div>}
+          {activeTab === idx && <div className={styles.activeStripe}></div>}
         </button>
       ))}
     </div>

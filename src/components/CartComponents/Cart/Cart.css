@@ -6,7 +6,7 @@
 .cart-container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 100px 24px 64px 24px;
+  padding: 120px 24px 64px 24px;
 }
 
 /* Header Area Configurations */
@@ -46,7 +46,7 @@
   font-size: clamp(2.2rem, 6vw, 3rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   line-height: 1;
 }
 
@@ -66,7 +66,7 @@
     var(--m-blue-dark) 33.3% 66.6%,
     var(--m-red) 66.6%
   );
-  margin-bottom: 48px;
+  /* margin-bottom: 48px; */
 }
 
 /* Workspace Grid: Items + Summary */

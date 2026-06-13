@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "./CartItem.css";
 
 function CartItem() {
@@ -11,9 +10,9 @@ function CartItem() {
       <div class="node-details">
         <span class="meta-category"> ELECTRONICS </span>
         <h2 class="node-name">Apple AirPods Pro (2nd Gen)</h2>
-        <Link class="node-spec" >
+        <p class="node-spec">
           Active Noise Cancellation // Wireless Charging Case
-        </Link>
+        </p>
 
         <button class="btn-remove" onclick="removeNode('cart-item-1')">
           REMOVE

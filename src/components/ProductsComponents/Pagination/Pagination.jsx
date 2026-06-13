@@ -1,19 +1,19 @@
-import "./Pagination.css";
+import styles from "../Products/Products.module.css";
 
 function Pagination() {
   return (
-    <div className="pagination">
-      <button className="btn-page active">1</button>
+    <div className={styles.pagination}>
+      <button className={`${styles.btnPage} ${styles.active}`}>1</button>
 
-      <button className="btn-page">2</button>
+      <button className={styles.btnPage}>2</button>
 
-      <button className="btn-page">3</button>
+      <button className={styles.btnPage}>3</button>
 
-      <span className="page-divider"> ... </span>
+      <span className={styles.pageDivider}> ... </span>
 
-      <button className="btn-page-next">
+      <button className={styles.btnPageNext}>
         NEXT
-        <span className="arrow">→</span>
+        <span className={styles.arrow}>→</span>
       </button>
     </div>
   );

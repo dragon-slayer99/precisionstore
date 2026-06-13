@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./AccountSettingsForm.css";
+import styles from "../Profile/Profile.module.css";
 
 function AccountSettingsForm() {
   const [userDetails, setUserDetails] = useState({
@@ -16,65 +16,65 @@ function AccountSettingsForm() {
   }
 
   return (
-    <section className="grid-panel account-settings">
-      <h2 className="panel-heading">ACCOUNT INFORMATION</h2>
+    <section className={styles.gridPanel}>
+      <h2 className={styles.panelHeading}>ACCOUNT INFORMATION</h2>
 
-      <form className="precision-form" id="profileForm">
-        <div className="form-group">
-          <label className="input-label"> FULL NAME </label>
+      <form className={styles.precisionForm} id="profileForm">
+        <div className={styles.formGroup}>
+          <label className={styles.inputLabel}> FULL NAME </label>
 
           <input
             type="text"
             value={userDetails.name}
             name="name"
-            className="text-input"
+            className={styles.textInput}
             onChange={handleUserFormInput}
             required
           />
         </div>
 
-        <div className="form-group">
-          <label className="input-label"> EMAIL ADDRESS </label>
+        <div className={styles.formGroup}>
+          <label className={styles.inputLabel}> EMAIL ADDRESS </label>
 
           <input
             type="email"
             name="email"
             value={userDetails.email}
             onChange={handleUserFormInput}
-            className="text-input"
+            className={styles.textInput}
             required
           />
         </div>
 
-        <div className="form-group-row">
-          <div className="form-group">
-            <label className="input-label"> PASSWORD </label>
+        <div className={styles.formGroupRow}>
+          <div className={styles.formGroup}>
+            <label className={styles.inputLabel}> PASSWORD </label>
 
             <input
               type="password"
               name="password"
               value={userDetails.password}
               onChange={handleUserFormInput}
-              className="text-input"
+              className={styles.textInput}
             />
           </div>
 
-          <button type="button" className="btn-ghost-secondary inside-field">
+          <button type="button" className={`${styles.btnGhostSecondary} ${styles.insideField}`}>
             CHANGE
           </button>
         </div>
 
-        <div className="form-group">
-          <label className="input-label">SHIPPING MATRIX (DEFAULT)</label>
+        <div className={styles.formGroup}>
+          <label className={styles.inputLabel}>SHIPPING MATRIX (DEFAULT)</label>
           <textarea
-            className="text-input textarea-input"
+            className={`${styles.textInput} ${styles.textareaInput}`}
             name="address"
             value={userDetails.address}
             onChange={handleUserFormInput}
           ></textarea>
         </div>
 
-        <button type="" className="btn-ghost-primary form-submit">
+        <button type="" className={`${styles.btnGhostPrimary} ${styles.formSubmit}`}>
           SAVE CHANGES
         </button>
       </form>
