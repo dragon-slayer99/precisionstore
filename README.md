@@ -1,160 +1,121 @@
 # Microservice E-Commerce Platform
 
-A scalable, microservices-based e-commerce platform built with Spring Boot and Spring Cloud. This project demonstrates a distributed architecture with service discovery, API gateway, and multiple independent services.
+A production-ready, distributed e-commerce platform built with modern technologies. This project leverages a microservices architecture to provide a scalable, resilient, and maintainable system, featuring a React-based frontend and a robust Spring Boot backend.
 
 ## Architecture Overview
 
-This project consists of the following microservices:
+The system follows a microservices pattern with a centralized gateway, service discovery, and dedicated services for core business domains.
 
-- **API Gateway** - Central entry point for all client requests with JWT authentication and routing
-- **Eureka Server** - Service registry and discovery server
-- **Config Server** - Centralized configuration management for all microservices
-- **User Service** - Handles user management and authentication
-- **Product Service** - Manages product catalog and inventory
-- **Cart Service** - Shopping cart management for users
-- **Order Service** - Processes and manages customer orders
+- **Infrastructure Services**:
+  - **Eureka Server**: Service registry and discovery.
+  - **Config Server**: Centralized configuration management.
+  - **API Gateway**: Entry point for all requests, handling routing and JWT-based authentication.
+- **Business Services**:
+  - **User Service**: Manages user profiles, registration, and authentication.
+  - **Product Service**: Catalog management, inventory, and product details.
+  - **Cart Service**: User-specific shopping cart management.
+  - **Order Service**: Order processing and history.
+- **Frontend**:
+  - **E-commerce Frontend**: Modern React SPA for customer interaction.
 
-## Technology Stack
+## Tech Stack
 
+### Backend (Spring Cloud Ecosystem)
 - **Framework**: Spring Boot 4.0.4
 - **Java Version**: Java 21
 - **Cloud Framework**: Spring Cloud 2025.1.1
 - **Service Discovery**: Netflix Eureka
 - **API Gateway**: Spring Cloud Gateway
 - **Authentication**: JWT (JSON Web Tokens)
-- **Circuit Breaker**: Resillience4J
-- **Configuration Management**: Spring Cloud Config
+- **Database**: PostgreSQL 16 (Multi-tenant DB approach)
+- **Documentation**: SpringDoc OpenAPI (Swagger 3)
 - **Build Tool**: Maven
 
-## Prerequisites
+### Frontend
+- **Framework**: React 19
+- **Build Tool**: Vite 8
+- **Routing**: React Router 7
+- **Styling**: Vanilla CSS (Modern interactive UI)
+- **Compiler**: React Compiler enabled
 
-- Java Development Kit (JDK) 21 or higher
-- Maven 3.6+
+### Infrastructure & CI/CD
+- **Containerization**: Docker & Docker Compose
+- **CI/CD**: Jenkins (Parallel multi-stage builds)
+- **Database**: PostgreSQL with dedicated databases for each service (`productdb`, `userdb`, `cartdb`, `orderdb`)
 
 ## Getting Started
 
-### 1. Clone the Repository
+### Prerequisites
+- Docker & Docker Compose
+- Java 21+ (for local development)
+- Node.js (for frontend development)
+- Maven 3.9+
+
+### Quick Start with Docker
+The easiest way to run the entire platform is using Docker Compose:
+
 ```bash
-git clone https://github.com/MaheshGudooru/Microservice_Ecommerce.git
-cd Microservice_Ecommerce
+docker-compose up --build
 ```
 
-### 2. Build All Services
-From the project root directory, build all microservices:
+This will spin up:
+- PostgreSQL 16 with pre-initialized databases.
+- All backend microservices.
+- The infrastructure servers (Config & Eureka).
 
-```bash
-cd api-gateway && mvn clean install
-cd ../eureka-server && mvn clean install
-cd ../config-server && mvn clean install
-cd ../user-service && mvn clean install
-cd ../product-service && mvn clean install
-cd ../cart-service && mvn clean install
-cd ../order-service && mvn clean install
-```
+### Local Development Setup
 
-### 3. Running the Microservices
+If you wish to run services individually for development:
 
-Start services in the recommended order:
+1. **Start Infrastructure**:
+   - `config-server`: Port 8888
+   - `eureka-server`: Port 8761
+2. **Start Backend Services**:
+   - `user-service`: Port 8081
+   - `product-service`: Port 8082
+   - `cart-service`: Port 8083
+   - `order-service`: Port 8084
+3. **Start API Gateway**:
+   - `api-gateway`: Port 8080 (Entry point)
+4. **Start Frontend**:
+   ```bash
+   cd ecommerce_frontend
+   npm install
+   npm run dev
+   ```
 
-#### 1. Start Config Server (Configuration Management)
-```bash
-cd config-server
-mvn spring-boot:run
-```
+## API Documentation
 
-#### 2. Start Eureka Server (Service Registry)
-```bash
-cd eureka-server
-mvn spring-boot:run
-# Accessible at: http://localhost:8761
-```
+Once the services are running, you can access the interactive API documentation (Swagger UI) for each service:
 
-#### 3. Start Individual Microservices
-```bash
-# User Service
-cd user-service
-mvn spring-boot:run
-
-# Product Service
-cd product-service
-mvn spring-boot:run
-
-# Cart Service
-cd cart-service
-mvn spring-boot:run
-
-# Order Service
-cd order-service
-mvn spring-boot:run
-```
-
-#### 4. Start API Gateway
-```bash
-cd api-gateway
-mvn spring-boot:run
-# API Gateway will be accessible at: http://localhost:8080
-```
+- **Product Service**: `http://localhost:8082/swagger-ui/index.html`
+- **User Service**: `http://localhost:8081/swagger-ui/index.html`
+- **Cart Service**: `http://localhost:8083/swagger-ui/index.html`
+- **Order Service**: `http://localhost:8084/swagger-ui/index.html`
+- **Unified**: `http://localhost:8080/swagger-ui/index.html`
 
 ## Project Structure
 
+```text
+.
+├── api-gateway/          # Central entry point & routing
+├── cart-service/         # Cart management logic
+├── config-server/        # Centralized configurations
+├── eureka-server/        # Service discovery
+├── order-service/        # Order processing
+├── product-service/      # Product catalog
+├── user-service/         # User management
+├── ecommerce_frontend/   # React 19 Frontend
+├── db/                   # Database initialization scripts
+├── docker-compose.yml    # Container orchestration
+└── Jenkinsfile           # CI/CD pipeline definition
 ```
-Microservice_Ecommerce/
-├── api-gateway/              # API Gateway Service
-├── eureka-server/            # Service Discovery Server
-├── config-server/            # Configuration Server
-├── user-service/             # User Management Service
-├── product-service/          # Product Catalog Service
-├── cart-service/             # Shopping Cart Service
-├── order-service/            # Order Management Service
-└── README.md                 # This file
-```
 
-## Service Endpoints
+## CI/CD Pipeline
 
-| Service | Default Port | Purpose |
-|---------|-------------|---------|
-| API Gateway | 8080 | Main entry point for all requests |
-| Eureka Server | 8761 | Service registry and discovery |
-| Config Server | 8888 | Configuration management |
-| User Service | 8081 | User operations |
-| Product Service | 8082 | Product operations |
-| Cart Service | 8083 | Shopping cart operations |
-| Order Service | 8084 | Order operations |
+The project includes a `Jenkinsfile` that defines a professional CI/CD pipeline:
+- **Build & Test**: Parallel stages for each microservice using JDK 21.
+- **Docker Integration**: Services are built as container-ready artifacts.
+- **Stashing**: Efficient artifact management between pipeline stages.
 
-> **Note**: Actual ports may vary. Check `https://github.com/MaheshGudooru/config-server` files for each service configuration.
 
-## Features
-
-- ✅ **Distributed Architecture** - Independent, scalable microservices
-- ✅ **Service Discovery** - Automatic service registration and discovery with Eureka
-- ✅ **API Gateway** - Centralized routing and request handling
-- ✅ **JWT Authentication** - Secure API endpoints with token-based authentication
-- ✅ **Centralized Configuration** - Manage configuration across all services from one place
-
-## Configuration
-
-Each microservice can be configured through:
-
-1. **Config Server**: Centralized configuration management (configurations for microservices are hosted on GitHub)
-2. **Local Files**: `application.yml` or `application.yaml` in `src/main/resources/`
-
-## Endpoints
-```
-GET http://localhost:8080/api/products
-GET http://localhost:8080/api/products/{id}
-GET http://localhost:8080/api/products?category
-
-GET http://localhost:8080/api/user
-POST http://localhost:8080/api/user/login?email&password
-POST http://localhost:8080/api/user/register?name&email&password
-
-GET http://localhost:8080/api/cart
-POST http://localhost:8080/api/cart/add?productId&quantity
-POST http://localhost:8080/api/cart/remove?cartItemId
-POST http://localhost:8080/api/cart/empty
-POST http://localhost:8080/api/cart/update?cartItemId&quantity
-
-GET http://localhost:8080/api/order
-POST http://localhost:8080/api/order?address&paymentMethod
-POST http://localhost:8080/api/order/orderstatus?orderId&status
-```

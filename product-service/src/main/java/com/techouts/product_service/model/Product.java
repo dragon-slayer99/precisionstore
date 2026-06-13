@@ -23,7 +23,7 @@ public class Product {
 
     private float price;
 
-    @Column(name = "product_description")
+    @Column(name = "product_description", length = 50000)
     private String productDescription;
 
     @Column(nullable = false)
@@ -34,12 +34,6 @@ public class Product {
 
     @Min(value = 0, message = "Stock value cannot be less than zero")
     private int stock;
-
-//    @OneToMany(mappedBy = "productId", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<CartItem> cartItems;
-//
-//    @OneToMany(mappedBy = "productId", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<OrderItem> orderItems;
 
     public Product(String name, float price, String productDescription, int stock, String category, String productImage) {
 
