@@ -7,13 +7,12 @@ import CartSummary from "../CartSummary/CartSummary";
 
 function Cart() {
   return (
-    <main class="cart-surface">
-      <div class="cart-container">
-
+    <main className="cart-surface">
+      <div className="cart-container">
         <CartHeader />
 
-        <div class="cart-workspace">
-          <div class="main-content-stack">
+        <div className="cart-workspace">
+          <div className="main-content-stack">
             <CartItems />
 
             <CheckoutForm />

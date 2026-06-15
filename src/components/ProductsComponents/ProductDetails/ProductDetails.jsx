@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import styles from "./ProductDetails.module.css";
 import { useParams } from "react-router-dom";
-import { ProductDetailsContext } from "../../../utils/ProductsContext";
+import { ProductDetailsContext } from "../../../utils/ContextProducer";
 
 function ProductDetails() {
   const [productCnt, setProductCnt] = useState(1);

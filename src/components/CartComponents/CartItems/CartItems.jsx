@@ -1,18 +1,16 @@
-import './CartItems.css';
+import "./CartItems.css";
 
-import CartItem from '../CartItem/CartItem';
-import CartTableHeader from '../CartTableHeader/CartTableHeader';
+import CartItem from "../CartItem/CartItem";
+import CartTableHeader from "../CartTableHeader/CartTableHeader";
 
 function CartItems() {
-    return (
-        <section class="cart-items-matrix">
-            
-            <CartTableHeader />
+  return (
+    <section className="cart-items-matrix">
+      <CartTableHeader />
 
-            <CartItem />
-            <CartItem />
-
-        </section>
-    )
+      <CartItem />
+      <CartItem />
+    </section>
+  );
 }
-export default CartItems
+export default CartItems;

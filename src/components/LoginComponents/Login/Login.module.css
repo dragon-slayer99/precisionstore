@@ -1,0 +1,317 @@
+.mainAuthContainer {
+  background-color: var(--canvas);
+  font-family: var(--font-main);
+  color: var(--on-dark);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-x: hidden;
+}
+
+/* Background Grid Decoration (Industrial Aesthetic) */
+.mainAuthContainer::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(60, 60, 60, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(60, 60, 60, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Identity Gateway Container */
+.authContainer {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  position: relative;
+  padding: 40px;
+  transition: border-color 0.3s ease;
+}
+
+.authContainer:hover {
+  border-color: #444444;
+}
+
+/* Header System */
+.authHeader {
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.sysLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--body);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Tabs: Engineering Spec Switcher */
+.authTabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 32px;
+}
+
+.authTab {
+  background: transparent;
+  border: none;
+  color: var(--body);
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-bottom: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.auth-tab:hover {
+  color: var(--on-dark);
+}
+
+.authTab.active {
+  color: var(--on-dark);
+}
+
+/* Precision M-Striping Stop Alignment */
+.activeStripe {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--m-blue-light) 33.3%,
+    var(--m-blue-dark) 33.3% 66.6%,
+    var(--m-red) 66.6%
+  );
+}
+
+/* Form Panel Configurations */
+.formPanel {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.formPanel.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--body);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.industrialInput {
+  width: 100%;
+  height: 48px;
+  background-color: transparent;
+  border: 1px solid var(--hairline);
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 300;
+  padding: 0 16px;
+  border-radius: 0;
+  width: 100%;
+  padding: 10px;
+  /* Crucial: ensures text stops before hitting the icon */
+  padding-right: 40px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.industrialInput:focus {
+  border-color: var(--on-dark);
+  background-color: var(--surface-card);
+}
+
+#togglePassword {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+  color: #777; /* Default icon color */
+  transition: color 0.2s ease;
+}
+
+#togglePassword:hover {
+  color: #fff; /* Highlight on hover, assuming a dark theme based on your previous code */
+}
+
+/* Form Utilities & Directives */
+.formMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -8px;
+  margin-bottom: 24px;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Custom Sharp Checkbox */
+.checkboxWrapper input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  border-radius: 0;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.checkboxWrapper input:checked {
+  border-color: var(--on-dark);
+  background: var(--on-dark);
+}
+
+.checkboxWrapper input:checked::after {
+  content: "✓";
+  color: var(--canvas);
+  font-size: 10px;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkboxLabel {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--body);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.inlineLink {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--body);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.inlineLink:hover {
+  color: var(--on-dark);
+  border-color: var(--on-dark);
+}
+
+/* Primary Action Button (Industrial Ghost Architecture) */
+.btnActionSubmit {
+  width: 100%;
+  height: 52px;
+  background: transparent;
+  border: 1px solid var(--on-dark);
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btnActionSubmit:hover {
+  background-color: var(--on-dark);
+  color: var(--canvas);
+}
+
+.btnActionSubmit:active {
+  transform: scale(0.99);
+}
+
+/* Telemetry Notification Banner */
+.telemetryBanner {
+  border-top: 1px dashed var(--hairline);
+  margin-top: 32px;
+  padding-top: 16px;
+  font-size: 10px;
+  font-family: monospace;
+  color: #444444;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Mobile Adaptive Constraints */
+@media (max-width: 480px) {
+  .authContainer {
+    padding: 24px 16px;
+    border: none;
+  }
+  body::before {
+    background-size: 20px 20px;
+  }
+}

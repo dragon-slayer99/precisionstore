@@ -1,7 +1,7 @@
 import styles from "../Products/Products.module.css";
 import ProductCard from "../ProductCard/ProductCard";
 import { useContext } from "react";
-import { ProductDetailsContext } from "../../../utils/ProductsContext";
+import { ProductDetailsContext } from "../../../utils/ContextProducer";
 
 function ProductGrid() {
 

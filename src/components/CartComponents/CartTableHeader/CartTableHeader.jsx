@@ -1,11 +1,11 @@
 function CartTableHeader() {
   return (
-    <div class="matrix-header">
-      <span class="col-head">PRODUCT</span>
-      <span class="col-head center">QUANTITY</span>
-      <span class="col-head right">PRICE</span>
+    <div className="matrix-header">
+      <span className="col-head">PRODUCT</span>
+      <span className="col-head center">QUANTITY</span>
+      <span className="col-head right">PRICE</span>
     </div>
-  )
+  );
 }
 
-export default CartTableHeader
+export default CartTableHeader;

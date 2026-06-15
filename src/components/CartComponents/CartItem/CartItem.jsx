@@ -2,33 +2,33 @@ import "./CartItem.css";
 
 function CartItem() {
   return (
-    <article class="cart-node-frame" id="cart-item-1" data-price="999.00">
-      <div class="node-visual">
-        <div class="visual-placeholder-mesh">PRODUCT IMAGE</div>
+    <article className="cart-node-frame" id="cart-item-1" data-price="999.00">
+      <div className="node-visual">
+        <div className="visual-placeholder-mesh">PRODUCT IMAGE</div>
       </div>
 
-      <div class="node-details">
-        <span class="meta-category"> ELECTRONICS </span>
-        <h2 class="node-name">Apple AirPods Pro (2nd Gen)</h2>
-        <p class="node-spec">
+      <div className="node-details">
+        <span className="meta-category"> ELECTRONICS </span>
+        <h2 className="node-name">Apple AirPods Pro (2nd Gen)</h2>
+        <p className="node-spec">
           Active Noise Cancellation // Wireless Charging Case
         </p>
 
-        <button class="btn-remove" onclick="removeNode('cart-item-1')">
+        <button className="btn-remove" onClick={() => (0)} >
           REMOVE
         </button>
       </div>
 
-      <div class="node-quantity">
-        <div class="quantity-selector">
-          <button class="btn-qty minus">−</button>
-          <input type="text" value="1" class="qty-input" readonly />
-          <button class="btn-qty plus">+</button>
+      <div className="node-quantity">
+        <div className="quantity-selector">
+          <button className="btn-qty minus">−</button>
+          <input type="text" value="1" className="qty-input" readOnly />
+          <button className="btn-qty plus">+</button>
         </div>
       </div>
 
-      <div class="node-price">
-        <span class="price-value"> $ 999.00 </span>
+      <div className="node-price">
+        <span className="price-value"> $ 999.00 </span>
       </div>
     </article>
   );
