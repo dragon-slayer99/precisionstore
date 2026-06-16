@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/products")
-@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:5173"})
+//@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:5173"})
 @Tag(
         name = "Product Controller",
         description = "APIs for managing product catalog operations including product retrieval, creation, updation, and deletion."

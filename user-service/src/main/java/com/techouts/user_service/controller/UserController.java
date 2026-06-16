@@ -21,7 +21,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:5173")
+//@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:5173"})
 @Tag(
         name = "User Controller",
         description = "APIs for user registration, authentication, and user profile operations."

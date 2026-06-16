@@ -40,6 +40,10 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
         String path = exchange.getRequest().getURI().getPath();
         String method = exchange.getRequest().getMethod().name();
 
+        if ("OPTIONS".equals(method)) {
+            return chain.filter(exchange);
+        }
+
         // public endpoints don't need user login
         List<String> excludedURIs = List.of(
                 "/api/users/login",
@@ -56,7 +60,6 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
         List<String> adminURIs = List.of(
                 "/api/admin"
         );
-
 
         // skip the check for public endpoints
         if (excludedURIs.stream().anyMatch(path::startsWith) || (path.startsWith("/api/products") && "GET".equals(method))) {
