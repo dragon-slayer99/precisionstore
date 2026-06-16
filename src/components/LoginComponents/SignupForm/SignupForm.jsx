@@ -1,9 +1,43 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styles from "../Login/Login.module.css";
 import { LoginTabContext } from "../../../utils/contextProducer";
+import PasswordInput from "../PasswordInput/PasswordInput";
 
 function SignupForm() {
-  const { loginTab, setLoginTab } = useContext(LoginTabContext);
+  const { loginTab } = useContext(LoginTabContext);
+
+  const [signupUserDetails, setSignupUserDetails] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  async function handleFormSubmission(e) {
+    e.preventDefault();
+    console.log(signupUserDetails);
+
+    const response = await fetch("http://localhost:8080/api/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: signupUserDetails.username,
+        email: signupUserDetails.email,
+        password: signupUserDetails.password
+      })
+    });
+
+    if(!response.ok) {
+      throw new Error("This request cannot be processed");
+    }
+
+    const data = await response.json();
+
+    console.log(data);
+
+
+  }
 
   return (
     <section
@@ -16,34 +50,44 @@ function SignupForm() {
       role="tabpanel"
       aria-labelledby="tab-signup"
     >
-      <form id="signupForm" autocomplete="off">
+      <form id="signupForm" autoComplete="off" onSubmit={handleFormSubmission}>
         <div className={styles.inputGroup}>
-          <label for="regName">FULL NAME</label>
+          <label htmlFor="regName">FULL NAME</label>
           <input
             type="text"
             className={styles.industrialInput}
+            value={signupUserDetails.username}
+            onChange={(e) =>
+              setSignupUserDetails({
+                ...signupUserDetails,
+                username: e.target.value,
+              })
+            }
             id="regName"
             required
           />
         </div>
         <div className={styles.inputGroup}>
-          <label for="regEmail">EMAIL ADDRESS</label>
+          <label htmlFor="regEmail">EMAIL ADDRESS</label>
           <input
             type="email"
             className={styles.industrialInput}
+            value={signupUserDetails.email}
+            onChange={(e) =>
+              setSignupUserDetails({
+                ...signupUserDetails,
+                email: e.target.value,
+              })
+            }
             id="regEmail"
             required
           />
         </div>
-        <div className={styles.inputGroup}>
-          <label for="regPassword">CREATE PASSWORD</label>
-          <input
-            type="password"
-            className={styles.industrialInput}
-            id="regPassword"
-            required
-          />
-        </div>
+        <PasswordInput
+          userDetailsState={signupUserDetails}
+          userDetailsUpdateFn={setSignupUserDetails}
+          formLabel={"CREATE PASSWORD"}
+        />
         <div className={styles.formMeta}>
           <label className={styles.checkboxWrapper}>
             <input type="checkbox" id="agreeTerms" required />

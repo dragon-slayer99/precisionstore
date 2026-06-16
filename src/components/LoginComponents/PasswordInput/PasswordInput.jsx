@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styles from "../Login/Login.module.css";
 
-function PasswordInput() {
+function PasswordInput({ userDetailsState, userDetailsUpdateFn, formLabel }) {
   const [showPassword, setShowPassword] = useState(false);
+
 
   // SVG Paths for the "Eye Off" (Hide) state
   const eyeOffSvg = (
@@ -22,12 +23,19 @@ function PasswordInput() {
 
   return (
     <div className={styles.inputGroup}>
-      <label for="loginPassword">PASSWORD</label>
+      <label htmlFor="loginPassword">{formLabel}</label>
 
       <div className={styles.inputWrapper}>
         <input
           type={showPassword ? "text" : "password"}
           className={styles.industrialInput}
+          value={userDetailsState.password}
+          onChange={(e) =>
+            userDetailsUpdateFn({
+              ...userDetailsState,
+              password: e.target.value,
+            })
+          }
           id="loginPassword"
           required
         />
@@ -45,9 +53,9 @@ function PasswordInput() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             {/* <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
             <circle cx="12" cy="12" r="3"></circle> */}
