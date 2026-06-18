@@ -1,16 +1,34 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./ProductDetails.module.css";
 import { useParams } from "react-router-dom";
 import { ProductDetailsContext } from "../../../utils/ContextProducer";
 
 function ProductDetails() {
   const [productCnt, setProductCnt] = useState(1);
+  const [currProduct, setCurrProduct] = useState({});
   const { id } = useParams();
 
-  const productList = useContext(ProductDetailsContext);
+  // const productList = useContext(ProductDetailsContext);
 
-  const { productImage, name, category, price, productDescription, stock } =
-    productList.filter((product) => product.id === Number(id))[0];
+  useEffect(() => {
+    
+    (async function fetchProduct() {
+      
+      const response = await fetch(`http://localhost:8080/api/products/${id}`);
+
+      if(!response.ok) {
+        throw new Error("Cannot process the request");
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setCurrProduct(data)
+
+    })()
+
+  }, [id])
+
+  const {category, imageUrl, name, price, productDesc, productId, stock} = currProduct;
 
   const accessToken = localStorage.getItem("accessToken");
 
@@ -21,7 +39,7 @@ function ProductDetails() {
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
-        productId: id,
+        productId: productId,
         quantity: productCnt,
       }),
     });
@@ -44,7 +62,7 @@ function ProductDetails() {
               STOCK: {stock}
             </span>
 
-            <div className={styles.imagePlaceholder}>{productImage}</div>
+            <div className={styles.imagePlaceholder}>{imageUrl}</div>
           </div>
 
           <div className={styles.detailsColumn}>
@@ -56,13 +74,13 @@ function ProductDetails() {
 
             <h1 className={styles.productName}>{name}</h1>
 
-            <p className={styles.productPrice}>$ {price.toFixed(2)}</p>
+            <p className={styles.productPrice}>$ {Number(price).toFixed(2)}</p>
 
             <div className={styles.descriptionBlock}>
-              <p>{productDescription}</p>
+              <p>{productDesc}</p>
             </div>
 
-            <form className={styles.transactionRow} onSubmit={handleSubmit}>
+            <div className={styles.transactionRow} onSubmit={handleSubmit}>
               <div className={styles.quantitySelector}>
                 <button
                   className={styles.btnQty}
@@ -92,16 +110,17 @@ function ProductDetails() {
               <button
                 className={styles.btnPrimary}
                 id="addToCartBtn"
-                type="submit"
+                onClick={handleSubmit}
               >
                 ADD TO CART
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     </main>
   );
+
 }
 
 export default ProductDetails;
