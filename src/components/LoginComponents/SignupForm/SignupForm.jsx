@@ -2,15 +2,20 @@ import { useContext, useState } from "react";
 import styles from "../Login/Login.module.css";
 import { LoginTabContext } from "../../../utils/contextProducer";
 import PasswordInput from "../PasswordInput/PasswordInput";
+import { useNavigate } from "react-router-dom";
 
 function SignupForm() {
   const { loginTab } = useContext(LoginTabContext);
+  const navigate = useNavigate();
 
   const [signupUserDetails, setSignupUserDetails] = useState({
     username: "",
     email: "",
     password: "",
   });
+
+  const [enteredEmailAlreadyTaken, setEnteredEmailAlreadyTaken] =
+    useState(false);
 
   async function handleFormSubmission(e) {
     e.preventDefault();
@@ -24,11 +29,16 @@ function SignupForm() {
       body: JSON.stringify({
         name: signupUserDetails.username,
         email: signupUserDetails.email,
-        password: signupUserDetails.password
-      })
+        password: signupUserDetails.password,
+      }),
     });
 
-    if(!response.ok) {
+    if (response.status === 409) {
+      setEnteredEmailAlreadyTaken(true);
+      console.log("User already exists with this mail");
+    }
+
+    if (!response.ok) {
       throw new Error("This request cannot be processed");
     }
 
@@ -36,7 +46,7 @@ function SignupForm() {
 
     console.log(data);
 
-
+    navigate("/login", { replace: true });
   }
 
   return (
@@ -82,6 +92,13 @@ function SignupForm() {
             id="regEmail"
             required
           />
+          <span
+            className={`${styles.fieldHelper} ${styles.errorText}`}
+            id="emailError"
+            style={enteredEmailAlreadyTaken ? {} : { display: "none" }}
+          >
+            THIS EMAIL IS ALREADY REGISTERED.
+          </span>
         </div>
         <PasswordInput
           userDetailsState={signupUserDetails}

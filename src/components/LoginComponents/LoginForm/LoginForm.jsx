@@ -3,6 +3,7 @@ import styles from "../Login/Login.module.css";
 import { LoginTabContext } from "../../../utils/contextProducer";
 
 import PasswordInput from "../PasswordInput/PasswordInput";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const { loginTab } = useContext(LoginTabContext);
@@ -10,6 +11,10 @@ function LoginForm() {
     userEmail: "",
     password: "",
   });
+
+  const [userWrongCredientials, setUserWrongCredientials] = useState(false);
+
+  const navigate = useNavigate();
 
   async function handleFormSubmission(event) {
     event.preventDefault();
@@ -26,13 +31,21 @@ function LoginForm() {
       }),
     });
 
+    if (response.status === 400) {
+      setUserWrongCredientials(true);
+      console.log("User entered wrong credientials");
+    }
+
     if (!response.ok) {
-      throw new Error("Cannot proceed with the request");
+      return;
     }
 
     const data = await response.json();
-
     console.log(data);
+
+    localStorage.setItem("accessToken", data.accessToken);
+
+    navigate("/", { replace: true });
   }
 
   return (
@@ -47,6 +60,16 @@ function LoginForm() {
       aria-labelledby="tab-login"
     >
       <form id="loginForm" autoComplete="off" onSubmit={handleFormSubmission}>
+        <div
+          className={`${styles.systemAlert} ${styles.errorBanner}`}
+          id={`${styles.loginError}`}
+          style={userWrongCredientials ? {} : { display: "none" }}
+        >
+          <span className="alertIcon">⚠</span>
+          <span className="alertText">
+            AUTHENTICATION FAILED: INVALID CREDENTIALS
+          </span>
+        </div>
         <div className={styles.inputGroup}>
           <label htmlFor="loginEmail">EMAIL ADDRESS</label>
           <input

@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import "./CartHeader.css";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../../utils/ContextProducer";
 
 function CartHeader() {
+  const { cartItems } = useContext(CartContext);
+
   return (
     <header className="cart-header">
       <div className="breadcrumbs">
@@ -12,7 +16,7 @@ function CartHeader() {
 
       <div className="title-identity-line">
         <h1 className="cart-main-title">SHOPPING CART</h1>
-        <span className="queue-status">2 ITEMS</span>
+        <span className="queue-status">{cartItems.length} ITEMS</span>
       </div>
     </header>
   );

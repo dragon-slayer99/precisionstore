@@ -4,24 +4,30 @@ import CartHeader from "../CartHeader/CartHeader";
 import CartItems from "../CartItems/CartItems";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import CartSummary from "../CartSummary/CartSummary";
+import { useState } from "react";
+import { CartContext } from "../../../utils/ContextProducer";
 
 function Cart() {
+  const [cartItems, setCartItems] = useState([]);
+
   return (
-    <main className="cart-surface">
-      <div className="cart-container">
-        <CartHeader />
+    <CartContext.Provider value={{cartItems, setCartItems}}>
+      <main className="cart-surface">
+        <div className="cart-container">
+          <CartHeader />
 
-        <div className="cart-workspace">
-          <div className="main-content-stack">
-            <CartItems />
+          <div className="cart-workspace">
+            <div className="main-content-stack">
+              <CartItems />
 
-            <CheckoutForm />
+              <CheckoutForm />
+            </div>
+
+            <CartSummary />
           </div>
-
-          <CartSummary />
         </div>
-      </div>
-    </main>
+      </main>
+    </CartContext.Provider>
   );
 }
 
