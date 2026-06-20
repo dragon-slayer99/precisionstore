@@ -21,7 +21,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/cart/items")
-@CrossOrigin(origins =  "http://localhost:5173")
 @Tag(
         name = "Cart Service",
         description = "APIs for managing user shopping cart operations"
