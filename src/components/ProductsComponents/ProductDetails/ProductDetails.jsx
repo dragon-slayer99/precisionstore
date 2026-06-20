@@ -1,14 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ProductDetails.module.css";
 import { useParams } from "react-router-dom";
-import { ProductDetailsContext } from "../../../utils/ContextProducer";
 
 function ProductDetails() {
   const [productCnt, setProductCnt] = useState(1);
   const [currProduct, setCurrProduct] = useState({});
   const { id } = useParams();
 
-  // const productList = useContext(ProductDetailsContext);
 
   useEffect(() => {
     
@@ -36,6 +34,7 @@ function ProductDetails() {
     const response = await fetch("http://localhost:8080/api/cart/items", {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
@@ -48,7 +47,7 @@ function ProductDetails() {
       throw new Error("Cannot process the request");
     }
 
-    const data = response.json();
+    const data = await response.json();
 
     console.log(data);
   }

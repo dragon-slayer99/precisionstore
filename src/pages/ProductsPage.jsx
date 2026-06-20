@@ -3,11 +3,12 @@ import Products from "../components/ProductsComponents/Products/Products";
 import { ProductDetailsContext } from "../utils/ContextProducer";
 import { useEffect, useState } from "react";
 import ProductDetails from "../components/ProductsComponents/ProductDetails/ProductDetails";
-
+import Loader from "../components/HomeComponents/Loader/Loader";
 
 function ProductsPage() {
 
   const [productDetails, setProductDetails] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
@@ -20,6 +21,7 @@ function ProductsPage() {
         }
         const data = await response.json();
         setProductDetails(data.products);
+        setIsLoading(false);
       } catch (e) {
         console.error(e);
       }
@@ -27,11 +29,9 @@ function ProductsPage() {
     })()
   }, [])
 
-
-
     return (
       <ProductDetailsContext.Provider value={productDetails}>
-        {id ? <ProductDetails/> : <Products />}
+        {isLoading ? <Loader /> : id ? <ProductDetails/> : <Products />}
       </ProductDetailsContext.Provider>
     );
 }

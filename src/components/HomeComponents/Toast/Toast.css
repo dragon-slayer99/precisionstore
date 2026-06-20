@@ -1,0 +1,91 @@
+/* --- Toast Architecture --- */
+
+.toast-container {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 9999;
+  pointer-events: none; /* Let clicks pass through the container */
+}
+
+.toast-card {
+  position: relative;
+  background-color: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: 0px; /* Strict adherence to the brand shape */
+  width: 320px;
+  padding: 20px 24px;
+  pointer-events: auto; /* Re-enable clicks on the toast itself */
+  
+  /* Animation */
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active State for Entry Animation */
+.toast-card.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* M-Stripe Divider Component Integration */
+.toast-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    to right, 
+    var(--m-blue-light) 0%, var(--m-blue-light) 33.3%, 
+    var(--m-blue-dark) 33.3%, var(--m-blue-dark) 66.6%, 
+    var(--m-red) 66.6%, var(--m-red) 100%
+  );
+}
+
+/* Layout within the toast */
+.toast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.toast-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--on-dark);
+  margin: 0;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: var(--body);
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.toast-close:hover {
+  color: var(--on-dark);
+}
+
+.toast-message {
+  font-size: 14px;
+  font-weight: 300; /* Distinct contrast against the 700 title */
+  line-height: 1.5;
+  color: var(--body);
+  margin: 0;
+}

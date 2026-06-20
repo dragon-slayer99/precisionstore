@@ -82,7 +82,7 @@
   transition: color 0.2s ease;
 }
 
-.auth-tab:hover {
+.authTab:hover {
   color: var(--on-dark);
 }
 
