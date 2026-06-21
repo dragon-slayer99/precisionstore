@@ -1,6 +1,9 @@
 import "./CartItem.css";
 
-function CartItem() {
+function CartItem({ cartItemDetails }) {
+
+  
+
   return (
     <article className="cart-node-frame" id="cart-item-1" data-price="999.00">
       <div className="node-visual">
