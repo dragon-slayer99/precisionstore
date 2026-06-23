@@ -9,7 +9,6 @@ import Cart from "./components/CartComponents/Cart/Cart";
 import Profile from "./components/ProfileComponents/Profile/Profile";
 import ProductsPage from "./pages/ProductsPage";
 import Login from "./components/LoginComponents/Login/Login";
-import Toast from "./components/HomeComponents/Toast/Toast";
 
 import "./App.css";
 
@@ -29,8 +28,6 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
         </Route>
       </Routes>
-
-      <Toast duration={2500} title={"Cart Toast"} message={"Cart item is added"} />
     </>
   );
 }

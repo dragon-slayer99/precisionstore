@@ -6,30 +6,20 @@ import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import CartSummary from "../CartSummary/CartSummary";
 import { useEffect, useState } from "react";
 import { CartContext } from "../../../utils/ContextProducer";
+import { getCartItems } from "../../../api/cartApi";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
 
-  const accessToken = localStorage.getItem("accessToken");
-
   useEffect(() => {
-    (async function fetchCart() {
-      const response = await fetch("http://localhost:8080/api/cart/items", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`
-        }
-      });
+    (async function loadCart() {
+      const data = await getCartItems();
 
-      if (!response.ok) {
-        console.log(response);
-      }
 
-      const data = await response.json();
-      console.log(data);
-    })()
-  }, [accessToken])
+      // setCartItems(data.items);
+
+    })();
+  }, []);
 
   return (
     <CartContext.Provider value={{ cartItems, setCartItems }}>

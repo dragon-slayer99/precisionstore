@@ -2,54 +2,37 @@ import { useEffect, useState } from "react";
 import styles from "./ProductDetails.module.css";
 import { useParams } from "react-router-dom";
 
+import { useToast } from "../../../hooks/useToast";
+import { postCartItems } from "../../../api/cartApi";
+import { getProducts } from "../../../api/productApi";
+
 function ProductDetails() {
   const [productCnt, setProductCnt] = useState(1);
   const [currProduct, setCurrProduct] = useState({});
   const { id } = useParams();
-
+  const { showToast } = useToast();
 
   useEffect(() => {
-    
     (async function fetchProduct() {
-      
-      const response = await fetch(`http://localhost:8080/api/products/${id}`);
+      const data = await getProducts(id);
+      setCurrProduct(data);
+    })();
+  }, [id]);
 
-      if(!response.ok) {
-        throw new Error("Cannot process the request");
-      }
+  const { category, imageUrl, name, price, productDesc, productId, stock } =
+    currProduct;
 
-      const data = await response.json();
-      console.log(data);
-      setCurrProduct(data)
-
-    })()
-
-  }, [id])
-
-  const {category, imageUrl, name, price, productDesc, productId, stock} = currProduct;
-
-  const accessToken = localStorage.getItem("accessToken");
 
   async function handleSubmit() {
-    const response = await fetch("http://localhost:8080/api/cart/items", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify({
-        productId: productId,
-        quantity: productCnt,
-      }),
-    });
+    const response = await postCartItems(productId, productCnt);
 
-    if (!response.ok) {
-      throw new Error("Cannot process the request");
+    console.log(response);
+
+    if (response.status === 401) {
+      showToast("Access denied", "Please try to login again");
     }
 
-    const data = await response.json();
-
-    console.log(data);
+    
   }
 
   return (
@@ -119,7 +102,6 @@ function ProductDetails() {
       </div>
     </main>
   );
-
 }
 
 export default ProductDetails;

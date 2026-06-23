@@ -4,6 +4,7 @@ import { LoginTabContext } from "../../../utils/contextProducer";
 
 import PasswordInput from "../PasswordInput/PasswordInput";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../../api/userApi";
 
 function LoginForm() {
   const { loginTab } = useContext(LoginTabContext);
@@ -18,32 +19,12 @@ function LoginForm() {
 
   async function handleFormSubmission(event) {
     event.preventDefault();
-    console.log(userLoginDetails);
+    const userCredientialsStatus = await loginUser(userLoginDetails);
 
-    const response = await fetch("http://localhost:8080/api/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: userLoginDetails.userEmail,
-        password: userLoginDetails.password,
-      }),
-    });
-
-    if (response.status === 400) {
-      setUserWrongCredientials(true);
-      console.log("User entered wrong credientials");
-    }
-
-    if (!response.ok) {
+    if (userCredientialsStatus) {
+      setUserWrongCredientials(userCredientialsStatus);
       return;
     }
-
-    const data = await response.json();
-    console.log(data);
-
-    localStorage.setItem("accessToken", data.accessToken);
 
     navigate("/", { replace: true });
   }
