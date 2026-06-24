@@ -13,10 +13,7 @@ export async function getCartItems() {
     console.log(response);
   }
 
-  const data = await response.json();
-  console.log(data.items);
-  console.log(data);
-  return data;
+  return response;
 }
 
 export async function postCartItems(productId, productCnt) {
@@ -34,4 +31,37 @@ export async function postCartItems(productId, productCnt) {
 
 
   return response;
+}
+
+export async function deleteCartItem(cartItemId) {
+  const response = await fetch(`http://localhost:8080/api/cart/items/${cartItemId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`
+    }
+  })
+
+  const data = await response.json();
+  console.log(data);
+
+  return response;
+
+}
+
+export async function updateCartItemQuantity(quantity) {
+
+  const response = await fetch("http://localhost:8080/api/cart/item", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`
+    },
+    body: JSON.stringify({
+      quantity: quantity
+    })
+  })
+
+  return response;
+  
 }

@@ -1,4 +1,9 @@
+import { useState } from "react";
+
 function CheckoutForm() {
+  const [isToggled, setIsToggled] = useState(false);
+  const [option, setOption] = useState("Credit / Debit Card");
+
   return (
     <section className="checkout-forms-matrix">
       <h2 className="matrix-section-title">SHIPPING & PAYMENT</h2>
@@ -46,24 +51,36 @@ function CheckoutForm() {
           <div className="input-group">
             <label>SELECT PAYMENT OPTION</label>
 
-            <div className="custom-dropdown-wrapper" id="paymentWrapper">
+            <div
+              className={`custom-dropdown-wrapper ${isToggled && "active-state"}`}
+              id="paymentWrapper"
+            >
               <button
                 type="button"
                 className="industrial-dropdown-btn"
                 id="paymentTrigger"
                 aria-haspopup="listbox"
-                aria-expanded="false"
+                aria-expanded={isToggled ? "true" : "false"}
+                onClick={() => setIsToggled((prev) => !prev)}
               >
-                <span className="selected-text">Credit / Debit Card</span>
+                <span className="selected-text">{option}</span>
                 <span className="indicator-arrow">↓</span>
               </button>
 
-              <ul className="dropdown-panel" id="paymentPanel" role="listbox">
+              <ul
+                className={`dropdown-panel ${isToggled && "visible-display"}`}
+                id="paymentPanel"
+                role="listbox"
+              >
                 <li
                   className="dropdown-option active"
                   role="option"
-                  aria-selected="true"
-                  data-value="cc"
+                  aria-selected={option === "Credit / Debit Card" ? "true" : "false"}
+                  data-value="Credit / Debit Card"
+                  onClick={() => {
+                    setOption("Credit / Debit Card");
+                    setIsToggled(false);
+                  }}
                 >
                   Credit / Debit Card
                 </li>
@@ -71,8 +88,12 @@ function CheckoutForm() {
                 <li
                   className="dropdown-option"
                   role="option"
-                  aria-selected="false"
+                  aria-selected={option === "paypal" ? "true" : "false"}
                   data-value="paypal"
+                  onClick={() => {
+                    setOption("paypal");
+                    setIsToggled(false);
+                  }}
                 >
                   PayPal
                 </li>
@@ -80,8 +101,12 @@ function CheckoutForm() {
                 <li
                   className="dropdown-option"
                   role="option"
-                  aria-selected="false"
-                  data-value="upi"
+                  aria-selected={option === "UPI Payment" ? "true" : "false"}
+                  data-value="UPI Payment"
+                  onClick={() => {
+                    setOption("UPI Payment");
+                    setIsToggled(false);
+                  }}
                 >
                   UPI Payment
                 </li>
@@ -89,8 +114,12 @@ function CheckoutForm() {
                 <li
                   className="dropdown-option"
                   role="option"
-                  aria-selected="false"
-                  data-value="cod"
+                  aria-selected={option === "Cash on Delivery" ? "true" : "false"}
+                  data-value="Cash on Delivery"
+                  onClick={() => {
+                    setOption("Cash on Delivery");
+                    setIsToggled(false);
+                  }}
                 >
                   Cash on Delivery
                 </li>

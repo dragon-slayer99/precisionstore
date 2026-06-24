@@ -32,7 +32,9 @@ function ProductDetails() {
       showToast("Access denied", "Please try to login again");
     }
 
-    
+    if(response.ok) {
+      showToast("Status", "Product added to cart");
+    }
   }
 
   return (

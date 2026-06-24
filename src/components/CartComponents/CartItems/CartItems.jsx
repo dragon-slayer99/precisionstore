@@ -6,13 +6,13 @@ import { useContext } from "react";
 import { CartContext } from "../../../utils/ContextProducer";
 
 function CartItems() {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
   return (
     <section className="cart-items-matrix">
       <CartTableHeader />
 
       {cartItems.map((cartItem) => (
-        <CartItem cartItemDetails={cartItem} />
+        <CartItem key={cartItem.id} cartItemDetails={cartItem} />
       ))}
       
     </section>

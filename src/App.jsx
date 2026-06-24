@@ -5,12 +5,14 @@ import AuthLayout from "./layouts/AuthLayout";
 
 import Home from "./pages/Home";
 import Orders from "./components/OrdersComponents/Orders/Orders";
-import Cart from "./components/CartComponents/Cart/Cart";
 import Profile from "./components/ProfileComponents/Profile/Profile";
 import ProductsPage from "./pages/ProductsPage";
 import Login from "./components/LoginComponents/Login/Login";
 
+import EmptyCart from "./components/CartComponents/EmptyCart/EmptyCart";
+
 import "./App.css";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -22,7 +24,8 @@ function App() {
           <Route path="/products" element={<ProductsPage />}></Route>
           <Route path="/products/:id" element={<ProductsPage />}></Route>
           <Route path="/orders" element={<Orders />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/cart" element={<CartPage />}></Route>
+          <Route path="/exp" element={<EmptyCart />}></Route>
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />}></Route>
