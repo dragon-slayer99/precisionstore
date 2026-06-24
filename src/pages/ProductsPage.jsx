@@ -10,7 +10,6 @@ function ProductsPage() {
 
   const [productDetails, setProductDetails] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {

@@ -16,22 +16,20 @@ import CartPage from "./pages/CartPage";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/products" element={<ProductsPage />}></Route>
-          <Route path="/products/:id" element={<ProductsPage />}></Route>
-          <Route path="/orders" element={<Orders />}></Route>
-          <Route path="/cart" element={<CartPage />}></Route>
-          <Route path="/exp" element={<EmptyCart />}></Route>
-        </Route>
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={<Login />}></Route>
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/products" element={<ProductsPage />}></Route>
+        <Route path="/products/:id" element={<ProductsPage />}></Route>
+        <Route path="/orders" element={<Orders />}></Route>
+        <Route path="/cart" element={<CartPage />}></Route>
+        <Route path="/exp" element={<EmptyCart />}></Route>
+      </Route>
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<Login />}></Route>
+      </Route>
+    </Routes>
   );
 }
 

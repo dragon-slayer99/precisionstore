@@ -49,9 +49,9 @@ export async function deleteCartItem(cartItemId) {
 
 }
 
-export async function updateCartItemQuantity(quantity) {
+export async function updateCartItemQuantity(id, quantity) {
 
-  const response = await fetch("http://localhost:8080/api/cart/item", {
+  const response = await fetch(`http://localhost:8080/api/cart/item/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
