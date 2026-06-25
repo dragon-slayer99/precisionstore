@@ -4,13 +4,11 @@ import CartHeader from "../CartHeader/CartHeader";
 import CartItems from "../CartItems/CartItems";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import CartSummary from "../CartSummary/CartSummary";
-import { CartContext } from "../../../utils/ContextProducer";
 
-
-function Cart({cartItems, setCartItems}) {
+function Cart() {
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems }}>
+    <>
       <main className="cart-surface">
         <div className="cart-container">
           <CartHeader />
@@ -26,7 +24,7 @@ function Cart({cartItems, setCartItems}) {
           </div>
         </div>
       </main>
-    </CartContext.Provider>
+    </>
   );
 }
 

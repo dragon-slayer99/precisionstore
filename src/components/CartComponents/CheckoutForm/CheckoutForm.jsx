@@ -73,7 +73,7 @@ function CheckoutForm() {
                 role="listbox"
               >
                 <li
-                  className="dropdown-option active"
+                  className={`dropdown-option ${option === 'Credit / Debit Card' && 'active'}`}
                   role="option"
                   aria-selected={option === "Credit / Debit Card" ? "true" : "false"}
                   data-value="Credit / Debit Card"
@@ -86,7 +86,7 @@ function CheckoutForm() {
                 </li>
 
                 <li
-                  className="dropdown-option"
+                  className={`dropdown-option ${option === 'paypal' && 'active'}`}
                   role="option"
                   aria-selected={option === "paypal" ? "true" : "false"}
                   data-value="paypal"
@@ -99,7 +99,7 @@ function CheckoutForm() {
                 </li>
 
                 <li
-                  className="dropdown-option"
+                  className={`dropdown-option ${option === 'UPI Payment' && 'active'}`}
                   role="option"
                   aria-selected={option === "UPI Payment" ? "true" : "false"}
                   data-value="UPI Payment"
@@ -112,7 +112,7 @@ function CheckoutForm() {
                 </li>
 
                 <li
-                  className="dropdown-option"
+                  className={`dropdown-option ${option === 'Cash on Delivery' && 'active'}`}
                   role="option"
                   aria-selected={option === "Cash on Delivery" ? "true" : "false"}
                   data-value="Cash on Delivery"

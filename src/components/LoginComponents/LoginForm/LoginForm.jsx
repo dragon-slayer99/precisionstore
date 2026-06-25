@@ -5,7 +5,7 @@ import { LoginTabContext } from "../../../utils/contextProducer";
 import PasswordInput from "../PasswordInput/PasswordInput";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../../api/userApi";
-
+import { useAuth } from "../../../hooks/useAuth";
 function LoginForm() {
   const { loginTab } = useContext(LoginTabContext);
   const [userLoginDetails, setUserLoginDetails] = useState({
@@ -13,19 +13,22 @@ function LoginForm() {
     password: "",
   });
 
+  const {login} = useAuth();
+
   const [userWrongCredientials, setUserWrongCredientials] = useState(false);
 
   const navigate = useNavigate();
 
   async function handleFormSubmission(event) {
     event.preventDefault();
-    const userCredientialsStatus = await loginUser(userLoginDetails);
+    const jwtToken = await loginUser(userLoginDetails);
 
-    if (userCredientialsStatus) {
-      setUserWrongCredientials(userCredientialsStatus);
+    if (!jwtToken) {
+      setUserWrongCredientials(true);
       return;
     }
-
+    
+    login(jwtToken)
     navigate("/", { replace: true });
   }
 

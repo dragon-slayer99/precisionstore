@@ -46,7 +46,7 @@ function SignupForm() {
 
     console.log(data);
 
-    navigate("/login", { replace: true });
+    navigate("/login");
   }
 
   return (

@@ -42,16 +42,13 @@ export async function deleteCartItem(cartItemId) {
     }
   })
 
-  const data = await response.json();
-  console.log(data);
-
   return response;
 
 }
 
 export async function updateCartItemQuantity(id, quantity) {
 
-  const response = await fetch(`http://localhost:8080/api/cart/item/${id}`, {
+  const response = await fetch(`http://localhost:8080/api/cart/items/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

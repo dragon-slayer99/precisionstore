@@ -7,6 +7,8 @@ import { CartContext } from "../../../utils/ContextProducer";
 function CartItem({ cartItemDetails }) {
   const { id, productId, quantity } = cartItemDetails;
 
+  // console.log(id, productId, quantity);
+
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const [product, setProduct] = useState({});
@@ -21,17 +23,20 @@ function CartItem({ cartItemDetails }) {
   }
 
   async function handleCartItemQuantity(quantity) {
+    const response = await updateCartItemQuantity(id, quantity);
 
-    const response = await updateCartItemQuantity(quantity);
+    if (response.ok) {
+      const newCartItems = cartItems.flatMap((cartItem) => {
+        if (cartItem.id !== id) return [cartItem];
 
-    if(response.ok) {
-      const newCartItems = cartItemDetails.map(() => {
-        
-      })
-      setCartItems();
+        if (quantity <= 0) return [];
 
+        return [{ ...cartItem, quantity: quantity }];
+      });
+
+      console.log("cartItems =>", newCartItems);
+      setCartItems(newCartItems);
     }
-    
   }
 
   useEffect(() => {
@@ -61,14 +66,27 @@ function CartItem({ cartItemDetails }) {
 
       <div className="node-quantity">
         <div className="quantity-selector">
-          <button className="btn-qty minus" onClick={}>−</button>
+          <button
+            className="btn-qty minus"
+            onClick={() => handleCartItemQuantity(quantity - 1)}
+          >
+            −
+          </button>
           <input type="text" value={quantity} className="qty-input" readOnly />
-          <button className="btn-qty plus" onClick={}>+</button>
+          <button
+            className="btn-qty plus"
+            onClick={() => handleCartItemQuantity(quantity + 1)}
+          >
+            +
+          </button>
         </div>
       </div>
 
       <div className="node-price">
-        <span className="price-value"> $ {Number(price).toFixed(2)} </span>
+        <span className="price-value">
+          {" "}
+          $ {Number(price * quantity).toFixed(2)}{" "}
+        </span>
       </div>
     </article>
   );

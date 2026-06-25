@@ -11,11 +11,23 @@ export async function loginUser(userLoginDetails) {
   });
 
   const data = await response.json();
-  if (response.status === 400) {
-    return true;
+  if (!response.ok) {
+    return null;
   }
 
   console.log(data);
   localStorage.setItem("accessToken", data.accessToken);
-  return;
+  return data.accessToken;
+}
+
+export async function validateToken(token) {
+  const response = await fetch("http://localhost:8080/api/users/validate", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response;
 }

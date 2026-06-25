@@ -12,9 +12,8 @@ function CartItems() {
       <CartTableHeader />
 
       {cartItems.map((cartItem) => (
-        <CartItem key={cartItem.id} cartItemDetails={cartItem} />
+        <CartItem key={cartItem?.id} cartItemDetails={cartItem} />
       ))}
-      
     </section>
   );
 }

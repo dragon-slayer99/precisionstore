@@ -7,3 +7,5 @@ export const LoginTabContext = createContext();
 export const CartContext = createContext();
 
 export const ToastContext = createContext();
+
+export const AuthContext = createContext();
