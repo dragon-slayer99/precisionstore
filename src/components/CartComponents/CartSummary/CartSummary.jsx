@@ -1,6 +1,23 @@
 import "./CartSummary.css";
 
+import { CartContext } from "../../../utils/ContextProducer";
+import { useContext } from "react";
+
 function CartSummary() {
+  const { productsList, cartItems } = useContext(CartContext);
+
+  const totalPrice = cartItems.reduce((total, cartItem) => {
+    const currProduct = productsList.find(
+      (product) => product.id === cartItem.productId,
+    );
+
+    console.log(currProduct)
+
+    return total + cartItem.quantity;
+  }, 0);
+
+  console.log("totalPrice =>", totalPrice);
+
   return (
     <aside className="cart-summary-panel">
       <div className="summary-card">
@@ -10,7 +27,7 @@ function CartSummary() {
           <div className="data-row">
             <span className="data-key"> SUBTOTAL </span>
             <span className="data-val" id="subtotalVal">
-              $ 1,157.00
+              $ {Number(totalPrice).toFixed(2)}
             </span>
           </div>
 

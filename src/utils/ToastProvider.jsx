@@ -5,7 +5,7 @@ import Toast from "../components/HomeComponents/Toast/Toast";
 export function ToastProvider({ children }) {
   const [toasts, setToasts] = useState([]);
 
-  function showToast( title, message, type = "info", duration = 100000 ) {
+  function showToast( title, message, type = "info", duration = 1000 ) {
     const id = crypto.randomUUID();
 
     const toast = {

@@ -5,7 +5,6 @@ export function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-
     let mounted = true;
 
     (async function checkTokenValidity() {
@@ -14,6 +13,7 @@ export function AuthProvider({ children }) {
       if (!accessToken) {
         if (mounted) {
           setAuthenticated(false);
+          console.log("Authentication status changed to => false");
         }
         return;
       }
@@ -22,22 +22,25 @@ export function AuthProvider({ children }) {
 
       if (mounted) {
         setAuthenticated(response.ok);
+        console.log("Authentication status changed to => ", response.ok);
       }
     })();
 
     return () => {
       mounted = false;
-    }
+    };
   }, [authenticated]);
 
   function login(token) {
     localStorage.setItem("accessToken", token);
     setAuthenticated(true);
+    console.log("Authentication status changed to => true")
   }
 
   function logout() {
     localStorage.removeItem("accessToken");
     setAuthenticated(false);
+    console.log("Authentication status changed to => false")
   }
 
   return (

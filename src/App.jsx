@@ -9,11 +9,12 @@ import Profile from "./components/ProfileComponents/Profile/Profile";
 import ProductsPage from "./pages/ProductsPage";
 import Login from "./components/LoginComponents/Login/Login";
 
-import EmptyCart from "./components/CartComponents/EmptyCart/EmptyCart";
+import EmptyOrders from "./components/OrdersComponents/EmptyOrders/EmptyOrders";
 
 import "./App.css";
 import CartPage from "./pages/CartPage";
 import ProtectedRoute from "./layouts/ProtectedRoute";
+import PublicRoute from "./layouts/PublicRoute";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/products" element={<ProductsPage />}></Route>
         <Route path="/products/:id" element={<ProductsPage />}></Route>
-        <Route path="/exp" element={<EmptyCart />}></Route>
+        <Route path="/exp" element={<EmptyOrders />}></Route>
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route element={<MainLayout />}>
@@ -31,8 +32,10 @@ function App() {
           <Route path="/cart" element={<CartPage />}></Route>
         </Route>
       </Route>
-      <Route element={<AuthLayout />}>
-        <Route path="/login" element={<Login />}></Route>
+      <Route element={<PublicRoute />}>
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />}></Route>
+        </Route>
       </Route>
     </Routes>
   );

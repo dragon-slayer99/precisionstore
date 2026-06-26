@@ -7,8 +7,6 @@ import { CartContext } from "../../../utils/ContextProducer";
 function CartItem({ cartItemDetails }) {
   const { id, productId, quantity } = cartItemDetails;
 
-  // console.log(id, productId, quantity);
-
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const [product, setProduct] = useState({});

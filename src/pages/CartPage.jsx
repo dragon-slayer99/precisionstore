@@ -4,9 +4,9 @@ import EmptyCart from "../components/CartComponents/EmptyCart/EmptyCart";
 import Cart from "../components/CartComponents/Cart/Cart";
 import { CartContext } from "../utils/ContextProducer";
 
-
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
+  const [productsList, setProductsList] = useState([]);
 
   useEffect(() => {
     (async function loadCart() {
@@ -19,10 +19,26 @@ function CartPage() {
         setCartItems(data.items);
       }
     })();
+
+    cartItems.forEach((cartItem) => {
+      (async function getProductsByCartItem() {
+        const response = await fetch(
+          `http://localhost:8080/api/products/${cartItem.productId}`,
+        );
+
+        if (!response.ok) return;
+
+        const data = await response.json();
+
+        setProductsList([...productsList, data]);
+      })();
+    });
   }, []);
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems }}>
+    <CartContext.Provider
+      value={{ cartItems, setCartItems, productsList, setProductsList }}
+    >
       {cartItems.length === 0 ? (
         <EmptyCart />
       ) : (

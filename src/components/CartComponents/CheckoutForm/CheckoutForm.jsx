@@ -2,7 +2,14 @@ import { useState } from "react";
 
 function CheckoutForm() {
   const [isToggled, setIsToggled] = useState(false);
-  const [option, setOption] = useState("Credit / Debit Card");
+  const [userDeliveryDetails, setUserDeliveryDetails] = useState({
+    street_address: "",
+    city: "",
+    ZIP_code: "",
+    paymentMethod: ""
+  });
+
+  console.log(userDeliveryDetails)
 
   return (
     <section className="checkout-forms-matrix">
@@ -19,6 +26,8 @@ function CheckoutForm() {
               type="text"
               className="industrial-input"
               placeholder="ENTER YOUR ADDRESS"
+              value={userDeliveryDetails.street_address}
+              onChange={(e) => setUserDeliveryDetails({...userDeliveryDetails, street_address: e.target.value})}
             />
           </div>
 
@@ -30,6 +39,8 @@ function CheckoutForm() {
                 type="text"
                 className="industrial-input"
                 placeholder="ENTER CITY"
+                value={userDeliveryDetails.city}
+                onChange={(e) => setUserDeliveryDetails({...userDeliveryDetails, city: e.target.value})}
               />
             </div>
 
@@ -40,6 +51,8 @@ function CheckoutForm() {
                 type="text"
                 className="industrial-input"
                 placeholder="ZIP CODE"
+                value={userDeliveryDetails.ZIP_code}
+                onChange={(e) => setUserDeliveryDetails({...userDeliveryDetails, ZIP_code: e.target.value})}
               />
             </div>
           </div>
@@ -63,7 +76,7 @@ function CheckoutForm() {
                 aria-expanded={isToggled ? "true" : "false"}
                 onClick={() => setIsToggled((prev) => !prev)}
               >
-                <span className="selected-text">{option}</span>
+                <span className="selected-text">{userDeliveryDetails.paymentMethod}</span>
                 <span className="indicator-arrow">↓</span>
               </button>
 
@@ -73,12 +86,14 @@ function CheckoutForm() {
                 role="listbox"
               >
                 <li
-                  className={`dropdown-option ${option === 'Credit / Debit Card' && 'active'}`}
+                  className={`dropdown-option ${userDeliveryDetails.paymentMethod === "Credit / Debit Card" && "active"}`}
                   role="option"
-                  aria-selected={option === "Credit / Debit Card" ? "true" : "false"}
+                  aria-selected={
+                    userDeliveryDetails.paymentMethod === "Credit / Debit Card" ? "true" : "false"
+                  }
                   data-value="Credit / Debit Card"
                   onClick={() => {
-                    setOption("Credit / Debit Card");
+                    setUserDeliveryDetails(() => ({...userDeliveryDetails, paymentMethod: "Credit / Debit Card"}));
                     setIsToggled(false);
                   }}
                 >
@@ -86,12 +101,12 @@ function CheckoutForm() {
                 </li>
 
                 <li
-                  className={`dropdown-option ${option === 'paypal' && 'active'}`}
+                  className={`dropdown-option ${userDeliveryDetails.paymentMethod === "paypal" && "active"}`}
                   role="option"
-                  aria-selected={option === "paypal" ? "true" : "false"}
+                  aria-selected={userDeliveryDetails.paymentMethod === "paypal" ? "true" : "false"}
                   data-value="paypal"
                   onClick={() => {
-                    setOption("paypal");
+                    setUserDeliveryDetails(() => ({...userDeliveryDetails, paymentMethod: "paypal"}));
                     setIsToggled(false);
                   }}
                 >
@@ -99,12 +114,12 @@ function CheckoutForm() {
                 </li>
 
                 <li
-                  className={`dropdown-option ${option === 'UPI Payment' && 'active'}`}
+                  className={`dropdown-option ${userDeliveryDetails.paymentMethod === "UPI Payment" && "active"}`}
                   role="option"
-                  aria-selected={option === "UPI Payment" ? "true" : "false"}
+                  aria-selected={userDeliveryDetails.paymentMethod === "UPI Payment" ? "true" : "false"}
                   data-value="UPI Payment"
                   onClick={() => {
-                    setOption("UPI Payment");
+                    setUserDeliveryDetails(() => ({...userDeliveryDetails, paymentMethod: "UPI Payment"}));
                     setIsToggled(false);
                   }}
                 >
@@ -112,12 +127,14 @@ function CheckoutForm() {
                 </li>
 
                 <li
-                  className={`dropdown-option ${option === 'Cash on Delivery' && 'active'}`}
+                  className={`dropdown-option ${userDeliveryDetails.paymentMethod === "Cash on Delivery" && "active"}`}
                   role="option"
-                  aria-selected={option === "Cash on Delivery" ? "true" : "false"}
+                  aria-selected={
+                    userDeliveryDetails.paymentMethod === "Cash on Delivery" ? "true" : "false"
+                  }
                   data-value="Cash on Delivery"
                   onClick={() => {
-                    setOption("Cash on Delivery");
+                    setUserDeliveryDetails(() => ({...userDeliveryDetails, paymentMethod: "Cash on Delivery"}));
                     setIsToggled(false);
                   }}
                 >
