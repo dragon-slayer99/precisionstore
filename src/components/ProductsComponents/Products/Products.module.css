@@ -455,14 +455,15 @@
   margin-left: 8px;
 }
 
-/* --- Responsive Layout Breakpoints --- */
-
 /* Medium to Large Mobile / Tablets (1024px down through 481px) */
 @media (max-width: 1024px) {
   .productGrid {
     grid-template-columns: repeat(2, 1fr);
-    /* 2 cards per row layout */
     gap: 20px;
+  }
+
+  .catalogContainer {
+    padding: 100px 20px 56px 20px;
   }
 }
 
@@ -493,18 +494,172 @@
     right: auto;
   }
 
-  /* Note: .productGrid deliberately stays at repeat(2, 1fr) for medium/large phones */
+  .catalogTitle {
+    letter-spacing: -0.5px;
+    margin-bottom: 32px;
+  }
+
+  .categoryTabs {
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .tab {
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+  }
+
+  .resultsCount {
+    font-size: 11px;
+  }
+
+  .productGrid {
+    margin-bottom: 48px;
+  }
 }
 
-/* Small Phones Viewports (480px and below) */
-@media (max-width: 480px) {
+/* Small-to-medium phones (640px and below) — single column */
+@media (max-width: 640px) {
   .productGrid {
     grid-template-columns: 1fr;
-    /* Exactly 1 card per row layout */
-    gap: 24px;
+    gap: 16px;
+  }
+
+  .productCard {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "visual meta"
+      "visual action";
+  }
+
+  .productVisual {
+    grid-area: visual;
+    /* aspect-ratio: 1/1; */
+    height: 100%;
+    border-bottom: none;
+    border-right: 1px solid var(--hairline);
+  }
+
+  .productMeta {
+    grid-area: meta;
+    padding: 16px;
+  }
+
+  .productAction {
+    grid-area: action;
+  }
+
+  .productName {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .productDescription {
+    /* font-size: 12px;
+    margin-bottom: 0;
+    height: auto;
+    -webkit-line-clamp: 2; */
+    display: none;
+  }
+
+  .badge {
+    top: 8px;
+    left: 8px;
+    font-size: 9px;
+    padding: 3px 6px;
   }
 
   .catalogContainer {
     padding: 80px 16px 48px 16px;
+  }
+
+  .catalogTitle {
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+  }
+
+  .categoryTabs {
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .tab {
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    padding-bottom: 8px;
+  }
+
+  .catalogToolbar {
+    padding: 12px 0;
+    margin-bottom: 24px;
+  }
+
+  .btnTool {
+    font-size: 11px;
+    padding: 8px 12px;
+    min-width: auto;
+    width: 100%;
+  }
+
+  .pagination {
+    gap: 4px;
+    padding-top: 24px;
+  }
+
+  .btnPage {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .btnPageNext {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-left: 8px;
+  }
+}
+
+/* Very small phones (380px and below) — compact the side-by-side card further */
+@media (max-width: 380px) {
+  .productCard {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .productVisual {
+    aspect-ratio: auto;
+  }
+
+  .productMeta {
+    padding: 12px;
+  }
+
+  .productName {
+    font-size: 14px;
+  }
+
+  .productPrice {
+    font-size: 13px;
+  }
+
+  .productCategory {
+    font-size: 10px;
+  }
+
+  .productAction {
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 10px 0;
+  }
+
+  .catalogContainer {
+    padding: 72px 12px 40px 12px;
+  }
+
+  .catalogTitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
   }
 }
