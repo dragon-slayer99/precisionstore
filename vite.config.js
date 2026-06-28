@@ -8,4 +8,7 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  server: {
+    allowedHosts: ['action-paragraph-tactile.ngrok-free.dev']
+  },
 })

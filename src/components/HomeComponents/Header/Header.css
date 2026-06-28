@@ -67,16 +67,18 @@
 .desktop-nav .nav-links {
   display: flex;
   list-style: none;
-  gap: 24px;
+  gap: clamp(16px, 3vw, 24px);
 }
 
 .nav-links a {
   color: var(--on-dark);
   text-decoration: none;
-  font-size: 13px;
+  /* Fluid typography: scales from 12px (mobile) to 14px (desktop) */
+  font-size: clamp(12px, 1.1vw, 14px);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-machined); /* "Machined" feel */
+  white-space: nowrap;
 }
 
 /* Controls Cluster */
@@ -174,7 +176,8 @@
 .mobile-links a {
   color: white;
   text-decoration: none;
-  font-size: 28px;
+  /* Fluid typography: scales from 20px (small mobile) to 32px (large mobile/tablet) */
+  font-size: clamp(20px, 5vw, 32px);
   font-weight: 700;
   text-transform: uppercase;
 }
