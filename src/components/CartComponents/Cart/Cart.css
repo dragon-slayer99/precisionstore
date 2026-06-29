@@ -530,10 +530,29 @@
 }
 
 /* Responsiveness Architecture */
+
+/* Large tablets / small desktops */
+@media (max-width: 1200px) {
+  .cart-workspace {
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+  }
+
+  .node-visual {
+    width: 100px;
+  }
+
+  .cart-node-frame {
+    grid-template-columns: 100px 1fr auto auto;
+    gap: 16px;
+  }
+}
+
+/* Tablets — stack items + summary */
 @media (max-width: 1024px) {
   .cart-workspace {
     grid-template-columns: 1fr;
-    gap: 64px;
+    gap: 48px;
   }
 
   .cart-summary-panel {
@@ -542,16 +561,34 @@
   }
 }
 
+/* Checkout form collapses to single column */
 @media (max-width: 900px) {
   .checkout-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 32px;
+  }
+
+  .checkout-forms-matrix {
+    padding: 32px 20px;
   }
 }
 
+/* Mobile landscape / small tablets */
 @media (max-width: 768px) {
   .cart-container {
     padding: 80px 16px 48px 16px;
+  }
+
+  .cart-main-title {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  .title-identity-line {
+    margin-bottom: 16px;
+  }
+
+  .m-stripe-divider {
+    width: 48px;
   }
 
   .matrix-header {
@@ -559,17 +596,17 @@
   }
 
   .cart-node-frame {
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 90px 1fr;
     grid-template-areas:
       "vis details"
       "vis qty"
       "vis price";
-    gap: 16px;
+    gap: 12px;
   }
 
   .node-visual {
     grid-area: vis;
-    width: 100px;
+    width: 90px;
   }
 
   .node-details {
@@ -586,7 +623,251 @@
     text-align: left;
   }
 
+  .node-name {
+    font-size: 14px;
+  }
+
+  .node-spec {
+    font-size: 11px;
+  }
+
+  .price-value {
+    font-size: 14px;
+  }
+
+  .btn-qty {
+    width: 36px;
+    font-size: 14px;
+  }
+
+  .qty-input {
+    width: 36px;
+    font-size: 13px;
+  }
+
+  .quantity-selector {
+    height: 40px;
+  }
+
   .checkout-forms-matrix {
     padding: 24px 16px;
+  }
+
+  .matrix-section-title {
+    font-size: 12px;
+  }
+
+  .summary-card {
+    padding: 24px 16px;
+  }
+
+  .total-val {
+    font-size: 20px;
+  }
+
+  .btn-primary-action {
+    height: 48px;
+    font-size: 11px;
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+  .cart-container {
+    padding: 80px 16px 48px 16px;
+  }
+
+  .breadcrumbs {
+    font-size: 10px;
+    margin-bottom: 16px;
+  }
+
+  .cart-main-title {
+    font-size: clamp(1.4rem, 7vw, 1.8rem);
+    letter-spacing: -0.5px;
+  }
+
+  .queue-status {
+    font-size: 10px;
+  }
+
+  .m-stripe-divider {
+    width: 40px;
+    height: 3px;
+  }
+
+  .cart-workspace {
+    gap: 32px;
+  }
+
+  .main-content-stack {
+    gap: 40px;
+  }
+
+  .cart-node-frame {
+    grid-template-columns: 80px 1fr;
+    grid-template-areas:
+      "vis details"
+      "vis qty"
+      "vis price";
+    gap: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .node-visual {
+    width: 80px;
+  }
+
+  .visual-placeholder-mesh {
+    font-size: 9px;
+  }
+
+  .node-name {
+    font-size: 13px;
+    letter-spacing: -0.3px;
+  }
+
+  .meta-category {
+    font-size: 9px;
+  }
+
+  .node-spec {
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  .btn-remove {
+    font-size: 9px;
+  }
+
+  .btn-qty {
+    width: 32px;
+    font-size: 13px;
+  }
+
+  .qty-input {
+    width: 32px;
+    font-size: 12px;
+  }
+
+  .quantity-selector {
+    height: 36px;
+  }
+
+  .price-value {
+    font-size: 13px;
+  }
+
+  /* Checkout form single column, compact */
+  .checkout-forms-matrix {
+    padding: 20px 12px;
+  }
+
+  .checkout-grid {
+    gap: 24px;
+  }
+
+  .form-block {
+    gap: 16px;
+  }
+
+  .input-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .industrial-input {
+    height: 44px;
+    font-size: 12px;
+    padding: 0 12px;
+  }
+
+  .industrial-dropdown-btn {
+    height: 44px;
+    font-size: 12px;
+    padding: 0 12px;
+  }
+
+  /* Summary card compact */
+  .summary-card {
+    padding: 20px 12px;
+  }
+
+  .summary-title {
+    font-size: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+
+  .summary-data-grid {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .data-row {
+    font-size: 11px;
+  }
+
+  .summary-total-row {
+    padding-top: 16px;
+    margin-bottom: 24px;
+  }
+
+  .total-key {
+    font-size: 11px;
+  }
+
+  .total-val {
+    font-size: 18px;
+  }
+
+  .btn-primary-action {
+    height: 44px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .secure-badge {
+    font-size: 9px;
+  }
+}
+
+/* Extra-small devices */
+@media (max-width: 360px) {
+  .cart-container {
+    padding: 80px 16px 48px 16px;
+  }
+
+  .cart-node-frame {
+    grid-template-columns: 70px 1fr;
+    gap: 8px;
+  }
+
+  .node-visual {
+    width: 70px;
+  }
+
+  .node-name {
+    font-size: 12px;
+  }
+
+  .price-value {
+    font-size: 12px;
+  }
+
+  .quantity-selector {
+    height: 32px;
+  }
+
+  .btn-qty {
+    width: 28px;
+    font-size: 12px;
+  }
+
+  .qty-input {
+    width: 28px;
+    font-size: 11px;
   }
 }

@@ -3,26 +3,33 @@ import { AuthContext } from "./ContextProducer";
 import { validateToken } from "../api/userApi";
 export function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let mounted = true;
 
     (async function checkTokenValidity() {
-      const accessToken = localStorage.getItem("accessToken");
+      try {
+        const accessToken = localStorage.getItem("accessToken");
 
-      if (!accessToken) {
-        if (mounted) {
-          setAuthenticated(false);
-          console.log("Authentication status changed to => false");
+        if (!accessToken) {
+          if (mounted) {
+            setAuthenticated(false);
+            console.log("Authentication status changed to => false");
+          }
+          return;
         }
-        return;
-      }
 
-      const response = await validateToken(accessToken);
+        const response = await validateToken(accessToken);
 
-      if (mounted) {
-        setAuthenticated(response.ok);
-        console.log("Authentication status changed to => ", response.ok);
+        if (mounted) {
+          setAuthenticated(response.ok);
+          console.log("Authentication status changed to => ", response.ok);
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
       }
     })();
 
@@ -34,13 +41,13 @@ export function AuthProvider({ children }) {
   function login(token) {
     localStorage.setItem("accessToken", token);
     setAuthenticated(true);
-    console.log("Authentication status changed to => true")
+    console.log("Authentication status changed to => true");
   }
 
   function logout() {
     localStorage.removeItem("accessToken");
     setAuthenticated(false);
-    console.log("Authentication status changed to => false")
+    console.log("Authentication status changed to => false");
   }
 
   return (
@@ -49,6 +56,7 @@ export function AuthProvider({ children }) {
         authenticated,
         login,
         logout,
+        loading
       }}
     >
       {children}

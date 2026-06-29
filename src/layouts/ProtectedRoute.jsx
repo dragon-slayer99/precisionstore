@@ -1,14 +1,13 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-function ProtectedRoute() {
-  const { authenticated } = useAuth();
+import Loader from "../components/HomeComponents/Loader/Loader";
 
-  return authenticated ? (
-    <Outlet />
-  ) : (
-    <Navigate to={"/login"} />
-  );
+function ProtectedRoute() {
+  const { authenticated, loading } = useAuth();
+
+  // return authenticated ? <Outlet /> : loading ? <Loader /> : <Outlet />;
+  return authenticated ? <Outlet /> : loading ? <Loader /> : <Navigate to={'/login'} />;
 }
 
 export default ProtectedRoute;
