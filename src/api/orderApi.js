@@ -1,4 +1,10 @@
-const accessToken = localStorage.getItem("accessToken");
+function getAuthHeaders() {
+  const accessToken = localStorage.getItem("accessToken");
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${accessToken}`,
+  };
+}
 
 export async function placeOrder(userDeliveryDetails) {
   const address = `${userDeliveryDetails.street_address}, ${userDeliveryDetails.city}, ${userDeliveryDetails.ZIP_code}`;
@@ -6,20 +12,16 @@ export async function placeOrder(userDeliveryDetails) {
 
   const response = await fetch("http://localhost:8080/api/orders", {
     method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}` 
-    },
-    body: {
-        address: address,
-        paymentMethod: paymentMethod
-    }
-  })
+    headers: getAuthHeaders(),
+    body: JSON.stringify({
+      address: address,
+      paymentMethod: paymentMethod,
+    }),
+  });
 
   const data = await response.json();
 
   console.log(data);
 
   return data;
-
 }

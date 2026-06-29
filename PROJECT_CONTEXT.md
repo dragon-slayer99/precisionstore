@@ -115,7 +115,6 @@ npm run preview   # Preview production build
 - CartPage fetches product details per item (N+1 problem)
 - No TypeScript (JS only)
 - No test files present
-- orderApi.js has bug: `body` should be `JSON.stringify(body)`
 
 ## Component Development Patterns
 - **Reusable Components**: Components in `src/components/` are designed to be reusable across pages

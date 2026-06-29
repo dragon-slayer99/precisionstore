@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
     return () => {
       mounted = false;
     };
-  }, [authenticated]);
+  }, []);
 
   function login(token) {
     localStorage.setItem("accessToken", token);
