@@ -7,7 +7,7 @@ import { CartContext } from "../../../utils/ContextProducer";
 function CartItem({ cartItemDetails }) {
   const { id, productId, quantity } = cartItemDetails;
 
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { cartItems, setCartItems, productsList, setProductsList } = useContext(CartContext);
 
   const [product, setProduct] = useState({});
 
@@ -39,8 +39,12 @@ function CartItem({ cartItemDetails }) {
 
   useEffect(() => {
     (async function fetchProduct() {
-      const product = await getProducts(productId);
-      setProduct(product);
+      const data = await getProducts(productId);
+      setProduct(data);
+      setProductsList((prev) => {
+        if (prev.some((p) => p.id === data.id)) return prev;
+        return [...prev, data];
+      });
     })();
   }, [productId]);
 

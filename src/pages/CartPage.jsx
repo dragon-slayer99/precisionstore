@@ -13,26 +13,11 @@ function CartPage() {
       const response = await getCartItems();
 
       const data = await response.json();
-      console.log(data);
 
       if (data.items) {
         setCartItems(data.items);
       }
     })();
-
-    cartItems.forEach((cartItem) => {
-      (async function getProductsByCartItem() {
-        const response = await fetch(
-          `http://localhost:8080/api/products/${cartItem.productId}`,
-        );
-
-        if (!response.ok) return;
-
-        const data = await response.json();
-
-        setProductsList([...productsList, data]);
-      })();
-    });
   }, []);
 
   return (

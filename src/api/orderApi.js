@@ -25,3 +25,15 @@ export async function placeOrder(userDeliveryDetails) {
 
   return data;
 }
+
+export async function getUserOrders() {
+
+  const response = await fetch("http://localhost:8080/api/orders", {
+    headers: getAuthHeaders(),
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+  
+}

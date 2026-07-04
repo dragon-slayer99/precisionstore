@@ -1,13 +1,8 @@
 import { useState } from "react";
 
-function CheckoutForm() {
+function CheckoutForm({userDeliveryDetails, setUserDeliveryDetails}) {
   const [isToggled, setIsToggled] = useState(false);
-  const [userDeliveryDetails, setUserDeliveryDetails] = useState({
-    street_address: "",
-    city: "",
-    ZIP_code: "",
-    paymentMethod: ""
-  });
+
 
   console.log(userDeliveryDetails)
 

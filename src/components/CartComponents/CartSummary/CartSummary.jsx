@@ -3,20 +3,21 @@ import "./CartSummary.css";
 import { CartContext } from "../../../utils/ContextProducer";
 import { useContext } from "react";
 
-function CartSummary() {
+function CartSummary({ onPlaceOrder, isPlacingOrder }) {
   const { productsList, cartItems } = useContext(CartContext);
 
-  const totalPrice = cartItems.reduce((total, cartItem) => {
+  const subtotal = cartItems.reduce((total, cartItem) => {
     const currProduct = productsList.find(
       (product) => product.id === cartItem.productId,
     );
 
-    console.log(currProduct)
+    if (!currProduct) return total;
 
-    return total + cartItem.quantity;
+    return total + currProduct.price * cartItem.quantity;
   }, 0);
 
-  console.log("totalPrice =>", totalPrice);
+  const tax = subtotal * 0.08;
+  const total = subtotal + tax;
 
   return (
     <aside className="cart-summary-panel">
@@ -27,7 +28,7 @@ function CartSummary() {
           <div className="data-row">
             <span className="data-key"> SUBTOTAL </span>
             <span className="data-val" id="subtotalVal">
-              $ {Number(totalPrice).toFixed(2)}
+              $ {Number(subtotal).toFixed(2)}
             </span>
           </div>
 
@@ -39,8 +40,7 @@ function CartSummary() {
           <div className="data-row">
             <span className="data-key"> TAX </span>
             <span className="data-val" id="taxVal">
-              {" "}
-              $ 92.56{" "}
+              $ {Number(tax).toFixed(2)}
             </span>
           </div>
         </div>
@@ -48,12 +48,21 @@ function CartSummary() {
         <div className="summary-total-row">
           <span className="total-key"> TOTAL </span>
           <span className="total-val" id="totalVal">
-            $ 1,249.56
+            $ {Number(total).toFixed(2)}
           </span>
         </div>
 
-        <button className="btn-primary-action" id="checkoutBtn">
-          <span className="btn-text"> CHECKOUT NOW </span>
+        <button
+          className="btn-primary-action"
+          id="checkoutBtn"
+          onClick={onPlaceOrder}
+          disabled={isPlacingOrder}
+          style={isPlacingOrder ? { opacity: 0.6, cursor: "not-allowed" } : {}}
+        >
+          <span className="btn-text">
+            {" "}
+            {isPlacingOrder ? "PLACING ORDER..." : "CHECKOUT NOW"}{" "}
+          </span>
         </button>
 
         <div className="secure-badge">
