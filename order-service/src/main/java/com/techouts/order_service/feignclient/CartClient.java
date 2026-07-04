@@ -14,10 +14,10 @@ import com.techouts.order_service.dto.CartResponseDTO;
         fallback = CartClientFallback.class)
 public interface CartClient {
 
-    @GetMapping("/api/cart/items")
+    @GetMapping("/cart/items")
     CartResponseDTO serveCartItems(@RequestHeader("X-User-Id") Integer userId);
 
 
-    @DeleteMapping("/api/cart/items")
+    @DeleteMapping("/cart/items")
     ResponseEntity<CartResponseDTO> emptyUserCart(@RequestHeader("X-User-Id") Integer userId);
 }

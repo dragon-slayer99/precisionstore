@@ -16,10 +16,10 @@ import com.techouts.order_service.dto.ProductDTO;
 
 public interface ProductClient {
 
-    @GetMapping("/api/products/{id}")
+    @GetMapping("/products/{id}")
     ProductDTO getProductById(@PathVariable("id") int id);
 
-    @PostMapping("/api/products/update")
+    @PostMapping("/products/update")
     ProductDTO updateProductStock(@RequestParam(name = "productId") int productId, @RequestParam(name = "newStock") int newStock);
 
 }

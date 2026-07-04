@@ -168,13 +168,13 @@ public class UserController {
         String accessToken = jwtUtil.generateAccessToken(user);
         response.put("accessToken", accessToken);
         String refreshToken = userService.createRefreshToken(user).getToken();
-        ResponseCookie responseCookie = ResponseCookie.from("refreshToken", refreshToken)
-                .httpOnly(true)
-                .secure(true)
-                .path("/")
-                .maxAge(Duration.ofDays(7))
-                .sameSite("Strict")
-                .build();
+//        ResponseCookie responseCookie = ResponseCookie.from("refreshToken", refreshToken)
+//                .httpOnly(true)
+//                .secure(true)
+//                .path("/")
+//                .maxAge(Duration.ofDays(7))
+//                .sameSite("Strict")
+//                .build();
 
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, refreshToken.toString()).body(response);
 
@@ -197,4 +197,8 @@ public class UserController {
     }
 
 
+    @PostMapping("validate")
+    public ResponseEntity<Map<String, Object>> validateJwtToken(@RequestHeader("X-User-Id") Integer userId) {
+        return ResponseEntity.ok(Map.of("status", "The provided JWT token is valid"));
+    }
 }
