@@ -1,4 +1,14 @@
-/* From Uiverse.io by JkHuger */ 
+.loader-container {
+  position: fixed;      /* Changed from static */
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 9999;
+  background: black;  /* Backdrop */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* From Uiverse.io by JkHuger */
 @keyframes loader_5191 {
   from {
     opacity: 0;
@@ -7,10 +17,6 @@
   to {
     opacity: 1;
   }
-}
-
-.loader-container {
-  position: static;
 }
 
 .square {

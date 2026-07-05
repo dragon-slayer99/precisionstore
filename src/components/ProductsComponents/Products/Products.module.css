@@ -341,6 +341,17 @@
   transform: scale(0.98);
 }
 
+.productActionsContainer {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.productActionsContainer > * {
+  flex: 1;
+}
+
 /* Pagination Row */
 .pagination {
   display: flex;
@@ -431,13 +442,17 @@
   width: 100%;
   padding: 14px 0;
   border: 1px solid var(--on-dark);
+  background: transparent;
   color: var(--on-dark);
   text-decoration: none;
+  font-family: var(--font-main);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   transition: all 0.2s ease;
+  cursor: pointer;
+  outline: none;
 }
 
 .btnGhostPrimary:hover {
@@ -548,8 +563,12 @@
     padding: 16px;
   }
 
-  .productAction {
+  .productActionsContainer {
     grid-area: action;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 16px 16px 16px;
   }
 
   .productName {

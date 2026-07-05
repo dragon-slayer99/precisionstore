@@ -4,9 +4,10 @@ import OrderCard from "../OrderCard/OrderCard";
 function OrderList({ orderDetails }) {
   return (
     <div className="registry-workspace">
-      {orderDetails.map((order, index) => (
-        <OrderCard key={order.id || index} orderDetails={order} />
-      ))}
+      {orderDetails.map((order) => {
+        console.log("From map =>", order.orderItemDTOList);
+        return <OrderCard key={order.orderItemDTOList[0].orderId} orderDetails={order} />
+      })}
     </div>
   );
 }

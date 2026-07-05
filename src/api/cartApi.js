@@ -7,6 +7,7 @@ function getAuthHeaders() {
 }
 
 export async function getCartItems() {
+  
   const response = await fetch("http://localhost:8080/api/cart/items", {
     method: "GET",
     headers: getAuthHeaders(),
@@ -19,16 +20,17 @@ export async function getCartItems() {
   return response;
 }
 
-export async function postCartItems(productId, productCnt) {
+export async function postCartItems(productId, quantity) {
   const response = await fetch("http://localhost:8080/api/cart/items", {
     method: "POST",
     headers: getAuthHeaders(),
     body: JSON.stringify({
-      productId: productId,
-      quantity: productCnt,
+      // productId: productId,
+      // quantity: quantity,  This is also valid
+      productId,
+      quantity
     }),
   });
-
 
   return response;
 }

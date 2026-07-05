@@ -13,8 +13,8 @@ function Orders() {
 
   useEffect(() => {
     (async function getUserOrderDetails() {
-      const response = await getUserOrders();
-      setOrderDetails(orderDetails);
+      const data = await getUserOrders();
+      setOrderDetails(data);
     })();
   }, []);
 
