@@ -1,3 +1,12 @@
+function getAuthHeaders() {
+  const accessToken = localStorage.getItem("accessToken");
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${accessToken}`,
+  };
+}
+
+
 export async function loginUser(userLoginDetails) {
   const response = await fetch("http://localhost:8080/api/users/login", {
     method: "POST",
@@ -29,5 +38,15 @@ export async function validateToken(token) {
     },
   });
 
+  return response;
+}
+
+export async function getUserDetails() {
+  const response = await fetch("http://localhost:8080/api/users", {
+    method: "GET",
+    headers: getAuthHeaders()
+  });
+
+  console.log(response);
   return response;
 }

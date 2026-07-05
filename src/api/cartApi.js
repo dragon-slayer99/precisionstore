@@ -25,8 +25,6 @@ export async function postCartItems(productId, quantity) {
     method: "POST",
     headers: getAuthHeaders(),
     body: JSON.stringify({
-      // productId: productId,
-      // quantity: quantity,  This is also valid
       productId,
       quantity
     }),
