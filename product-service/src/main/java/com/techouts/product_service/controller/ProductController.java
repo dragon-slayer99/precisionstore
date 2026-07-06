@@ -159,10 +159,10 @@ public class ProductController {
         return productService.addProductToCollection(
                 newProduct.getName(),
                 newProduct.getPrice(),
-                newProduct.getProductDesc(),
+                newProduct.getProductDescription(),
                 newProduct.getStock(),
                 newProduct.getCategory(),
-                newProduct.getImageUrl()
+                newProduct.getProductImage()
         );
     }
 }

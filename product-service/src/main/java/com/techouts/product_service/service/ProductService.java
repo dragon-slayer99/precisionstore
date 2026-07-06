@@ -108,8 +108,8 @@ public class ProductService {
         }
 
         currProduct.setName(newProductDetails.getName());
-        currProduct.setProductImage(newProductDetails.getImageUrl());
-        currProduct.setProductDescription(newProductDetails.getProductDesc());
+        currProduct.setProductImage(newProductDetails.getProductImage());
+        currProduct.setProductDescription(newProductDetails.getProductDescription());
         currProduct.setCategory(newProductDetails.getCategory());
         currProduct.setPrice(newProductDetails.getPrice());
         currProduct.setStock (newProductDetails.getStock ());
@@ -121,9 +121,9 @@ public class ProductService {
                 newProductDetails.getProductId (),
                 newProductDetails.getName(),
                 newProductDetails.getPrice(),
-                newProductDetails.getProductDesc (),
+                newProductDetails.getProductDescription (),
                 newProductDetails.getCategory(),
-                newProductDetails.getImageUrl (),
+                newProductDetails.getProductImage (),
                 newProductDetails.getStock()
         );
 

@@ -26,13 +26,13 @@ public class ProductDTO {
     private Float price;
 
     @NotBlank
-    private String productDesc;
+    private String productDescription;
 
     @NotBlank
     private String category;
 
     @NotBlank
-    private String imageUrl;
+    private String productImage;
 
     @NotNull
     @Min(value = 1)
@@ -42,15 +42,15 @@ public class ProductDTO {
         this.message = message;
     }
 
-    public ProductDTO(int productId, String name, float price, String productDesc, int stock, String category, String imageUrl) {
+    public ProductDTO(int productId, String name, float price, String productDescription, int stock, String category, String productImage) {
 
         this.productId = productId;
         this.name = name;
         this.price = price;
-        this.productDesc = productDesc;
+        this.productDescription = productDescription;
         this.stock = stock;
         this.category = category;
-        this.imageUrl = imageUrl;
+        this.productImage = productImage;
 
     }
 
