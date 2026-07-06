@@ -1,15 +1,15 @@
 import "./CartItem.css";
 import { deleteCartItem, updateCartItemQuantity } from "../../../api/cartApi";
-import { getProducts } from "../../../api/productApi";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../../utils/ContextProducer";
 
 function CartItem({ cartItemDetails }) {
   const { id, productId, quantity } = cartItemDetails;
 
-  const { cartItems, setCartItems, productsList, setProductsList } = useContext(CartContext);
+  const { cartItems, setCartItems, productsList } = useContext(CartContext);
+  // const [product, setProduct] = useState({});
 
-  const [product, setProduct] = useState({});
+  console.log(productsList);
 
   async function handleCartItemDeletion() {
     const response = await deleteCartItem(id);
@@ -37,29 +37,20 @@ function CartItem({ cartItemDetails }) {
     }
   }
 
-  useEffect(() => {
-    (async function fetchProduct() {
-      const data = await getProducts(productId);
-      setProduct(data);
-      setProductsList((prev) => {
-        if (prev.some((p) => p.id === data.id)) return prev;
-        return [...prev, data];
-      });
-    })();
-  }, [productId]);
+  const product = productsList.find((product) => product.id === productId);
 
-  const { category, imageUrl, name, price, productDesc } = product;
+  const { category, productImage, name, price, productDescription } = product;
 
   return (
     <article className="cart-node-frame" id="cart-item-1" data-price="999.00">
       <div className="node-visual">
-        <div className="visual-placeholder-mesh">{imageUrl}</div>
+        <div className="visual-placeholder-mesh">{productImage}</div>
       </div>
 
       <div className="node-details">
         <span className="meta-category"> {category} </span>
         <h2 className="node-name">{name}</h2>
-        <p className="node-spec">{productDesc}</p>
+        <p className="node-spec">{productDescription}</p>
 
         <button className="btn-remove" onClick={handleCartItemDeletion}>
           REMOVE
@@ -86,8 +77,7 @@ function CartItem({ cartItemDetails }) {
 
       <div className="node-price">
         <span className="price-value">
-          {" "}
-          $ {Number(price * quantity).toFixed(2)}{" "}
+          $ {Number(price * quantity).toFixed(2)}
         </span>
       </div>
     </article>

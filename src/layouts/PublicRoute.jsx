@@ -5,7 +5,7 @@ function PublicRoute() {
   const { authenticated } = useAuth();
 
   return authenticated ? (
-    <Navigate to={"/"} replace={true} />
+    <Navigate to={"/"} replace={false} />
   ) : (
     <Outlet />
   );

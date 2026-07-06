@@ -4,19 +4,9 @@ import OrderHeader from "../OrderHeader/OrderHeader";
 import OrderList from "../OrderList/OrderList";
 import Pagination from "../../ProductsComponents/Pagination/Pagination";
 
-import { getUserOrders } from "../../../api/orderApi";
-import { useEffect, useState } from "react";
 
-function Orders() {
+function Orders({orderDetails}) {
 
-  const [orderDetails, setOrderDetails] = useState([])
-
-  useEffect(() => {
-    (async function getUserOrderDetails() {
-      const data = await getUserOrders();
-      setOrderDetails(data);
-    })();
-  }, []);
 
   return (
     <main className="registry-surface">

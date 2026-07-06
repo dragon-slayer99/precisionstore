@@ -13,22 +13,26 @@ function LoginForm() {
     password: "",
   });
 
-  const {login} = useAuth();
+  const { login } = useAuth();
 
   const [userWrongCredientials, setUserWrongCredientials] = useState(false);
+  const [loggingUserIn, setLoggingUserIn] = useState(false);
 
   const navigate = useNavigate();
 
   async function handleFormSubmission(event) {
     event.preventDefault();
+    setLoggingUserIn(true);
     const jwtToken = await loginUser(userLoginDetails);
 
     if (!jwtToken) {
       setUserWrongCredientials(true);
+      setLoggingUserIn(false);
       return;
     }
-    
-    login(jwtToken)
+
+    login(jwtToken);
+    setLoggingUserIn(false);
     navigate("/", { replace: true });
   }
 
@@ -87,8 +91,12 @@ function LoginForm() {
           </a>
         </div>
 
-        <button type="submit" className={styles.btnActionSubmit}>
-          LOGIN TO ACCOUNT
+        <button
+          type="submit"
+          className={styles.btnActionSubmit}
+          style={loggingUserIn ? { opacity: 0.6, cursor: "not-allowed" } : {}}
+        >
+          {loggingUserIn ? `LOGGING....` : `LOGIN TO ACCOUNT`}
         </button>
       </form>
     </section>

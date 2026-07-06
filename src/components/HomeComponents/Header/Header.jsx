@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../hooks/useAuth";
 
 export default function Header() {
   const [menuToggleOn, setMenuToggleOn] = useState(false);
+  const { authenticated, logout } = useAuth();
 
   const spanOneStyle = {
     transform: "translateY(3.5px) rotate(45deg)",
@@ -46,7 +48,7 @@ export default function Header() {
             <Link to="/products">NEW ARRIVALS</Link>
             <Link to="/orders">ORDERS</Link>
             <Link to="/cart">CART</Link>
-            <Link to="/support">SUPPORT</Link>
+            <Link onClick={logout}>LOGOUT</Link>
           </ul>
         </nav>
 
@@ -78,17 +80,29 @@ export default function Header() {
         </div>
       </div>
 
-      <div
-        className={menuToggleOn ? "mobile-menu active" : "mobile-menu"}
+      <div className={menuToggleOn ? "mobile-menu active" : "mobile-menu"}
         id="mobileMenu"
       >
         <div className="m-stripe-divider"></div>
 
         <ul className="mobile-links">
-          <Link to="/products" onClick={() => setMenuToggleOn(false)}>NEW ARRIVALS</Link>
-          <Link to="/orders" onClick={() => setMenuToggleOn(false)}>ORDERS</Link>
-          <Link to="/cart" onClick={() => setMenuToggleOn(false)}>CART</Link>
-          <Link to="/support" onClick={() => setMenuToggleOn(false)}>SUPPORT</Link>
+          <Link to="/products" onClick={() => setMenuToggleOn(false)}>
+            NEW ARRIVALS
+          </Link>
+          <Link to="/orders" onClick={() => setMenuToggleOn(false)}>
+            ORDERS
+          </Link>
+          <Link to="/cart" onClick={() => setMenuToggleOn(false)}>
+            CART
+          </Link>
+          <Link
+            onClick={() => {
+              setMenuToggleOn(false);
+              logout();
+            }}
+          >
+            LOGOUT
+          </Link>
         </ul>
       </div>
     </header>

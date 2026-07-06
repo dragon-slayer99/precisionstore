@@ -569,7 +569,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 0 16px 16px 16px;
+    /* padding: 0 16px 16px 16px; */
   }
 
   .productName {
@@ -644,9 +644,9 @@
 
 /* Very small phones (380px and below) — compact the side-by-side card further */
 @media (max-width: 380px) {
-  .productCard {
+  /* .productCard {
     grid-template-columns: 100px 1fr;
-  }
+  } */
 
   .productVisual {
     aspect-ratio: auto;

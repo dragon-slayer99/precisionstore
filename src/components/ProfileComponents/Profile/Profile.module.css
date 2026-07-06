@@ -1,3 +1,33 @@
+:root {
+  /* Color Palette */
+  --canvas: #000000;
+  --on-dark: #ffffff;
+  --body: #bbbbbb;
+  --surface-card: #1a1a1a;
+  --hairline: #3c3c3c;
+
+  /* Canonical M Brand Accents */
+  --m-blue-light: #0066b1;
+  --m-blue-dark: #1c69d4;
+  --m-red: #e22718;
+  --m-green: #00a859;
+
+  --font-main: "Inter", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--canvas);
+  font-family: var(--font-main);
+  color: var(--on-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
 .profileDashboard {
   width: 100%;
   min-height: 100vh;
@@ -9,34 +39,68 @@
   margin: 0 auto;
 }
 
+/* System Status Message */
+.systemStatus {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--m-green);
+  color: var(--m-green);
+  padding: 12px 24px;
+  margin-bottom: 32px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--m-green);
+  border-radius: 50%;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* Dashboard Header Components */
+.dashboardHeader {
+  display: block;
+}
+
 .breadcrumbs {
-    font-size: 11px;
-    font-weight: 300;
-    color: var(--body);
-    letter-spacing: 1.5px;
-    margin-bottom: 24px;
-    text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--body);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
 }
 
 .breadcrumbs a {
-    color: var(--body);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.breadcrumbs a:hover {
-    color: var(--on-dark);
-}
-
-.breadcrumbs .separator {
-    margin: 0 8px;
-    color: #555555;
+  color: var(--body);
+  text-decoration: none;
 }
 
 .breadcrumbs .current {
-    color: var(--on-dark);
-    font-weight: 700;
+  color: var(--on-dark);
+  font-weight: 700;
+}
+
+.separator {
+  margin: 0 8px;
+  color: var(--body);
 }
 
 .headerIdentityBlock {
@@ -52,7 +116,7 @@
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
   line-height: 1;
 }
 
@@ -67,10 +131,12 @@
 .mStripe {
   width: 24px;
   height: 3px;
-  background: linear-gradient(90deg,
-      var(--m-blue-light) 33.3%,
-      var(--m-blue-dark) 33.3% 66.6%,
-      var(--m-red) 66.6%);
+  background: linear-gradient(
+    90deg,
+    var(--m-blue-light) 33.3%,
+    var(--m-blue-dark) 33.3% 66.6%,
+    var(--m-red) 66.6%
+  );
 }
 
 .tierLabel {
@@ -87,9 +153,10 @@
   border-bottom: 1px solid var(--hairline);
   padding-bottom: 32px;
   margin-bottom: 48px;
+  text-transform: uppercase;
 }
 
-/* Master Grid Framework (2-Column Modular) */
+/* Master Grid Framework */
 .dashboardGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -143,12 +210,10 @@
   background-color: var(--surface-card);
   border: 1px solid var(--hairline);
   border-radius: 0px;
-  /* Crucial Zero-Radius Spec Rule */
   padding: 14px 16px;
   color: var(--on-dark);
   font-family: var(--font-main);
   font-weight: 300;
-  /* Contrast light-weight entry */
   font-size: 14px;
   outline: none;
   transition: border-color 0.2s ease;
@@ -169,7 +234,7 @@
   line-height: 1.6;
 }
 
-/* Pure Ghost Structural Buttons */
+/* Ghost Buttons */
 .btnGhostPrimary,
 .btnGhostSecondary {
   font-size: 12px;
@@ -195,10 +260,6 @@
   color: var(--canvas);
 }
 
-.btnGhostPrimary:active {
-  transform: scale(0.98);
-}
-
 .btnGhostSecondary {
   color: var(--body);
   border: 1px solid var(--hairline);
@@ -207,10 +268,6 @@
 .btnGhostSecondary:hover {
   border-color: var(--on-dark);
   color: var(--on-dark);
-}
-
-.btnGhostSecondary:active {
-  transform: scale(0.98);
 }
 
 .insideField {
@@ -222,132 +279,34 @@
   align-self: flex-start;
 }
 
-/* Order Telemetry Logs Layout */
-.ordersLog {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+/* Simple Stats Block (Replacing Complex Orders) */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
   margin-bottom: 48px;
 }
 
-.orderCard {
+.statCard {
   border: 1px solid var(--hairline);
   padding: 24px;
-  background-color: var(--canvas);
-}
-
-.orderCard.activeDispatch {
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.orderHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.orderId {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.orderStatus {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  padding: 4px 8px;
-  border: 1px solid var(--hairline);
-}
-
-.orderStatus.muted {
-  color: #555555;
-}
-
-/* Pulsing Industrial Tracker Light */
-.blinkingIndicator {
-  color: var(--m-blue-light);
-  border-color: var(--m-blue-light);
-  animation: statusPulse 2s infinite ease-in-out;
-}
-
-@keyframes statusPulse {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.4;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.orderSpecs {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--body);
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.orderBtn {
-  width: 100%;
-  text-align: center;
-}
-
-/* Collapsible Blueprint Drawer */
-.trackingDrawer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.trackingDrawer.expanded {
-  max-height: 200px;
-}
-
-.trackingTimeline {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px dashed var(--hairline);
+  background-color: var(--surface-card);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
-.timelineStep {
-  font-family: monospace;
-  font-size: 12px;
-  color: #444444;
-  position: relative;
-  padding-left: 20px;
-}
-
-.timelineStep::before {
-  content: "▪";
-  position: absolute;
-  left: 0;
-  color: #444444;
-}
-
-.timelineStep.passed {
-  color: var(--body);
-}
-
-.timelineStep.passed::before {
-  color: var(--body);
-}
-
-.timelineStep.active {
-  color: var(--on-dark);
+.statValue {
+  font-size: 32px;
   font-weight: 700;
+  color: var(--on-dark);
 }
 
-.timelineStep.active::before {
-  color: var(--m-red);
+.statLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--body);
+  letter-spacing: 1px;
 }
 
 /* Responsiveness Strategy */
@@ -360,7 +319,7 @@
 
 @media (max-width: 768px) {
   .profileDashboard {
-    padding: 100px 16px 40px 16px;
+    padding: 80px 16px 48px 16px;
   }
 
   .headerIdentityBlock {

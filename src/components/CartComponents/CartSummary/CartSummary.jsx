@@ -60,8 +60,7 @@ function CartSummary({ onPlaceOrder, isPlacingOrder }) {
           style={isPlacingOrder ? { opacity: 0.6, cursor: "not-allowed" } : {}}
         >
           <span className="btn-text">
-            {" "}
-            {isPlacingOrder ? "PLACING ORDER..." : "CHECKOUT NOW"}{" "}
+            {isPlacingOrder ? "PLACING ORDER..." : "CHECKOUT NOW"}
           </span>
         </button>
 

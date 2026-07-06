@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import "./OrderCard.css";
+import { ProductDetailsContext } from "../../../utils/ContextProducer";
 
-function OrderCard({ orderDetails }) {
+function  OrderCard({ orderDetails }) {
   const {
     orderItemDTOList,
     deliveryStatus,
@@ -30,11 +32,10 @@ function OrderCard({ orderDetails }) {
           <span className="telemetry-label">TOTAL</span>
 
           <span className="telemetry-value">
-            ${" "}
-            {orderItemDTOList.reduce(
+            $ {orderItemDTOList.reduce(
               (total, item) => total + item.purchasedPrice,
               0
-            )}
+            ).toFixed(2)}
           </span>
         </div>
 
@@ -84,6 +85,9 @@ function OrderCard({ orderDetails }) {
 
 function OrderCardItem({ orderItemDetails }) {
   const { productId, orderId, quantity, purchasedPrice } = orderItemDetails;
+  const productDetails = useContext(ProductDetailsContext);
+
+  const product = productDetails.find((product) => product.id === productId);
 
   return (
     <div className="manifest-item">
@@ -92,12 +96,12 @@ function OrderCardItem({ orderItemDetails }) {
       </div>
 
       <div className="item-details">
-        <h3 className="item-name">CHRONO CLASSIC WATCH</h3>
+        <h3 className="item-name">{product.name}</h3>
 
-        <p className="item-spec">Quantity: 0{quantity} // Stainless Steel</p>
+        <p className="item-spec">Quantity: 0{quantity} // {product.category}</p>
       </div>
 
-      <div className="item-price">$ {purchasedPrice}</div>
+      <div className="item-price">$ {Number(purchasedPrice).toFixed(2)}</div>
     </div>
   );
 }

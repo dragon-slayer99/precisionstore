@@ -4,6 +4,7 @@ import EmptyCart from "../components/CartComponents/EmptyCart/EmptyCart";
 import Cart from "../components/CartComponents/Cart/Cart";
 import { CartContext } from "../utils/ContextProducer";
 import Loader from "../components/HomeComponents/Loader/Loader"
+import { getProducts } from "../api/productApi";
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -15,9 +16,11 @@ function CartPage() {
       try {
         const response = await getCartItems();
         const data = await response.json();
+        const productData = await getProducts();
         if (data.items) {
           setCartItems(data.items);
         }
+        setProductsList(productData.products);
       } catch (e) {
         console.error(e);
       } finally {
@@ -28,7 +31,7 @@ function CartPage() {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, setCartItems, productsList, setProductsList }}
+      value={{ cartItems, setCartItems, productsList }}
     >
       {loading ? <Loader/> : (cartItems.length === 0 ? (
         <EmptyCart />

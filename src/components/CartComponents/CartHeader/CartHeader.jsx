@@ -9,9 +9,9 @@ function CartHeader() {
   return (
     <header className="cart-header">
       <div className="breadcrumbs">
-        <Link to="/">HOME</Link>
+        <Link to={"/"}>HOME</Link>
         <span className="separator">/</span>
-        <span className="current">CART</span>
+        <Link to={"/cart"} className="current">CART</Link>
       </div>
 
       <div className="title-identity-line">

@@ -1,10 +1,11 @@
 import styles from "../Profile/Profile.module.css";
+import { Link } from "react-router-dom";
 
 function DashboardHeader() {
   return (
     <header className={styles.dashboardHeader}>
       <div className={styles.breadcrumbs}>
-        <a href="#">HOME</a>
+        <Link to={"/"}>HOME</Link>
         <span className={styles.separator}>/</span>
         <span className={styles.current}>MY ACCOUNT</span>
       </div>
@@ -19,7 +20,7 @@ function DashboardHeader() {
       </div>
 
       <p className={styles.registryId}>
-        MEMBER SINCE 2024 // FREE EXPRESS SHIPPING ENABLED
+        REGISTRY ID: #0001 // JOINED: JUNE 16, 2026 // STATUS: VERIFIED
       </p>
     </header>
   );

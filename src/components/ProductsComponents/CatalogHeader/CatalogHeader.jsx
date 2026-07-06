@@ -1,13 +1,16 @@
 import styles from "../Products/Products.module.css";
 import CatalogTabs from "../CatalogTabs/CatalogTabs";
+import { Link } from "react-router-dom";
 
 function CatalogHeader({ activeTab, setActiveTab }) {
   const tabs = ["ALL PRODUCTS", "CLOTHING", "BAGS", "ACCESSORIES"];
 
+  
+
   return (
     <header className={styles.catalogHeader}>
       <div className={styles.breadcrumbs}>
-        <a href="#">HOME</a>
+        <Link to={"/"}>HOME</Link>
         <span className={styles.separator}>/</span>
         <span className={styles.current}>SHOP</span>
       </div>

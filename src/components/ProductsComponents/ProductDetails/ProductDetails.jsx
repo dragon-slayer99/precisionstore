@@ -19,9 +19,15 @@ function ProductDetails() {
     })();
   }, [id]);
 
-  const { category, imageUrl, name, price, productDesc, productId, stock } =
-    currProduct;
-
+  const {
+    category,
+    productImage,
+    name,
+    price,
+    productDescription,
+    productId,
+    stock,
+  } = currProduct;
 
   async function handleSubmit() {
     const response = await postCartItems(productId, productCnt);
@@ -32,7 +38,7 @@ function ProductDetails() {
       showToast("Access denied", "Please try to login again");
     }
 
-    if(response.ok) {
+    if (response.ok) {
       showToast("Status", "Product added to cart");
     }
   }
@@ -46,7 +52,7 @@ function ProductDetails() {
               STOCK: {stock}
             </span>
 
-            <div className={styles.imagePlaceholder}>{imageUrl}</div>
+            <div className={styles.imagePlaceholder}>{productImage}</div>
           </div>
 
           <div className={styles.detailsColumn}>
@@ -61,7 +67,7 @@ function ProductDetails() {
             <p className={styles.productPrice}>$ {Number(price).toFixed(2)}</p>
 
             <div className={styles.descriptionBlock}>
-              <p>{productDesc}</p>
+              <p>{productDescription}</p>
             </div>
 
             <div className={styles.transactionRow} onSubmit={handleSubmit}>

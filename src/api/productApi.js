@@ -10,6 +10,6 @@ export async function getProducts(id) {
   }
 
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   return data;
 }
