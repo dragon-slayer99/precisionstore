@@ -5,8 +5,8 @@ import AuthLayout from "./layouts/AuthLayout";
 
 import Home from "./pages/Home";
 import OrderPage from "./pages/OrderPage";
-import Profile from "./components/ProfileComponents/Profile/Profile";
 import ProductsPage from "./pages/ProductsPage";
+import ProfilePage from "./pages/ProfilePage";
 import Login from "./components/LoginComponents/Login/Login";
 
 import EmptyOrders from "./components/OrdersComponents/EmptyOrders/EmptyOrders";
@@ -27,7 +27,7 @@ function App() {
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route element={<MainLayout />}>
-          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/profile" element={<ProfilePage />}></Route>
           <Route path="/orders" element={<OrderPage />}></Route>
           <Route path="/cart" element={<CartPage />}></Route>
         </Route>

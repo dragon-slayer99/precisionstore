@@ -1,7 +1,11 @@
 import styles from "../Profile/Profile.module.css";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../utils/ContextProducer";
+import { useContext } from "react";
 
 function DashboardHeader() {
+  const { userDetails } = useContext(UserContext);
+
   return (
     <header className={styles.dashboardHeader}>
       <div className={styles.breadcrumbs}>
@@ -20,7 +24,7 @@ function DashboardHeader() {
       </div>
 
       <p className={styles.registryId}>
-        REGISTRY ID: #0001 // JOINED: JUNE 16, 2026 // STATUS: VERIFIED
+        REGISTRY ID: #00{userDetails.id} // JOINED: {userDetails.joinedDate} // STATUS: VERIFIED
       </p>
     </header>
   );

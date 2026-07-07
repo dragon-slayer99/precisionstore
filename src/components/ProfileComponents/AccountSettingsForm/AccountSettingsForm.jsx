@@ -1,21 +1,56 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "../Profile/Profile.module.css";
+import { UserContext } from "../../../utils/ContextProducer";
+import { updateUserDetails } from "../../../api/userApi";
+import { useToast } from "../../../hooks/useToast";
 
 function AccountSettingsForm() {
-  const [userDetails, setUserDetails] = useState({
-    email: "intern.techouts@gmail.com",
-    id: 1,
-    joinedDate: "June 16, 2026",
-    message: "User found",
-    name: "Intern",
+  const { userDetails } = useContext(UserContext);
+
+  const { showToast } = useToast();
+
+  const [tempUserDetails, setTempUserDetails] = useState({
+    ...userDetails,
   });
+  const [isUpdating, setIsUpdating] = useState(false);
 
   function handleUserFormInput(e) {
     const { name, value } = e.target;
-    setUserDetails((currentDetails) => ({
+    setTempUserDetails((currentDetails) => ({
       ...currentDetails,
       [name]: value,
     }));
+  }
+
+  async function handleFormSubmission(e) {
+    e.preventDefault();
+    setIsUpdating(true);
+    try {
+      if (
+        userDetails.name === tempUserDetails.name &&
+        userDetails.email === tempUserDetails.email
+      ) {
+        setIsUpdating(false);
+        return;
+      }
+
+      const response = await updateUserDetails(
+        tempUserDetails.name,
+        tempUserDetails.email,
+      );
+
+      if (!response.ok) {
+        showToast("Updation status", "Something went wrong!");
+      }
+
+      const data = await response.json();
+      showToast("Updation status", "Updated successfully");
+      setTempUserDetails(data);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsUpdating(false);
+    }
   }
 
   return (
@@ -25,14 +60,14 @@ function AccountSettingsForm() {
       <form
         className={styles.precisionForm}
         id="profileForm"
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={(e) => handleFormSubmission(e)}
       >
         <div className={styles.formGroup}>
           <label className={styles.inputLabel}> FULL NAME </label>
           <input
             type="text"
             name="name"
-            value={userDetails.name}
+            value={tempUserDetails.name}
             onChange={handleUserFormInput}
             className={styles.textInput}
             required
@@ -44,7 +79,7 @@ function AccountSettingsForm() {
           <input
             type="email"
             name="email"
-            value={userDetails.email}
+            value={tempUserDetails.email}
             className={styles.textInput}
             onChange={handleUserFormInput}
             required
@@ -73,8 +108,9 @@ function AccountSettingsForm() {
         <button
           type="submit"
           className={`${styles.btnGhostPrimary} ${styles.formSubmit}`}
+          style={isUpdating ? { opacity: 0.6, cursor: "not-allowed" } : {}}
         >
-          SAVE CHANGES
+          {isUpdating ? `SAVING....` : `SAVE CHANGES`}
         </button>
       </form>
     </section>

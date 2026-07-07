@@ -47,6 +47,18 @@ export async function getUserDetails() {
     headers: getAuthHeaders()
   });
 
-  console.log(response);
+  return response;
+}
+
+export async function updateUserDetails(name, email) {
+  const response = await fetch("http://localhost:8080/api/users", {
+    method: "PATCH",
+    headers: getAuthHeaders(),
+    body: JSON.stringify({
+      name,
+      email
+    })
+  });
+
   return response;
 }

@@ -10,3 +10,5 @@ export const ToastContext = createContext();
 
 export const AuthContext = createContext();
 
+export const UserContext = createContext();
+
