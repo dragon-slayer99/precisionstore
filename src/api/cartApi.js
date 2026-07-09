@@ -1,3 +1,5 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function getAuthHeaders() {
   const accessToken = localStorage.getItem("accessToken");
   return {
@@ -8,7 +10,7 @@ function getAuthHeaders() {
 
 export async function getCartItems() {
   
-  const response = await fetch("http://localhost:8080/api/cart/items", {
+  const response = await fetch(`${API_BASE_URL}/cart/items`, {
     method: "GET",
     headers: getAuthHeaders(),
   });
@@ -21,7 +23,7 @@ export async function getCartItems() {
 }
 
 export async function postCartItems(productId, quantity) {
-  const response = await fetch("http://localhost:8080/api/cart/items", {
+  const response = await fetch(`${API_BASE_URL}/cart/items`, {
     method: "POST",
     headers: getAuthHeaders(),
     body: JSON.stringify({
@@ -34,7 +36,7 @@ export async function postCartItems(productId, quantity) {
 }
 
 export async function deleteCartItem(cartItemId) {
-  const response = await fetch(`http://localhost:8080/api/cart/items/${cartItemId}`, {
+  const response = await fetch(`${API_BASE_URL}/cart/items/${cartItemId}`, {
     method: "DELETE",
     headers: getAuthHeaders()
   })
@@ -45,7 +47,7 @@ export async function deleteCartItem(cartItemId) {
 
 export async function updateCartItemQuantity(id, quantity) {
 
-  const response = await fetch(`http://localhost:8080/api/cart/items/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/cart/items/${id}`, {
     method: "PUT",
     headers: getAuthHeaders(),
     body: JSON.stringify({

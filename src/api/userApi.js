@@ -1,3 +1,5 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function getAuthHeaders() {
   const accessToken = localStorage.getItem("accessToken");
   return {
@@ -8,7 +10,7 @@ function getAuthHeaders() {
 
 
 export async function loginUser(userLoginDetails) {
-  const response = await fetch("http://localhost:8080/api/users/login", {
+  const response = await fetch(`${API_BASE_URL}/users/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,7 +32,7 @@ export async function loginUser(userLoginDetails) {
 }
 
 export async function validateToken(token) {
-  const response = await fetch("http://localhost:8080/api/users/validate", {
+  const response = await fetch(`${API_BASE_URL}/users/validate`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,7 +44,7 @@ export async function validateToken(token) {
 }
 
 export async function getUserDetails() {
-  const response = await fetch("http://localhost:8080/api/users", {
+  const response = await fetch(`${API_BASE_URL}/users`, {
     method: "GET",
     headers: getAuthHeaders()
   });
@@ -51,7 +53,7 @@ export async function getUserDetails() {
 }
 
 export async function updateUserDetails(name, email) {
-  const response = await fetch("http://localhost:8080/api/users", {
+  const response = await fetch(`${API_BASE_URL}/users`, {
     method: "PATCH",
     headers: getAuthHeaders(),
     body: JSON.stringify({

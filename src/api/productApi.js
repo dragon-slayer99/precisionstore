@@ -1,9 +1,17 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export async function getProducts(id) {
   const URL = id
-    ? `http://localhost:8080/api/products/${id}`
-    : `http://localhost:8080/api/products`;
+    ? `${API_BASE_URL}/products/${id}`
+    : `${API_BASE_URL}/products`;
 
-  const response = await fetch(URL);
+  // const URL = `${API_BASE_URL}/products${id && `/${id}`}`
+
+  const response = await fetch(URL, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
 
   if (!response.ok) {
     throw new Error("Cannot process the request");

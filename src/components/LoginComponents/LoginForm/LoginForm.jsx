@@ -23,17 +23,22 @@ function LoginForm() {
   async function handleFormSubmission(event) {
     event.preventDefault();
     setLoggingUserIn(true);
-    const jwtToken = await loginUser(userLoginDetails);
+    try {
+      const jwtToken = await loginUser(userLoginDetails);
 
-    if (!jwtToken) {
-      setUserWrongCredientials(true);
+      if (!jwtToken) {
+        setUserWrongCredientials(true);
+        return;
+      }
+
+      login(jwtToken);
       setLoggingUserIn(false);
-      return;
+      navigate("/", { replace: true });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoggingUserIn(false);
     }
-
-    login(jwtToken);
-    setLoggingUserIn(false);
-    navigate("/", { replace: true });
   }
 
   return (
