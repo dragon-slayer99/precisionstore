@@ -1,9 +1,6 @@
 package com.techouts.user_service.controller;
 
-import com.techouts.user_service.dto.LoginRequest;
-import com.techouts.user_service.dto.RefreshRequest;
-import com.techouts.user_service.dto.RegisterRequest;
-import com.techouts.user_service.dto.UserDTO;
+import com.techouts.user_service.dto.*;
 import com.techouts.user_service.model.RefreshToken;
 import com.techouts.user_service.model.User;
 import com.techouts.user_service.service.UserService;
@@ -26,7 +23,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
-//@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:5173"})
 @Tag(
         name = "User Controller",
         description = "APIs for user registration, authentication, and user profile operations."
@@ -64,9 +60,9 @@ public class UserController {
     @GetMapping
     public ResponseEntity<UserDTO> getUserDetails(@RequestHeader("X-User-Id") Integer userId) {
 
-        UserDTO foundUserDTO = userService.getUserById (userId);
+        UserDTO foundUserDTO = userService.getUserById(userId);
 
-        return ResponseEntity.ok (foundUserDTO);
+        return ResponseEntity.ok(foundUserDTO);
 
     }
 
@@ -99,13 +95,13 @@ public class UserController {
 
         if (result.hasErrors()) {
 
-            Map<String, Object> validationErrors = new HashMap<> ();
+            Map<String, Object> validationErrors = new HashMap<>();
 
-            result.getFieldErrors().forEach (fieldError -> {
-                validationErrors.put (fieldError.getField (), fieldError.getDefaultMessage ());
+            result.getFieldErrors().forEach(fieldError -> {
+                validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
             });
 
-            return ResponseEntity.status (HttpStatus.BAD_REQUEST).body (validationErrors);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
 
         }
 
@@ -113,15 +109,15 @@ public class UserController {
 
         boolean userRegistrationStatus = userService.registerUser(user);
 
-        Map<String, Object> response = new HashMap<> ();
+        Map<String, Object> response = new HashMap<>();
 
-        if(userRegistrationStatus) {
+        if (userRegistrationStatus) {
             response.put("message", "successfully registered");
-            return ResponseEntity.status (HttpStatus.CREATED).body (response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }
 
-        response.put ("message", "user with same email already exists");
-        return ResponseEntity.status (HttpStatus.CONFLICT).body (response);
+        response.put("message", "user with same email already exists");
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
 
     }
 
@@ -146,24 +142,24 @@ public class UserController {
     @PostMapping("login")
     public ResponseEntity<Map<String, Object>> userLogin(@RequestBody LoginRequest request) {
 
-        Map<String, Object> response = new HashMap<> ();
+        Map<String, Object> response = new HashMap<>();
 
         String email = request.getEmail();
         String password = request.getPassword();
 
-        if(email == null || password == null || email.isBlank () || password.isBlank ()) {
-            response.put ("message", "please enter email and password");
-            return ResponseEntity.status (HttpStatus.BAD_REQUEST).body (response);
+        if (email == null || password == null || email.isBlank() || password.isBlank()) {
+            response.put("message", "please enter email and password");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
 
-        User userInQuestion = userService.isValidUser (email, password);
+        User userInQuestion = userService.isValidUser(email, password);
 
-        if(userInQuestion == null) {
-            response.put ("message", "Invalid credentials");
-            return ResponseEntity.status (HttpStatus.BAD_REQUEST).body (response);
+        if (userInQuestion == null) {
+            response.put("message", "Invalid credentials");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
 
-        User user = userService.getUser (email);
+        User user = userService.getUser(email);
 
         String accessToken = jwtUtil.generateAccessToken(user);
         response.put("accessToken", accessToken);
@@ -180,13 +176,30 @@ public class UserController {
 
     }
 
-
+    @Operation(
+            summary = "Refresh access token",
+            description = "Validates the refresh token from the cookie and issues a new JWT access token if the refresh token is valid."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "New access token generated successfully"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Refresh token is missing, invalid, or expired"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Internal server error"
+            )
+    })
     @PostMapping("refresh-token")
     public ResponseEntity<Map<String, Object>> newJwtToken(@CookieValue(value = "refreshToken") String refreshToken) {
 
         RefreshToken currRefreshToken = userService.validateRefreshToken(refreshToken);
 
-        if(currRefreshToken == null) {
+        if (currRefreshToken == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Provided refresh token is expired"));
         }
 
@@ -200,5 +213,42 @@ public class UserController {
     @PostMapping("validate")
     public ResponseEntity<Map<String, Object>> validateJwtToken(@RequestHeader("X-User-Id") Integer userId) {
         return ResponseEntity.ok(Map.of("status", "The provided JWT token is valid"));
+    }
+
+    @Operation(
+            summary = "Update user details",
+            description = "Updates the authenticated user's name and/or email address using the provided information."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "User details updated successfully"
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Invalid request data"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "User is not authenticated"
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Unable to update user details (e.g. email already exists or update conflict)"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Internal server error"
+            )
+    })
+    @PatchMapping
+    public ResponseEntity<UserDTO> updateUserDetails(@RequestHeader("X-User-Id") Integer userId, @RequestBody UserDetailsUpdateRequest userDetails) {
+        User user = userService.updateUserDetails(userDetails.getEmail(), userDetails.getName(), userId);
+
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new UserDTO("Something went wrong"));
+        }
+
+        return ResponseEntity.ok(new UserDTO("user details successfully updated", user.getId(), user.getName(), user.getEmail(), user.getFormattedJoinedDate()));
     }
 }

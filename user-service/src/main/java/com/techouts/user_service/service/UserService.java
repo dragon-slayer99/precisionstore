@@ -84,12 +84,19 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUserDetails(String emailAddress, String fullName, User currLoggedInUser) {
+    public User updateUserDetails(String emailAddress, String fullName, Integer userId) {
 
-        User user = userRepoImpl.findByEmail(emailAddress).orElse(null);
+        User currLoggedInUser = userRepoImpl.findById(userId).orElse(null);
 
-        if (user != null) {
-            if (user.getId() == currLoggedInUser.getId()) {
+        if(currLoggedInUser == null) {
+            System.out.println("User does not exist");
+            return null;
+        }
+
+        User userAlreadyPresentWithNewMail = userRepoImpl.findByEmail(emailAddress).orElse(null);
+
+        if (userAlreadyPresentWithNewMail != null) {
+            if (userAlreadyPresentWithNewMail.getId() == currLoggedInUser.getId()) {
                 currLoggedInUser.setName(fullName);
                 userRepoImpl.save (currLoggedInUser);
                 return currLoggedInUser;
