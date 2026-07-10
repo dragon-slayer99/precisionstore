@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getCartItems } from "../api/cartApi";
 import EmptyCart from "../components/CartComponents/EmptyCart/EmptyCart";
 import Cart from "../components/CartComponents/Cart/Cart";
-import { CartContext } from "../utils/ContextProducer";
+import { CartContext } from "../utils/contextProducer";
 import Loader from "../components/HomeComponents/Loader/Loader"
 import { getProducts } from "../api/productApi";
 

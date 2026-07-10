@@ -2,7 +2,7 @@ import Loader from "../components/HomeComponents/Loader/Loader";
 import Profile from "../components/ProfileComponents/Profile/Profile";
 import { useEffect, useState } from "react";
 import { getUserDetails } from "../api/userApi";
-import { UserContext } from "../utils/ContextProducer";
+import { UserContext } from "../utils/contextProducer";
 
 function ProfilePage() {
   const [loading, setLoading] = useState(false);

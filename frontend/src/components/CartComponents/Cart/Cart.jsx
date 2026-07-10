@@ -8,7 +8,7 @@ import CartItems from "../CartItems/CartItems";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import CartSummary from "../CartSummary/CartSummary";
 
-import { CartContext } from "../../../utils/ContextProducer";
+import { CartContext } from "../../../utils/contextProducer";
 import { placeOrder } from "../../../api/orderApi";
 import { useToast } from "../../../hooks/useToast";
 

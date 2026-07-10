@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AuthContext } from "./ContextProducer";
+import { AuthContext } from "./contextProducer";
 import { validateToken } from "../api/userApi";
 export function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);

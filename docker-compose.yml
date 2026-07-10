@@ -129,6 +129,22 @@ services:
     networks:
       - service-net
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: unless-stopped
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    ports:
+      - "5173:5173"
+    networks:
+      - service-net
+
 networks:
   service-net:
 

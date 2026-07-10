@@ -1,7 +1,7 @@
 import "./CartItem.css";
 import { deleteCartItem, updateCartItemQuantity } from "../../../api/cartApi";
 import { useContext, useState } from "react";
-import { CartContext } from "../../../utils/ContextProducer";
+import { CartContext } from "../../../utils/contextProducer";
 
 function CartItem({ cartItemDetails }) {
   const { id, productId, quantity } = cartItemDetails;

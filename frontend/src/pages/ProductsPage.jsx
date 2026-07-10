@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Products from "../components/ProductsComponents/Products/Products";
-import { ProductDetailsContext } from "../utils/ContextProducer";
+import { ProductDetailsContext } from "../utils/contextProducer";
 import { useEffect, useState } from "react";
 import ProductDetails from "../components/ProductsComponents/ProductDetails/ProductDetails";
 import Loader from "../components/HomeComponents/Loader/Loader";

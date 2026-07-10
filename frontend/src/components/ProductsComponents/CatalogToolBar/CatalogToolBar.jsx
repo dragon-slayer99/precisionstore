@@ -1,7 +1,7 @@
 import styles from "../Products/Products.module.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { useContext } from "react";
-import { ProductDetailsContext } from "../../../utils/ContextProducer";
+import { ProductDetailsContext } from "../../../utils/contextProducer";
 
 function CatalogToolBar({ setSortOrder }) {
   const optionsList = [

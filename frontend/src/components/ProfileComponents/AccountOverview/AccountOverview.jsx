@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styles from "../Profile/Profile.module.css";
-import { UserContext } from "../../../utils/ContextProducer";
+import { UserContext } from "../../../utils/contextProducer";
 
 function AccountOverview() {
 

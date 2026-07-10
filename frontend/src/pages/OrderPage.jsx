@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Loader from "../components/HomeComponents/Loader/Loader";
 import Orders from "../components/OrdersComponents/Orders/Orders";
 import { getProducts } from "../api/productApi";
-import { ProductDetailsContext } from "../utils/ContextProducer";
+import { ProductDetailsContext } from "../utils/contextProducer";
 
 function OrderPage() {
   const [orderDetails, setOrderDetails] = useState([]);

@@ -1,6 +1,6 @@
 import "./CartSummary.css";
 
-import { CartContext } from "../../../utils/ContextProducer";
+import { CartContext } from "../../../utils/contextProducer";
 import { useContext } from "react";
 
 function CartSummary({ onPlaceOrder, isPlacingOrder }) {

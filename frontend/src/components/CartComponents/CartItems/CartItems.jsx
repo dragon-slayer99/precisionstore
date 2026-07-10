@@ -3,7 +3,7 @@ import "./CartItems.css";
 import CartItem from "../CartItem/CartItem";
 import CartTableHeader from "../CartTableHeader/CartTableHeader";
 import { useContext } from "react";
-import { CartContext } from "../../../utils/ContextProducer";
+import { CartContext } from "../../../utils/contextProducer";
 
 function CartItems() {
   const { cartItems } = useContext(CartContext);

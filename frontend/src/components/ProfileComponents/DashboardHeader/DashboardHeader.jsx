@@ -1,6 +1,6 @@
 import styles from "../Profile/Profile.module.css";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../../utils/ContextProducer";
+import { UserContext } from "../../../utils/contextProducer";
 import { useContext } from "react";
 
 function DashboardHeader() {

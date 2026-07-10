@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import "./CartHeader.css";
 import { Link } from "react-router-dom";
-import { CartContext } from "../../../utils/ContextProducer";
+import { CartContext } from "../../../utils/contextProducer";
 
 function CartHeader() {
   const { cartItems, setCartItems } = useContext(CartContext);

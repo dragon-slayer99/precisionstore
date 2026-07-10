@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "./OrderCard.css";
-import { ProductDetailsContext } from "../../../utils/ContextProducer";
+import { ProductDetailsContext } from "../../../utils/contextProducer";
 
 function  OrderCard({ orderDetails }) {
   const {

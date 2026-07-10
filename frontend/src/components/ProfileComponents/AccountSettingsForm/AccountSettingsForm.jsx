@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import styles from "../Profile/Profile.module.css";
-import { UserContext } from "../../../utils/ContextProducer";
+import { UserContext } from "../../../utils/contextProducer";
 import { updateUserDetails } from "../../../api/userApi";
 import { useToast } from "../../../hooks/useToast";
 

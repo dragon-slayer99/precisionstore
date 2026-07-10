@@ -1,18 +1,103 @@
-# React + Vite
+# PrecisionStore Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern e-commerce frontend built with React 19, Vite 8, React Router 7, and React Compiler.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Product Catalog** - Browse products with filtering, sorting, and pagination
+- **Shopping Cart** - Add/remove items, update quantities, checkout flow
+- **User Authentication** - Login, registration, JWT token management
+- **Order Management** - View order history and order details
+- **User Profile** - Account settings and overview
+- **Toast Notifications** - Real-time feedback for user actions
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **React 19** - UI library with React Compiler enabled
+- **Vite 8** - Build tool and dev server
+- **React Router 7** - Client-side routing
+- **CSS Modules** - Component-scoped styling
+- **Zod** - Schema validation
+- **ESLint** - Code linting
 
-Note: This will impact Vite dev & build performances.
+## Project Structure
 
-## Expanding the ESLint configuration
+```
+src/
+├── api/                 # API service modules
+├── components/          # Reusable UI components
+│   ├── CartComponents/  # Cart-related components
+│   ├── HomeComponents/  # Home page components
+│   ├── LoginComponents/ # Authentication components
+│   ├── OrdersComponents/# Order-related components
+│   ├── ProductsComponents/ # Product catalog components
+│   └── ProfileComponents/ # User profile components
+├── hooks/               # Custom React hooks
+├── layouts/             # Page layout components
+├── pages/               # Page components
+└── utils/               # Context providers and utilities
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm run dev          # Start dev server (Port 5173)
+npm run dev:host     # Start dev server accessible on network
+```
+
+### Build
+
+```bash
+npm run build        # Production build
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
+```
+
+## Environment Variables
+
+Create a `.env` file in the root directory:
+
+```
+VITE_API_BASE_URL=http://localhost:8080/api
+```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run dev:host` - Start dev server accessible on network
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Context Providers
+
+The application uses React Context for state management:
+
+- **AuthContext** - Authentication state and methods
+- **CartContext** - Shopping cart state
+- **ProductDetailsContext** - Product catalog data
+- **UserContext** - User profile data
+- **ToastContext** - Toast notification system
+- **LoginTabContext** - Login/Register tab state
+
+## API Integration
+
+The frontend communicates with a backend REST API. API modules are located in `src/api/`:
+
+- `userApi.js` - Authentication and user management
+- `productApi.js` - Product catalog operations
+- `cartApi.js` - Shopping cart operations
+- `orderApi.js` - Order management

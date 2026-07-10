@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ToastContext } from "./ContextProducer";
+import { ToastContext } from "./contextProducer";
 import Toast from "../components/HomeComponents/Toast/Toast";
 
 export function ToastProvider({ children }) {
