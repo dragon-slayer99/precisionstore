@@ -1,0 +1,87 @@
+/* --- Main Element Style Architecture --- */
+
+.cartMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 96px var(--spacing-lg); /* 96px strict vertical section padding rhythm */
+  background-color: var(--canvas);
+}
+
+.cartEmptyContainer {
+  text-align: center;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Hierarchy & Typography System --- */
+
+.displayMd {
+  font-size: 40px;
+  font-weight: 700; /* Rigid display weight */
+  line-height: 1.1;
+  letter-spacing: -0.5px; /* Inter tracking correction rule for BMW Type simulation */
+  text-transform: uppercase; /* Brand-voice standard signal */
+  color: var(--on-dark);
+  margin-bottom: 16px;
+}
+
+.bodyMd {
+  font-size: 14px;
+  font-weight: 300; /* Light weight "engineered" contrast signature */
+  line-height: 1.5;
+  color: var(--body);
+  margin-bottom: 40px;
+}
+
+/* --- Primary Interactive Component --- */
+
+.buttonPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 16px 32px;
+  background-color: transparent;
+  color: var(--on-dark);
+  border: 1px solid var(--on-dark);
+  border-radius: 0px; /* Industrial rectangular structural absolute */
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(
+    --letter-spacing-machined
+  ); /* 1.5px layout machining tracking */
+  text-decoration: none;
+  transition:
+    all 0.2s ease,
+    color 0.2s ease;
+}
+
+.buttonPrimary:active {
+  transform: scale(0.98);
+}
+
+.buttonPrimary:hover {
+  background-color: var(--on-dark);
+  color: var(--canvas);
+}
+
+/* --- Responsive Layout Mechanics --- */
+
+@media (max-width: 768px) {
+  .cartMain {
+    padding: 64px var(--spacing-lg); /* Restrained structural collapse layout padding */
+  }
+
+  .bodyMd {
+    font-size: 12px;
+  }
+
+  .displayMd {
+    font-size: 35px; /* Scale step reduction on mobile configurations */
+  }
+}

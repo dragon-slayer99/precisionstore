@@ -1,0 +1,204 @@
+.ecom-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--canvas);
+  padding: 100px 40px 40px 40px;
+}
+
+/* Background Architecture (Thin Hairlines) */
+.structural-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.grid-line {
+  flex: 1;
+  height: 100%;
+  border-right: 1px solid rgba(60, 60, 60, 0.2);
+}
+
+.grid-line:first-child {
+  border-left: 1px solid rgba(60, 60, 60, 0.2);
+}
+
+/* Chrome/Metadata Elements */
+.hero-metadata {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #555555;
+  font-family: monospace;
+  z-index: 10;
+}
+
+/* Main Layout Container */
+.hero-content {
+  position: relative;
+  max-width: 1440px;
+  width: 100%;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 5;
+}
+
+.brand-accent-tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.m-stripe {
+  width: 24px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--m-blue-light) 33.3%,
+    var(--m-blue-dark) 33.3% 66.6%,
+    var(--m-red) 66.6%
+  );
+}
+
+.tag-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--body);
+}
+
+/* Typography Voice */
+.hero-headline {
+  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+  font-weight: 700; /* Signature Heavy display cut */
+  text-transform: uppercase;
+  line-height: 0.95; /* Heavy-but-tight rule */
+  letter-spacing: -2px;
+  margin-bottom: 32px;
+}
+
+.hero-headline .outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--on-dark); /* Technical blueprint accent */
+}
+
+.hero-description {
+  max-width: 550px;
+  font-size: 14px;
+  font-weight: 300; /* Light body copy signature contrast */
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  color: var(--body);
+  margin-bottom: 48px;
+}
+
+/* CTAs: Ghost Framework with Zero Radius */
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btn-ghost-primary,
+.btn-ghost-secondary {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  padding: 18px 36px;
+  border-radius: 0px; /* Rectangular silhouette rule */
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-ghost-primary {
+  color: var(--on-dark);
+  border: 1px solid var(--on-dark);
+}
+
+.btn-ghost-primary:hover {
+  background-color: var(--on-dark);
+  color: var(--canvas);
+}
+
+.btn-ghost-secondary {
+  color: var(--body);
+  border: 1px solid var(--hairline);
+}
+
+.btn-ghost-secondary:hover {
+  border-color: var(--on-dark);
+  color: var(--on-dark);
+}
+
+/* Grid Feature Tickers Footer */
+.hero-ticker-grid {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--hairline);
+  padding-top: 24px;
+  z-index: 5;
+}
+
+.ticker-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ticker-label {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #666666;
+}
+
+.ticker-value {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Responsive Structural Strategy */
+@media (max-width: 768px) {
+  .ecom-hero {
+    padding: 100px 24px 40px 24px;
+  }
+  .structural-grid {
+    padding: 0 24px;
+  }
+  .hero-metadata {
+    display: none; /* Minimal chrome reduction for mobile */
+  }
+  .hero-ticker-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .hero-cta-group {
+    width: 100%;
+  }
+  .btn-ghost-primary,
+  .btn-ghost-secondary {
+    width: 100%;
+    text-align: center;
+  }
+}

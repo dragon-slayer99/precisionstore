@@ -1,0 +1,109 @@
+/* --- Main Orders Layout Architecture --- */
+
+.ordersMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 96px var(--spacing-lg); /* Strict 96px vertical section rhythm */
+  background-color: var(--canvas);
+}
+
+.ordersEmptyContainer {
+  text-align: center;
+  max-width: 600px; /* Slightly wider for potential order data grids later */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Typography System --- */
+
+.displayMd {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  color: var(--on-dark);
+  margin-bottom: 16px;
+}
+
+.bodyMd {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--body);
+  margin-bottom: 48px; /* Slightly larger gap before the dual buttons */
+}
+
+/* --- Interactive Components --- */
+
+.buttonGroup {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.buttonPrimary,
+.buttonPrimaryOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 16px 32px;
+  border-radius: 0px; /* Industrial structural absolute */
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-machined);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Filled variant (Inverted interaction) */
+.buttonPrimary {
+  background-color: var(--on-dark);
+  color: var(--canvas);
+  border: 1px solid var(--on-dark);
+}
+
+.buttonPrimary:hover {
+  background-color: transparent;
+  color: var(--on-dark);
+}
+
+/* Outline variant (Standard interaction) */
+.buttonPrimaryOutline {
+  background-color: transparent;
+  color: var(--on-dark);
+  border: 1px solid var(--on-dark);
+}
+
+.buttonPrimaryOutline:hover {
+  background-color: var(--on-dark);
+  color: var(--canvas);
+}
+
+/* --- Responsive Mechanics --- */
+
+@media (max-width: 768px) {
+  .ordersMain {
+    padding: 64px var(--spacing-lg);
+  }
+
+  .displayMd {
+    font-size: 32px;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .buttonPrimary,
+  .buttonPrimaryOutline {
+    width: 100%; /* Full width buttons on mobile */
+  }
+}

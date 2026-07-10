@@ -1,0 +1,685 @@
+.catalogContainer {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 120px 24px 64px 24px;
+}
+
+/* Page Header & Typography */
+.breadcrumbs {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--body);
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.breadcrumbs a {
+  color: var(--body);
+  text-decoration: none;
+}
+
+.breadcrumbs .current {
+  color: var(--on-dark);
+  font-weight: 700;
+}
+
+.catalogTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 40px;
+}
+
+/* Tabs: Engineering Spec */
+.categoryTabs {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 32px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.categoryTabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  color: var(--body);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-bottom: 12px;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tab.active {
+  color: var(--on-dark);
+}
+
+.activeStripe {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg,
+      var(--m-blue-light) 33.3%,
+      var(--m-blue-dark) 33.3% 66.6%,
+      var(--m-red) 66.6%);
+}
+
+/* Toolbar */
+.catalogToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.resultsCount {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--body);
+  letter-spacing: 1px;
+}
+
+.toolbarActions {
+  display: flex;
+  gap: 16px;
+}
+
+.btnTool {
+  background: transparent;
+  border: 1px solid var(--hairline);
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 0;
+  min-width: 100px;
+}
+
+.sortDropdownWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+#sortTrigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+#sortTrigger:focus,
+.sortDropdownWrapper:hover #sortTrigger {
+  border-color: var(--on-dark);
+}
+
+.indicatorArrow {
+  font-size: 10px;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sortDropdownWrapper.activeState .indicatorArrow {
+  transform: rotate(180deg);
+}
+
+.dropdownPanel {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 220px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: 0px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.25s;
+}
+
+.dropdownPanel.visibleDisplay {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownOption {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--body);
+  padding: 14px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(60, 60, 60, 0.3);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.dropdownOption:last-child {
+  border-bottom: none;
+}
+
+.dropdownOption:hover,
+.dropdownOption.active {
+  background-color: var(--on-dark);
+  color: var(--canvas);
+}
+
+/* 3-Up Grid Architecture (Desktop default layout) */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: 64px;
+}
+
+/* Product Card Framework */
+.productCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--hairline);
+  background: var(--canvas);
+  border-radius: 0px;
+  transition: border-color 0.3s ease;
+}
+
+.productCard:hover {
+  border-color: var(--on-dark);
+}
+
+/* Visual Container Box */
+.productVisual {
+  width: 100%;
+  aspect-ratio: 6/5;
+  background-color: var(--surface-card);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.visualPlaceholder {
+  font-family: monospace;
+  font-size: 12px;
+  color: #444;
+  letter-spacing: 1px;
+}
+
+.badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--on-dark);
+  color: var(--canvas);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.badge.alert {
+  background: var(--m-red);
+  color: white;
+}
+
+.badge.new {
+  background: var(--m-blue-dark);
+  color: white;
+}
+
+.badge.bestseller {
+  background: rgb(113, 201, 113);
+  color: black;
+}
+
+/* Product Meta Segment */
+.productMeta {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.metaTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.productCategory {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--body);
+  letter-spacing: 1.5px;
+}
+
+.productPrice {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--on-dark);
+}
+
+.productName {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* 2-Line Multi-Line Clamping Mechanism */
+.productDescription {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--body);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  flex-grow: 1;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  height: 3em;
+  /* Guarantees strict height matrix calculation across all grid states */
+}
+
+/* Primary Action Link Component */
+.productAction {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 14px 0;
+  border: 1px solid var(--on-dark);
+  color: var(--on-dark);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.productAction:hover {
+  background: var(--on-dark);
+  color: var(--canvas);
+  cursor: pointer;
+}
+
+.productAction:active {
+  transform: scale(0.98);
+}
+
+.productActionsContainer {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.productActionsContainer > * {
+  flex: 1;
+}
+
+/* Pagination Row */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 32px;
+}
+
+.btnPage {
+  width: 40px;
+  height: 40px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--body);
+  font-family: var(--font-main);
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.btnPage.active {
+  border-color: var(--hairline);
+  color: var(--on-dark);
+}
+
+.pageDivider {
+  color: var(--body);
+  margin: 0 8px;
+}
+
+.btnPageNext {
+  background: transparent;
+  border: none;
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+/* Header Styles */
+.catalogHeader {
+  margin-bottom: 48px;
+}
+
+.separator {
+  margin: 0 8px;
+  color: var(--body);
+}
+
+/* Badge Styles */
+.badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--on-dark);
+  color: var(--canvas);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.badge.alert {
+  background: var(--m-red);
+  color: white;
+}
+
+.badge.new {
+  background: var(--m-blue-dark);
+  color: white;
+}
+
+.badge.bestseller {
+  background: rgb(113, 201, 113);
+  color: black;
+}
+
+/* Button Styles */
+.btnGhostPrimary {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 14px 0;
+  border: 1px solid var(--on-dark);
+  background: transparent;
+  color: var(--on-dark);
+  text-decoration: none;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  outline: none;
+}
+
+.btnGhostPrimary:hover {
+  background: var(--on-dark);
+  color: var(--canvas);
+  cursor: pointer;
+}
+
+.btnGhostPrimary:active {
+  transform: scale(0.98);
+}
+
+/* Arrow Indicator */
+.arrow {
+  margin-left: 8px;
+}
+
+/* Medium to Large Mobile / Tablets (1024px down through 481px) */
+@media (max-width: 1024px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .catalogContainer {
+    padding: 100px 20px 56px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalogToolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .toolbarActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sortDropdownWrapper {
+    width: 100%;
+  }
+
+  #sortTrigger {
+    max-width: 100%;
+    justify-content: space-between;
+  }
+
+  .dropdownPanel {
+    width: 100%;
+    left: 0;
+    right: auto;
+  }
+
+  .catalogTitle {
+    letter-spacing: -0.5px;
+    margin-bottom: 32px;
+  }
+
+  .categoryTabs {
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .tab {
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+  }
+
+  .resultsCount {
+    font-size: 11px;
+  }
+
+  .productGrid {
+    margin-bottom: 48px;
+  }
+}
+
+/* Small-to-medium phones (640px and below) — single column */
+@media (max-width: 640px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .productCard {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "visual meta"
+      "visual action";
+  }
+
+  .productVisual {
+    grid-area: visual;
+    /* aspect-ratio: 1/1; */
+    height: 100%;
+    border-bottom: none;
+    border-right: 1px solid var(--hairline);
+  }
+
+  .productMeta {
+    grid-area: meta;
+    padding: 16px;
+  }
+
+  .productActionsContainer {
+    grid-area: action;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* padding: 0 16px 16px 16px; */
+  }
+
+  .productName {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .productDescription {
+    /* font-size: 12px;
+    margin-bottom: 0;
+    height: auto;
+    -webkit-line-clamp: 2; */
+    display: none;
+  }
+
+  .badge {
+    top: 8px;
+    left: 8px;
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+
+  .catalogContainer {
+    padding: 80px 16px 48px 16px;
+  }
+
+  .catalogTitle {
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+  }
+
+  .categoryTabs {
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .tab {
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    padding-bottom: 8px;
+  }
+
+  .catalogToolbar {
+    padding: 12px 0;
+    margin-bottom: 24px;
+  }
+
+  .btnTool {
+    font-size: 11px;
+    padding: 8px 12px;
+    min-width: auto;
+    width: 100%;
+  }
+
+  .pagination {
+    gap: 4px;
+    padding-top: 24px;
+  }
+
+  .btnPage {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .btnPageNext {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-left: 8px;
+  }
+}
+
+/* Very small phones (380px and below) — compact the side-by-side card further */
+@media (max-width: 380px) {
+  /* .productCard {
+    grid-template-columns: 100px 1fr;
+  } */
+
+  .productVisual {
+    aspect-ratio: auto;
+  }
+
+  .productMeta {
+    padding: 12px;
+  }
+
+  .productName {
+    font-size: 14px;
+  }
+
+  .productPrice {
+    font-size: 13px;
+  }
+
+  .productCategory {
+    font-size: 10px;
+  }
+
+  .productAction {
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 10px 0;
+  }
+
+  .catalogContainer {
+    padding: 72px 12px 40px 12px;
+  }
+
+  .catalogTitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,217 @@
+.productView {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+/* Master Grid Alignment */
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Visual Column (Image & Stock) */
+.visualColumn {
+  width: 100%;
+  aspect-ratio: 6/5;
+  background-color: var(--surface-card);
+  border: 1px solid var(--hairline);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stockBadge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  z-index: 10;
+}
+
+.imagePlaceholder {
+  font-family: monospace;
+  font-size: 14px;
+  color: #555555;
+  letter-spacing: 1px;
+}
+
+/* Details Column */
+.detailsColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.mStripe {
+  width: 48px;
+  height: 4px;
+  background: linear-gradient(90deg,
+      var(--m-blue-light) 33%,
+      var(--m-blue-dark) 33% 66%,
+      var(--m-red) 66%);
+  margin-bottom: 24px;
+}
+
+.metaHeader {
+  margin-bottom: 16px;
+}
+
+.categoryLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: #777777;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.productName {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  /* Stamped Voice */
+  line-height: 1.1;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.productPrice {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--on-dark);
+  margin-bottom: 32px;
+}
+
+.descriptionBlock {
+  font-size: 14px;
+  font-weight: 300;
+  /* Engineered Light Voice */
+  color: var(--body);
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+/* Zero-Radius CTA Button */
+.btnPrimary {
+  width: 100%;
+  height: 56px;
+  background: transparent;
+  border: 1px solid var(--on-dark);
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border-radius: 0px;
+  /* Essential constraint */
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary:hover {
+  background: var(--on-dark);
+  color: var(--canvas);
+}
+
+.btnPrimary:active {
+  transform: scale(0.98);
+}
+
+/* Responsive Adaptive Strategy */
+@media (max-width: 900px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .visualColumn {
+    aspect-ratio: 1/1;
+    /* Shifts to a square on mobile to save vertical space */
+  }
+}
+
+/* Transaction Row Layout */
+.transactionRow {
+  display: flex;
+  gap: 16px;
+  margin-top: auto;
+  /* Pushes the transaction block to the bottom of the column */
+}
+
+/* Industrial Quantity Selector */
+.quantitySelector {
+  display: flex;
+  border: 1px solid var(--hairline);
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.btnQty {
+  width: 48px;
+  background: transparent;
+  border: none;
+  color: var(--on-dark);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btnQty:hover {
+  background-color: var(--surface-card);
+}
+
+.qtyInput {
+  width: 48px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--hairline);
+  border-right: 1px solid var(--hairline);
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+}
+
+/* Update the existing media query for responsive stacking */
+@media (max-width: 900px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .visualColumn {
+    aspect-ratio: 1/1;
+  }
+
+  /* Mobile-specific transaction row updates */
+  .transactionRow {
+    flex-direction: column;
+  }
+
+  .quantitySelector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .qtyInput {
+    flex-grow: 1;
+  }
+}

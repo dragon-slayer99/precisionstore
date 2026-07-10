@@ -1,0 +1,194 @@
+.ecom-header {
+  height: 64px; /* Fixed height per spec */
+  background-color: var(--canvas);
+  border-bottom: 1px solid var(--hairline);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.header-container {
+  max-width: 1440px; /* Grid max width */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Logo: Stamped Voice */
+.brand-logo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--on-dark);
+}
+
+.brand-logo span {
+  font-weight: 300;
+  color: var(--body);
+}
+
+/* Search: Industrial Precision (No rounding) */
+.search-container {
+  flex-grow: 1;
+  max-width: 400px;
+  display: flex;
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+}
+
+.search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  color: var(--on-dark);
+  font-family: var(--font-main);
+  font-weight: 300; /* Light weight for inputs */
+  font-size: 14px;
+}
+
+.search-submit {
+  background: transparent;
+  border: none;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+/* Nav Links: Uppercase Letterspaced */
+.desktop-nav .nav-links {
+  display: flex;
+  list-style: none;
+  gap: clamp(16px, 3vw, 24px);
+}
+
+.nav-links a {
+  color: var(--on-dark);
+  text-decoration: none;
+  /* Fluid typography: scales from 12px (mobile) to 14px (desktop) */
+  font-size: clamp(12px, 1.1vw, 14px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-machined); /* "Machined" feel */
+  white-space: nowrap;
+}
+
+/* Controls Cluster */
+.controls-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--surface-card);
+  border: none;
+  border-radius: 50%; /* Only circular elements are rounded */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cart-wrapper {
+  position: relative;
+}
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--m-red);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 1px;
+  background: white;
+  transition: 0.3s;
+}
+
+/* Mobile Menu & M-Stripe */
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: -100%;
+  width: 100%;
+  height: calc(100vh - 64px);
+  background: var(--canvas);
+  transition: 0.4s ease;
+  padding: 40px 24px;
+}
+
+.mobile-menu.active {
+  left: 0;
+}
+
+.m-stripe-divider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px; /* 4px tall brand stripe */
+  background: linear-gradient(
+    90deg,
+    var(--m-blue-light) 0% 33%,
+    var(--m-blue-dark) 33% 66%,
+    var(--m-red) 66% 100%
+  );
+}
+
+.mobile-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.mobile-links a {
+  color: white;
+  text-decoration: none;
+  /* Fluid typography: scales from 20px (small mobile) to 32px (large mobile/tablet) */
+  font-size: clamp(20px, 5vw, 32px);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 1092px) {
+  .desktop-nav,
+  .search-container {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
