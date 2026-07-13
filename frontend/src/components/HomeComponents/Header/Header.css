@@ -63,6 +63,12 @@
   cursor: pointer;
 }
 
+.nav-links-container {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
 /* Nav Links: Uppercase Letterspaced */
 .desktop-nav .nav-links {
   display: flex;
@@ -183,7 +189,7 @@
 }
 
 /* Responsive */
-@media (max-width: 1092px) {
+@media (max-width: 768px) {
   .desktop-nav,
   .search-container {
     display: none;
