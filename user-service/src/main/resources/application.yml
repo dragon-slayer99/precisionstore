@@ -3,5 +3,5 @@ spring:
     name: user-service
   config:
     import:
-#      - 'optional:configserver:http://config-server:8888'  # for docker container
-      - 'optional:configserver:http://localhost:8888'
+     - 'optional:configserver:http://config-server:8888'  # for docker container
+      # - 'optional:configserver:http://localhost:8888'

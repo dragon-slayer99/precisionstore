@@ -1,15 +1,17 @@
 package com.techouts.user_service.utils;
 
-import com.techouts.user_service.model.RefreshToken;
+import java.util.Date;
+
+import javax.crypto.SecretKey;
+
+import org.springframework.stereotype.Component;
+
 import com.techouts.user_service.model.User;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.stereotype.Component;
-
-import javax.crypto.SecretKey;
-import java.util.Date;
 
 @Component
 public class JwtUtil {

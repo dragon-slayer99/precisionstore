@@ -1,16 +1,21 @@
 package com.techouts.user_service.model;
 
-import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "users")

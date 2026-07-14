@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import Loader from "../components/HomeComponents/Loader/Loader";
 import Orders from "../components/OrdersComponents/Orders/Orders";
+import EmptyOrders from "../components/OrdersComponents/EmptyOrders/EmptyOrders"
 import { getProducts } from "../api/productApi";
 import { ProductDetailsContext } from "../utils/contextProducer";
 
@@ -34,7 +35,7 @@ function OrderPage() {
         <Loader />
       ) : (
         <ProductDetailsContext.Provider value={productDetails}>
-          <Orders orderDetails={orderDetails} />
+          {orderDetails ? <EmptyOrders /> : <Orders orderDetails={orderDetails} />}
         </ProductDetailsContext.Provider>
       )}
     </>

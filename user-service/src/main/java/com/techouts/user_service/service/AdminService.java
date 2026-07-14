@@ -1,14 +1,14 @@
 package com.techouts.user_service.service;
 
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.techouts.user_service.dto.ProductDTO;
 import com.techouts.user_service.feignclient.ProductClient;
 import com.techouts.user_service.model.User;
 import com.techouts.user_service.repository.UserRepo;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class AdminService {

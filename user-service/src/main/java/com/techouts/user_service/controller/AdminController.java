@@ -1,29 +1,33 @@
 package com.techouts.user_service.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.techouts.user_service.dto.ProductDTO;
 import com.techouts.user_service.dto.ProductInsertRequest;
 import com.techouts.user_service.dto.ProductUpdateRequest;
 import com.techouts.user_service.service.AdminService;
-import com.techouts.user_service.service.UserService;
+
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
-//@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:5173"})
 public class AdminController {
 
     private final AdminService adminService;
-    private final UserService userService;
 
-    AdminController(AdminService adminService, UserService userService) {
+    AdminController(AdminService adminService) {
         this.adminService = adminService;
-        this.userService = userService;
     }
 
     @Hidden

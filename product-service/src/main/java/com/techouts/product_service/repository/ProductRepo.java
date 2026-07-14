@@ -1,13 +1,12 @@
 package com.techouts.product_service.repository;
 
-import com.techouts.product_service.model.Product;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Collection;
-import java.util.List;
+import com.techouts.product_service.model.Product;
 
 public interface ProductRepo extends JpaRepository<Product, Integer> {
 

@@ -17,7 +17,6 @@ A modern e-commerce frontend built with React 19, Vite 8, React Router 7, and Re
 - **Vite 8** - Build tool and dev server
 - **React Router 7** - Client-side routing
 - **CSS Modules** - Component-scoped styling
-- **Zod** - Schema validation
 - **ESLint** - Code linting
 
 ## Project Structure

@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.jspecify.annotations.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;

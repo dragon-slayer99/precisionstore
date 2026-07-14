@@ -3,5 +3,5 @@ spring:
     name: eureka-server
   config:
     import:
-#      - 'optional:configserver:http://config-server:8888'  # for docker container only
-      - 'optional:configserver:http://localhost:8888'
+     - 'optional:configserver:http://config-server:8888'
+      # - 'optional:configserver:http://localhost:8888'
