@@ -1,0 +1,42 @@
+run-name: CI Workflow
+name: CI Workflow
+
+on:
+    workflow_call:
+        inputs:
+            service-name:
+                required: true
+                description: This is the name of the currently running service
+                type: string
+            service-directory:
+                required: true
+                description: This is the service director in the monorepo
+                type: string
+
+jobs:
+    build:
+        name: Build the service for compilation errors
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ${{ inputs.service-directory }}
+        steps:
+            - name: Checkout the code from GitHub to runner machine
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 1
+            - name: Set up the enviromnent for building the service
+              uses: actions/setup-java@v4
+              with:
+                  distribution: 'temurin'
+                  java-version: '21'
+                  cache: maven
+            - name: Build the service within the environment
+              if: success()
+              run: |
+                mvn clean package
+                echo 'Build was successful'
+            
+            
+
+            

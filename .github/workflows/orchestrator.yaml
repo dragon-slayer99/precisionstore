@@ -1,0 +1,97 @@
+run-name: Orchestrate CI workflow
+name: Orchestrate CI workflow
+
+on:
+    push:
+        branches: [master]
+    workflow_dispatch:
+
+jobs:
+    changes:
+        name: Findout which files has changed
+        runs-on: ubuntu-latest
+
+        outputs:
+            eureka-server:
+            api-gateway:
+            user-service:
+            product-service:
+            order-service:
+            cart-service:
+
+        steps:
+            - name: Checkout the code from GitHub to runner machine
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Filter the services that has code changes
+              uses: dorny/paths-filter@v4
+              with:
+                  filters: |
+                      eureka-server:
+                          - 'precisionstore/eureka-server/**'
+                      api-gateway:
+                          - 'precisionstore/api-gateway/**'
+                      user-service:
+                          - 'precisionstore/user-service/**'
+                      product-service:
+                          - 'precisionstore/product-service/**'
+                      order-service:
+                          - 'precisionstore/order-service/**'
+                      cart-service:
+                          - 'precisionstore/cart-service/**'
+
+    build-eureka-server:
+        needs: changes
+        if: ${{ needs.changes.outputs.eureka-server == 'true' }}
+        name: Build eureka-server service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: eureka-server
+            service-directory: precisionstore/eureka-server
+    
+    build-api-gateway:
+        needs: changes
+        if: ${{ needs.changes.outputs.api-gateway == 'true' }}
+        name: Build api-gateway service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: api-gateway
+            service-directory: precisionstore/api-gateway
+    
+    build-user-service:
+        needs: changes
+        if: ${{ needs.changes.outputs.user-service == 'true' }}
+        name: Build user-service service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: user-service
+            service-directory: precisionstore/user-service
+    
+    build-product-service:
+        needs: changes
+        if: ${{ needs.changes.outputs.product-service == 'true' }}
+        name: Build product-service service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: product-service
+            service-directory: precisionstore/product-service
+    
+    build-order-service:
+        needs: changes
+        if: ${{ needs.changes.outputs.order-service == 'true' }}
+        name: Build order-service service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: order-service
+            service-directory: precisionstore/order-service
+    
+    build-cart-service:
+        needs: changes
+        if: ${{ needs.changes.outputs.cart-service == 'true' }}
+        name: Build cart-service service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: cart-service
+            service-directory: precisionstore/cart-service
+
