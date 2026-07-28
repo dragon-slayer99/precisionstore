@@ -47,7 +47,6 @@ jobs:
     build-config-server:
         needs: changes
         runs-on: ubuntu-latest
-        if: ${{ needs.changes.outputs.config-server == 'true' }}
         name: Build config-server service
         steps:
             - name: Build config-server service
@@ -64,7 +63,6 @@ jobs:
     build-eureka-server:
         needs: changes
         runs-on: ubuntu-latest
-        if: ${{ needs.changes.outputs.eureka-server == 'true' }}
         name: Build eureka-server service
         steps:
             - name: Build eureka-server service
@@ -81,7 +79,6 @@ jobs:
     build-api-gateway:
         needs: changes
         runs-on: ubuntu-latest
-        if: ${{ needs.changes.outputs.api-gateway == 'true' }}
         name: Build api-gateway service
         steps:
             - name: Build api-gateway service
@@ -98,7 +95,6 @@ jobs:
     build-user-service:
         needs: changes
         runs-on: ubuntu-latest
-        if: ${{ needs.changes.outputs.user-service == 'true' }}
         name: Build user-service service
         steps:
             - name: Build user-service service
@@ -115,7 +111,6 @@ jobs:
     build-order-service:
         needs: changes
         runs-on: ubuntu-latest
-        if: ${{ needs.changes.outputs.order-service == 'true' }}
         name: Build order-service service
         steps:
             - name: Build order-service service
@@ -132,7 +127,6 @@ jobs:
     build-cart-service:
         needs: changes
         runs-on: ubuntu-latest
-        if: ${{ needs.changes.outputs.cart-service == 'true' }}
         name: Build cart-service service
         steps:
             - name: Build cart-service service
@@ -149,7 +143,6 @@ jobs:
     build-product-service:
         needs: changes
         runs-on: ubuntu-latest
-        if: ${{ needs.changes.outputs.product-service == 'true' }}
         name: Build product-service service
         steps:
             - name: Build product-service service
