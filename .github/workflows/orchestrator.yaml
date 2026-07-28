@@ -56,6 +56,7 @@ jobs:
     Deploy-config-server:
         name: Deploy config-server service
         uses: ./.github/workflows/cd.yaml
+        secrets: inherit
         with:
             service-name: config-server
             service-directory: config-server
@@ -72,6 +73,7 @@ jobs:
     Deploy-eureka-server:
         name: Deploy eureka-server service
         uses: ./.github/workflows/cd.yaml
+        secrets: inherit
         with:
             service-name: eureka-server
             service-directory: eureka-server
@@ -88,6 +90,7 @@ jobs:
     Deploy-api-gateway:
         name: Deploy api-gateway service
         uses: ./.github/workflows/cd.yaml
+        secrets: inherit
         with:
             service-name: api-gateway
             service-directory: api-gateway
@@ -104,6 +107,7 @@ jobs:
     Deploy-user-service:
         name: Deploy user-service service
         uses: ./.github/workflows/cd.yaml
+        secrets: inherit
         with:
             service-name: user-service
             service-directory: user-service
@@ -120,6 +124,7 @@ jobs:
     Deploy-product-service:
         name: Deploy product-service service
         uses: ./.github/workflows/cd.yaml
+        secrets: inherit
         with:
             service-name: product-service
             service-directory: product-service
@@ -136,6 +141,7 @@ jobs:
     Deploy-order-service:
         name: Deploy order-service service
         uses: ./.github/workflows/cd.yaml
+        secrets: inherit
         with:
             service-name: order-service
             service-directory: order-service
@@ -152,6 +158,7 @@ jobs:
     Deploy-cart-service:
         name: Deploy cart-service service
         uses: ./.github/workflows/cd.yaml
+        secrets: inherit
         with:
             service-name: cart-service
             service-directory: cart-service
