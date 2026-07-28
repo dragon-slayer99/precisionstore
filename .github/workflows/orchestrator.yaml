@@ -55,7 +55,6 @@ jobs:
 
     Deploy-config-server:
         needs: build-config-server
-        if: ${{ needs.build-config-server.result == 'success' || needs.build-config-server.result == 'skipped' }}
         name: Deploy config-server service
         uses: ./.github/workflows/cd.yaml
         with:
@@ -73,7 +72,6 @@ jobs:
 
     Deploy-eureka-server:
         needs: build-eureka-server
-        if: ${{ needs.build-eureka-server.result == 'success' || needs.build-eureka-server.result == 'skipped' }}
         name: Deploy eureka-server service
         uses: ./.github/workflows/cd.yaml
         with:
@@ -91,7 +89,6 @@ jobs:
 
     Deploy-api-gateway:
         needs: build-api-gateway
-        if: ${{ needs.build-api-gateway.result == 'success' || needs.build-api-gateway.result == 'skipped' }}
         name: Deploy api-gateway service
         uses: ./.github/workflows/cd.yaml
         with:
@@ -109,7 +106,6 @@ jobs:
     
     Deploy-user-service:
         needs: build-user-service
-        if: ${{ needs.build-user-service.result == 'success' || needs.build-user-service.result == 'skipped' }}
         name: Deploy user-service service
         uses: ./.github/workflows/cd.yaml
         with:
@@ -127,7 +123,6 @@ jobs:
     
     Deploy-product-service:
         needs: build-product-service
-        if: ${{ needs.build-product-service.result == 'success' || needs.build-product-service.result == 'skipped' }}
         name: Deploy product-service service
         uses: ./.github/workflows/cd.yaml
         with:
@@ -145,7 +140,6 @@ jobs:
 
     Deploy-order-service:
         needs: build-order-service
-        if: ${{ needs.build-order-service.result == 'success' || needs.build-order-service.result == 'skipped' }}
         name: Deploy order-service service
         uses: ./.github/workflows/cd.yaml
         with:
@@ -163,7 +157,6 @@ jobs:
 
     Deploy-cart-service:
         needs: build-cart-service
-        if: ${{ needs.build-cart-service.result == 'success' || needs.build-cart-service.result == 'skipped' }}
         name: Deploy cart-service service
         uses: ./.github/workflows/cd.yaml
         with:
