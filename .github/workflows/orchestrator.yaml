@@ -10,6 +10,16 @@ jobs:
     changes:
         name: Findout which files has changed
         runs-on: ubuntu-latest
+
+        outputs:
+            config-server:
+            eureka-server:
+            api-gateway:
+            user-service:
+            product-service:
+            order-service:
+            cart-service:
+
         steps:
             - name: Checkout the code from GitHub to runner machine
               uses: actions/checkout@v6
@@ -33,35 +43,122 @@ jobs:
                           - 'precisionstore/order-service/**'
                       cart-service:
                           - 'precisionstore/cart-service/**'
-        outputs:
-            config-server:
-            eureka-server:
-            api-gateway:
-            user-service:
-            product-service:
-            order-service:
-            cart-service:
 
-    orchestrate:
+    build-config-server:
         needs: changes
+        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.config-server == 'true' }}
+        name: Build config-server service
+        steps:
+            - name: Build config-server service
+              uses: ./.github/workflows/ci.yaml
+              with:
+                service-name: config-server
+                service-directory: precisionstore/config-server
+            - name: Deploy image to Docker hub
+              uses: ./.github/workflows/cd.yaml
+              with:
+                service-name: config-server
+                service-directory: precisionstore/config-server
 
-        strategy:
-            matrix:
-                service: 
-                    - config-server
-                    - eureka-server
-                    - api-gateway
-                    - cart-service
-                    - order-service
-                    - user-service
-                    - product-service
-            fail-fast: false
-        if: ${{ needs.changes.outputs[matrix.service] == 'true' }}
-        name: Build ${{ matrix.service }} service
-        uses: ./.github/workflows/ci.yaml
-        with:
-            service-name: ${{ matrix.service }}
-            service-directory: precisionstore/${{ matrix.service }}
-        
-        
-                
+    build-eureka-server:
+        needs: changes
+        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.eureka-server == 'true' }}
+        name: Build eureka-server service
+        steps:
+            - name: Build eureka-server service
+              uses: ./.github/workflows/ci.yaml
+              with:
+                service-name: eureka-server
+                service-directory: precisionstore/eureka-server
+            - name: Deploy image to Docker hub
+              uses: ./.github/workflows/cd.yaml
+              with:
+                service-name: eureka-server
+                service-directory: precisionstore/eureka-server
+
+    build-api-gateway:
+        needs: changes
+        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.api-gateway == 'true' }}
+        name: Build api-gateway service
+        steps:
+            - name: Build api-gateway service
+              uses: ./.github/workflows/ci.yaml
+              with:
+                service-name: api-gateway
+                service-directory: precisionstore/api-gateway
+            - name: Deploy image to Docker hub
+              uses: ./.github/workflows/cd.yaml
+              with:
+                service-name: api-gateway
+                service-directory: precisionstore/api-gateway
+
+    build-user-service:
+        needs: changes
+        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.user-service == 'true' }}
+        name: Build user-service service
+        steps:
+            - name: Build user-service service
+              uses: ./.github/workflows/ci.yaml
+              with:
+                service-name: user-service
+                service-directory: precisionstore/user-service
+            - name: Deploy image to Docker hub
+              uses: ./.github/workflows/cd.yaml
+              with:
+                service-name: user-service
+                service-directory: precisionstore/user-service
+
+    build-order-service:
+        needs: changes
+        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.order-service == 'true' }}
+        name: Build order-service service
+        steps:
+            - name: Build order-service service
+              uses: ./.github/workflows/ci.yaml
+              with:
+                service-name: order-service
+                service-directory: precisionstore/order-service
+            - name: Deploy image to Docker hub
+              uses: ./.github/workflows/cd.yaml
+              with:
+                service-name: order-service
+                service-directory: precisionstore/order-service
+
+    build-cart-service:
+        needs: changes
+        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.cart-service == 'true' }}
+        name: Build cart-service service
+        steps:
+            - name: Build cart-service service
+              uses: ./.github/workflows/ci.yaml
+              with:
+                service-name: cart-service
+                service-directory: precisionstore/cart-service
+            - name: Deploy image to Docker hub
+              uses: ./.github/workflows/cd.yaml
+              with:
+                service-name: cart-service
+                service-directory: precisionstore/cart-service
+
+    build-product-service:
+        needs: changes
+        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.product-service == 'true' }}
+        name: Build product-service service
+        steps:
+            - name: Build product-service service
+              uses: ./.github/workflows/ci.yaml
+              with:
+                service-name: product-service
+                service-directory: precisionstore/product-service
+            - name: Deploy image to Docker hub
+              uses: ./.github/workflows/cd.yaml
+              with:
+                service-name: product-service
+                service-directory: precisionstore/product-service
