@@ -22,7 +22,7 @@ jobs:
                 working-directory: ${{ inputs.service-directory }}
         steps:
             - name: Checkout the code from GitHub to runner machine
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
               with:
                   fetch-depth: 1
             - name: Set up the enviromnent for building the service

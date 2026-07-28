@@ -1,0 +1,37 @@
+run-name: Deploy docker image to DockerHub
+name: Deploy docker image to DockerHub
+
+on: 
+    workflow_call:
+        inputs:
+            service-name: 
+                required: true
+                description: Name of the service
+                type: string
+            service-directory:
+                required: true
+                description: Path to the service in the monorepo
+                type: string
+
+jobs:
+    dockerize: 
+        name: Dockerize the service and push to DockerHub
+        defaults:
+            run:
+                working-directory: ${{ inputs.service-directory }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Login to Docker Hub using access token
+              uses: docker/login-action@v4
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+            - name: Build and push the image to Docker Hub
+              uses: docker/build-push-action@v7
+              with:
+                  context: ./${{ inputs.service-directory }}
+                  file: ./Dockerfile
+                  push: true
+                  tags: |
+                    ${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.service-name }}:latest
+                    ${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.service-name }}:${{ github.sha }}
