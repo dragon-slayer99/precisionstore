@@ -22,7 +22,7 @@ jobs:
 
         steps:
             - name: Checkout the code from GitHub to runner machine
-              uses: actions/checkout@v6
+              uses: actions/checkout@v4
               with:
                   fetch-depth: 0
             - name: Filter the services that has code changes
@@ -30,128 +30,143 @@ jobs:
               with:
                   filters: |
                       config-server:
-                          - 'precisionstore/config-server/**'
+                          - 'config-server/**'
                       eureka-server:
-                          - 'precisionstore/eureka-server/**'
+                          - 'eureka-server/**'
                       api-gateway:
-                          - 'precisionstore/api-gateway/**'
+                          - 'api-gateway/**'
                       user-service:
-                          - 'precisionstore/user-service/**'
+                          - 'user-service/**'
                       product-service:
-                          - 'precisionstore/product-service/**'
+                          - 'product-service/**'
                       order-service:
-                          - 'precisionstore/order-service/**'
+                          - 'order-service/**'
                       cart-service:
-                          - 'precisionstore/cart-service/**'
+                          - 'cart-service/**'
 
     build-config-server:
         needs: changes
-        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.config-server == 'true' }}
         name: Build config-server service
-        steps:
-            - name: Build config-server service
-              uses: ./.github/workflows/ci.yaml
-              with:
-                service-name: config-server
-                service-directory: precisionstore/config-server
-            - name: Deploy image to Docker hub
-              uses: ./.github/workflows/cd.yaml
-              with:
-                service-name: config-server
-                service-directory: precisionstore/config-server
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: config-server
+            service-directory: config-server
 
+    Deploy-config-server:
+        needs: build-config-server
+        if: ${{ needs.build-config-server.result == 'success' }}
+        name: Deploy config-server service
+        uses: ./.github/workflows/cd.yaml
+        with:
+            service-name: config-server
+            service-directory: config-server
+    
     build-eureka-server:
         needs: changes
-        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.eureka-server == 'true' }}
         name: Build eureka-server service
-        steps:
-            - name: Build eureka-server service
-              uses: ./.github/workflows/ci.yaml
-              with:
-                service-name: eureka-server
-                service-directory: precisionstore/eureka-server
-            - name: Deploy image to Docker hub
-              uses: ./.github/workflows/cd.yaml
-              with:
-                service-name: eureka-server
-                service-directory: precisionstore/eureka-server
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: eureka-server
+            service-directory: eureka-server
 
+    Deploy-eureka-server:
+        needs: build-eureka-server
+        if: ${{ needs.build-eureka-server.result == 'success' }}
+        name: Deploy eureka-server service
+        uses: ./.github/workflows/cd.yaml
+        with:
+            service-name: eureka-server
+            service-directory: eureka-server
+    
     build-api-gateway:
         needs: changes
-        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.api-gateway == 'true' }}
         name: Build api-gateway service
-        steps:
-            - name: Build api-gateway service
-              uses: ./.github/workflows/ci.yaml
-              with:
-                service-name: api-gateway
-                service-directory: precisionstore/api-gateway
-            - name: Deploy image to Docker hub
-              uses: ./.github/workflows/cd.yaml
-              with:
-                service-name: api-gateway
-                service-directory: precisionstore/api-gateway
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: api-gateway
+            service-directory: api-gateway
 
+    Deploy-api-gateway:
+        needs: build-api-gateway
+        if: ${{ needs.build-api-gateway.result == 'success' }}
+        name: Deploy api-gateway service
+        uses: ./.github/workflows/cd.yaml
+        with:
+            service-name: api-gateway
+            service-directory: api-gateway
+    
     build-user-service:
         needs: changes
-        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.user-service == 'true' }}
         name: Build user-service service
-        steps:
-            - name: Build user-service service
-              uses: ./.github/workflows/ci.yaml
-              with:
-                service-name: user-service
-                service-directory: precisionstore/user-service
-            - name: Deploy image to Docker hub
-              uses: ./.github/workflows/cd.yaml
-              with:
-                service-name: user-service
-                service-directory: precisionstore/user-service
-
-    build-order-service:
-        needs: changes
-        runs-on: ubuntu-latest
-        name: Build order-service service
-        steps:
-            - name: Build order-service service
-              uses: ./.github/workflows/ci.yaml
-              with:
-                service-name: order-service
-                service-directory: precisionstore/order-service
-            - name: Deploy image to Docker hub
-              uses: ./.github/workflows/cd.yaml
-              with:
-                service-name: order-service
-                service-directory: precisionstore/order-service
-
-    build-cart-service:
-        needs: changes
-        runs-on: ubuntu-latest
-        name: Build cart-service service
-        steps:
-            - name: Build cart-service service
-              uses: ./.github/workflows/ci.yaml
-              with:
-                service-name: cart-service
-                service-directory: precisionstore/cart-service
-            - name: Deploy image to Docker hub
-              uses: ./.github/workflows/cd.yaml
-              with:
-                service-name: cart-service
-                service-directory: precisionstore/cart-service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: user-service
+            service-directory: user-service
+    
+    Deploy-user-service:
+        needs: build-user-service
+        if: ${{ needs.build-user-service.result == 'success' }}
+        name: Deploy user-service service
+        uses: ./.github/workflows/cd.yaml
+        with:
+            service-name: user-service
+            service-directory: user-service
 
     build-product-service:
         needs: changes
-        runs-on: ubuntu-latest
+        if: ${{ needs.changes.outputs.product-service == 'true' }}
         name: Build product-service service
-        steps:
-            - name: Build product-service service
-              uses: ./.github/workflows/ci.yaml
-              with:
-                service-name: product-service
-                service-directory: precisionstore/product-service
-            - name: Deploy image to Docker hub
-              uses: ./.github/workflows/cd.yaml
-              with:
-                service-name: product-service
-                service-directory: precisionstore/product-service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: product-service
+            service-directory: product-service
+    
+    Deploy-product-service:
+        needs: build-product-service
+        if: ${{ needs.build-product-service.result == 'success' }}
+        name: Deploy product-service service
+        uses: ./.github/workflows/cd.yaml
+        with:
+            service-name: product-service
+            service-directory: product-service
+
+    build-order-service:
+        needs: changes
+        if: ${{ needs.changes.outputs.order-service == 'true' }}
+        name: Build order-service service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: order-service
+            service-directory: order-service
+
+    Deploy-order-service:
+        needs: build-order-service
+        if: ${{ needs.build-order-service.result == 'success' }}
+        name: Deploy order-service service
+        uses: ./.github/workflows/cd.yaml
+        with:
+            service-name: order-service
+            service-directory: order-service
+    
+    build-cart-service:
+        needs: changes
+        if: ${{ needs.changes.outputs.cart-service == 'true' }}
+        name: Build cart-service service
+        uses: ./.github/workflows/ci.yaml
+        with:
+            service-name: cart-service
+            service-directory: cart-service
+
+    Deploy-cart-service:
+        needs: build-cart-service
+        if: ${{ needs.build-cart-service.result == 'success' }}
+        name: Deploy cart-service service
+        uses: ./.github/workflows/cd.yaml
+        with:
+            service-name: cart-service
+            service-directory: cart-service
+
