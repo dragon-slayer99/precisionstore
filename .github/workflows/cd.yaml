@@ -32,7 +32,7 @@ jobs:
               uses: docker/build-push-action@v7
               with:
                   context: ./${{ inputs.service-directory }}
-                  file: ${{ inputs.service-directory }}/dockerfile
+                  file: ${{ inputs.service-directory }}/Dockerfile
                   push: true
                   tags: |
                     ${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.service-name }}:latest
